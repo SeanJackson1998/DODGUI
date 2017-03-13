@@ -39,6 +39,7 @@ public class HumanClientGUI{
 
         HumanClientGUIFrame.setLayout(new GridBagLayout());
 
+        
         gbc.insets = new Insets(5,5,5,5);
 
 
@@ -58,11 +59,11 @@ public class HumanClientGUI{
         // headings 'columns'
         table.setFont(new Font("Dialog", Font.PLAIN, 26));
         table.setRowHeight(50);
-        table.getColumnModel().getColumn(0).setPreferredWidth(50);
-        table.getColumnModel().getColumn(1).setPreferredWidth(50);
-        table.getColumnModel().getColumn(2).setPreferredWidth(50);
-        table.getColumnModel().getColumn(3).setPreferredWidth(50);
-        table.getColumnModel().getColumn(4).setPreferredWidth(50);
+        table.getColumnModel().getColumn(0).setMinWidth(50);
+        table.getColumnModel().getColumn(1).setMinWidth(50);
+        table.getColumnModel().getColumn(2).setMinWidth(50);
+        table.getColumnModel().getColumn(3).setMinWidth(50);
+        table.getColumnModel().getColumn(4).setMinWidth(50);
 
         HumanClientGUIFrame.getContentPane().add(table);
         /**
@@ -222,7 +223,9 @@ public class HumanClientGUI{
      */
     public static void main(String[] args) throws IOException {
 
-        if (args.length != 2) {
+        HumanClientGUI human = new HumanClientGUI();
+
+        /*if (args.length != 2) {
             System.err.println(
                     "Usage: java HumanClient <host name> <port number>");
             System.exit(1);
@@ -275,7 +278,7 @@ public class HumanClientGUI{
             System.exit(1);
         }
 
-        //HumanClientGUI human = new HumanClientGUI();
+        */
     }
 
 }
