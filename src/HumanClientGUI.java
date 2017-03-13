@@ -14,6 +14,7 @@ import java.net.UnknownHostException;
 public class HumanClientGUI{
 
     GridBagConstraints gbc = new GridBagConstraints();
+    GridBagConstraints gbcForPanel = new GridBagConstraints();
 
     private JFrame HumanClientGUIFrame;
 
@@ -32,7 +33,7 @@ public class HumanClientGUI{
         HumanClientGUIFrame = new JFrame("Human Client");
         HumanClientGUIFrame.setLayout(new FlowLayout());
 
-        HumanClientGUIFrame.setSize(500,500);
+        HumanClientGUIFrame.setSize(900,800);
         HumanClientGUIFrame.getContentPane().setBackground(Color.lightGray);
         HumanClientGUIFrame.setResizable(false);
         HumanClientGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,32 +41,84 @@ public class HumanClientGUI{
         HumanClientGUIFrame.setLayout(new GridBagLayout());
 
         
-        gbc.insets = new Insets(5,5,5,5);
+        gbcForPanel.insets = new Insets(5,5,5,5);
 
+
+        JPanel lookPanel = new JPanel();
+        lookPanel.setLayout(new GridBagLayout());
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridheight = 2;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        lookPanel.setPreferredSize(new Dimension(600,600));
+        lookPanel.setBackground(Color.black);
+        HumanClientGUIFrame.getContentPane().add(lookPanel, gbc);
+
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new GridBagLayout());
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        controlPanel.setPreferredSize(new Dimension(300,600));
+        controlPanel.setBackground(Color.red);
+        HumanClientGUIFrame.getContentPane().add(controlPanel, gbc);
+
+        JPanel chatPanel = new JPanel();
+        chatPanel.setLayout(new GridBagLayout());
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        chatPanel.setPreferredSize(new Dimension(600,200));
+        chatPanel.setBackground(Color.green);
+        HumanClientGUIFrame.getContentPane().add(chatPanel, gbc);
+
+        JPanel IPPanel = new JPanel();
+        IPPanel.setLayout(new GridBagLayout());
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        IPPanel.setPreferredSize(new Dimension(300,200));
+        IPPanel.setBackground(Color.blue);
+        HumanClientGUIFrame.getContentPane().add(IPPanel, gbc);
+
+        HumanClientGUIFrame.pack();
 
         String[] columns = new String[] { // The column heads are blank as this
                 // table doesn't need any
                 "", "", "", "", "" };
         JTable table = new JTable(MapLook, columns); // the table contains the array
-        gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbcForPanel.gridx = 0;
+        gbcForPanel.gridy = 0;
 
-        gbc.gridheight = 5;
-        gbc.gridwidth = 5;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.gridheight = 5;
+        gbcForPanel.gridwidth = 5;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         table.setForeground(Color.DARK_GRAY);
+
         // MapLook with the column
         // headings 'columns'
         table.setFont(new Font("Dialog", Font.PLAIN, 26));
-        table.setRowHeight(50);
-        table.getColumnModel().getColumn(0).setMinWidth(50);
-        table.getColumnModel().getColumn(1).setMinWidth(50);
-        table.getColumnModel().getColumn(2).setMinWidth(50);
-        table.getColumnModel().getColumn(3).setMinWidth(50);
-        table.getColumnModel().getColumn(4).setMinWidth(50);
+        table.setRowHeight(120);
+        table.getColumnModel().getColumn(0).setMinWidth(120);
+        table.getColumnModel().getColumn(1).setMinWidth(120);
+        table.getColumnModel().getColumn(2).setMinWidth(120);
+        table.getColumnModel().getColumn(3).setMinWidth(120);
+        table.getColumnModel().getColumn(4).setMinWidth(120);
 
-        HumanClientGUIFrame.getContentPane().add(table);
+        lookPanel.add(table);
         /**
          * The table is declared above and then the look function populates it
          * with the map data. The the repaint command updates the table visibly
@@ -74,19 +127,16 @@ public class HumanClientGUI{
         //printLook();
         //table.repaint();
 
-
-
-
         JButton HelloButton = new JButton("Hello");
-        gbc.gridx = 6;
-        gbc.gridy = 0;
+        gbcForPanel.gridx = 0;
+        gbcForPanel.gridy = 0;
 
-        gbc.gridheight = 1;
-        gbc.gridwidth = 3;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 3;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         //HelloButton.setBounds(50,50,50,50);
-        HumanClientGUIFrame.add(HelloButton, gbc);
+        controlPanel.add(HelloButton, gbcForPanel);
 
         HelloButton.setForeground(Color.BLACK);
         HelloButton.setBackground(Color.YELLOW);
@@ -99,15 +149,15 @@ public class HumanClientGUI{
 
 
         JButton PickupButton = new JButton("Pick Up");
-        gbc.gridx = 9;
-        gbc.gridy = 0;
+        gbcForPanel.gridx = 4;
+        gbcForPanel.gridy = 0;
 
-        gbc.gridheight = 1;
-        gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 3;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
 
-        HumanClientGUIFrame.add(PickupButton, gbc);
+        controlPanel.add(PickupButton, gbcForPanel);
 
         PickupButton.setForeground(Color.ORANGE);
         PickupButton.setBackground(Color.YELLOW);
@@ -119,57 +169,57 @@ public class HumanClientGUI{
         });
 
         JButton NorthButton = new JButton("N");
-        gbc.gridx = 6;
-        gbc.gridy = 1;
+        gbcForPanel.gridx = 1;
+        gbcForPanel.gridy = 1;
 
-        gbc.gridheight = 1;
-        gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 1;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         //HelloButton.setBounds(50,50,50,50);
-        HumanClientGUIFrame.add(NorthButton, gbc);
+        controlPanel.add(NorthButton, gbcForPanel);
 
         JButton SouthButton = new JButton("S");
-        gbc.gridx = 6;
-        gbc.gridy = 3;
+        gbcForPanel.gridx = 1;
+        gbcForPanel.gridy = 3;
 
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         //HelloButton.setBounds(50,50,50,50);
-        HumanClientGUIFrame.add(SouthButton, gbc);
+        controlPanel.add(SouthButton, gbcForPanel);
 
         JButton EastButton = new JButton("E");
-        gbc.gridx = 7;
-        gbc.gridy = 2;
+        gbcForPanel.gridx = 2;
+        gbcForPanel.gridy = 2;
 
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         //HelloButton.setBounds(50,50,50,50);
-        HumanClientGUIFrame.add(EastButton, gbc);
+        controlPanel.add(EastButton, gbcForPanel);
 
         JButton WestButton = new JButton("W");
-        gbc.gridx = 5;
-        gbc.gridy = 2;
+        gbcForPanel.gridx = 0;
+        gbcForPanel.gridy = 2;
 
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         //HelloButton.setBounds(50,50,50,50);
-        HumanClientGUIFrame.add(WestButton, gbc);
+        controlPanel.add(WestButton, gbcForPanel);
 
 
 
         JButton QuitButton = new JButton("Quit");
-        gbc.gridx = 8;
-        gbc.gridy = 3;
-        gbc.gridheight = 2;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.gridx = 3;
+        gbcForPanel.gridy = 3;
+        gbcForPanel.gridheight = 2;
+        gbcForPanel.gridwidth = 2;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
 
         QuitButton.setForeground(Color.RED);
         QuitButton.setBackground(Color.BLACK);
 
-        HumanClientGUIFrame.add(QuitButton, gbc);
+        controlPanel.add(QuitButton, gbcForPanel);
 
         QuitButton.addActionListener(new ActionListener() {
 
