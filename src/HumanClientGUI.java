@@ -16,6 +16,18 @@ public class HumanClientGUI{
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints gbcForPanel = new GridBagConstraints();
     GridBagConstraints gbcForChatPanel = new GridBagConstraints();
+    GridBagConstraints gbcForIPPanel = new GridBagConstraints();
+
+    private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon gold = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon human = new ImageIcon(new ImageIcon("images/human.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+
+
+    private JLabel[][] lookWindow = new JLabel[5][5];
 
     private JFrame HumanClientGUIFrame;
 
@@ -41,8 +53,8 @@ public class HumanClientGUI{
 
         HumanClientGUIFrame.setLayout(new GridBagLayout());
 
-        JPanel lookPanel = new JPanel();
-        lookPanel.setLayout(new GridBagLayout());
+        JPanel lookOuterPanel = new JPanel();
+        lookOuterPanel.setLayout(new GridBagLayout());
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridheight = 2;
@@ -50,9 +62,9 @@ public class HumanClientGUI{
         gbc.fill = GridBagConstraints.VERTICAL;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        lookPanel.setPreferredSize(new Dimension(600,600));
-        lookPanel.setBackground(Color.black);
-        HumanClientGUIFrame.getContentPane().add(lookPanel, gbc);
+        lookOuterPanel.setPreferredSize(new Dimension(600,600));
+        lookOuterPanel.setBackground(Color.black);
+        HumanClientGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridBagLayout());
@@ -87,50 +99,64 @@ public class HumanClientGUI{
         gbc.fill = GridBagConstraints.VERTICAL;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         IPPanel.setPreferredSize(new Dimension(300,200));
-        IPPanel.setBackground(Color.blue);
+        IPPanel.setBackground(Color.pink);
         HumanClientGUIFrame.getContentPane().add(IPPanel, gbc);
 
         HumanClientGUIFrame.pack();
 
-        String[] columns = new String[] { // The column heads are blank as this
-                // table doesn't need any
-                "", "", "", "", "" };
-        JTable table = new JTable(MapLook, columns); // the table contains the array
-        gbcForPanel.gridx = 0;
-        gbcForPanel.gridy = 0;
 
-        gbcForPanel.gridheight = 5;
-        gbcForPanel.gridwidth = 5;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
-        table.setForeground(Color.DARK_GRAY);
-
-        // MapLook with the column
-        // headings 'columns'
-        table.setFont(new Font("Dialog", Font.PLAIN, 26));
-        table.setRowHeight(100);
-        table.getColumnModel().getColumn(0).setMinWidth(100);
-        table.getColumnModel().getColumn(1).setMinWidth(100);
-        table.getColumnModel().getColumn(2).setMinWidth(100);
-        table.getColumnModel().getColumn(3).setMinWidth(100);
-        table.getColumnModel().getColumn(4).setMinWidth(100);
-
-        lookPanel.add(table);
-        /**
-         * The table is declared above and then the look function populates it
-         * with the map data. The the repaint command updates the table visibly
-         * for the user on the frame.
-         */
-        //printLook();
-        //table.repaint();
-
+        JPanel lookInnerPanel = new JPanel();
+        lookInnerPanel.setLayout(new GridLayout(5,5));
+        lookInnerPanel.setPreferredSize(new Dimension(500,500));
+        lookInnerPanel.setBackground(Color.white);
+        lookOuterPanel.add(lookInnerPanel);
 
 
 
         gbcForPanel.insets = new Insets(20,10,20,10);
         gbcForChatPanel.insets = new Insets(5,20,5,20);
+        gbcForIPPanel.insets = new Insets(5,10,10,10);
 
+        // ##############################################################
+        // look inner panel components
 
+        for(int i=0;i<5;i++)
+        {
+            for(int j=0;j<5;j++)
+            {
+                lookWindow[i][j] = new JLabel();
+            }
+
+        }
+
+        for(int i=0;i<5;i++)
+        {
+            for(int j=0;j<5;j++)
+            {
+                switch (i){
+                    case 0:
+                        lookWindow[i][j].setIcon(gold);
+                        break;
+                    case 1:
+                        lookWindow[i][j].setIcon(exit);
+                        break;
+                    case 2:
+                        lookWindow[i][j].setIcon(floor);
+                        break;
+                    case 3:
+                        lookWindow[i][j].setIcon(wall);
+                        break;
+                    case 4:
+                        lookWindow[i][j].setIcon(lava);
+                        break;
+                }
+
+                lookInnerPanel.add(lookWindow[i][j]);
+            }
+
+        }
+        // ###############################################################
+        // controls panel components
         JButton HelloButton = new JButton("Hello");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 0;
@@ -140,8 +166,6 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         controlPanel.add(HelloButton, gbcForPanel);
 
-        HelloButton.setForeground(Color.BLACK);
-        HelloButton.setBackground(Color.YELLOW);
         HelloButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -159,7 +183,7 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         controlPanel.add(PickupButton, gbcForPanel);
 
-        PickupButton.setForeground(Color.ORANGE);
+        PickupButton.setForeground(Color.BLACK);
         PickupButton.setBackground(Color.YELLOW);
         PickupButton.addActionListener(new ActionListener() {
 
@@ -218,8 +242,6 @@ public class HumanClientGUI{
         });
 
 
-
-
       int gold = 0;
         JLabel goldCollected = new JLabel("Gold collected: " + gold);
         gbcForPanel.gridx = 0;
@@ -232,7 +254,8 @@ public class HumanClientGUI{
         controlPanel.add(goldCollected, gbcForPanel);
 
 
-
+        // #########################################################################
+        // chat panel components
         JTextArea chatWindow = new JTextArea(7, 40);
         chatWindow.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(chatWindow);
@@ -272,9 +295,60 @@ public class HumanClientGUI{
         gbcForChatPanel.fill = GridBagConstraints.HORIZONTAL;
         chatPanel.add(clear, gbcForChatPanel);
 
-        // make the text window for chat
-        // make the text filed for the chat
-        // make the send button for the chat
+        //##############################################################################
+        // IP panel components
+
+        JLabel ipAddress = new JLabel("IP Address:");
+        gbcForIPPanel.gridx = 0;
+        gbcForIPPanel.gridy = 0;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
+        IPPanel.add(ipAddress, gbcForIPPanel);
+
+
+        JTextField IPField = new JTextField(10);
+        chatField.setEditable(true);
+        gbcForIPPanel.gridx = 1;
+        gbcForIPPanel.gridy = 0;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        IPPanel.add(IPField,gbcForIPPanel);
+
+        JLabel portNumber = new JLabel("Port Number:");
+        gbcForIPPanel.gridx = 0;
+        gbcForIPPanel.gridy = 1;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
+        IPPanel.add(portNumber, gbcForIPPanel);
+
+
+        JTextField PortField = new JTextField(10);
+        chatField.setEditable(true);
+        gbcForIPPanel.gridx = 1;
+        gbcForIPPanel.gridy = 1;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        IPPanel.add(PortField,gbcForIPPanel);
+
+        JButton changePort = new JButton("Change");
+        gbcForIPPanel.gridx = 0;
+        gbcForIPPanel.gridy = 2;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 3;
+        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        IPPanel.add(changePort, gbcForIPPanel);
+
         // make the labels for the ip and port number
     }
 
@@ -292,23 +366,49 @@ public class HumanClientGUI{
      * each 5th character a new line in the array is made.
      */
     public void printLook() {
-//        GameLogic Game = new GameLogic();
-//
-//        String lookstring = Game.look();
-//        String[] looklines;
-//
-//        looklines = lookstring.split("(?!^)");
-//
-//        int i, j = 0; // i = line count, j = char count
-//
-//        for (i = 0; i < lookstring.length(); i++) {
-//            if (i % 5 == 0 && i != 0) {
-//                j++;
-//                MapLook[j][i % 5] = looklines[i];
-//            } else
-//                MapLook[j][i % 5] = looklines[i];
-//        }
+        GameLogic Game = new GameLogic();
+        String lookstring = null;// = Game.look();
+        String[] looklines;
 
+        looklines = lookstring.split("(?!^)");
+
+        int i, j = 0; // i = line count, j = char count
+
+        for (i = 0; i < lookstring.length(); i++) {
+            if (i % 5 == 0 && i != 0) {
+                j++;
+                putInImage(looklines[i],i,j);
+            } else
+                putInImage(looklines[i],i,j);
+        }
+
+    }
+
+    private void putInImage(String tile, int i, int j) {
+
+        switch (tile){
+            case "P":
+                lookWindow[i%j][j].setIcon(human);
+                break;
+            case "B":
+                lookWindow[i%j][j].setIcon(bot);
+                break;
+            case ".":
+                lookWindow[i%j][j].setIcon(floor);
+                break;
+            case "#":
+                lookWindow[i%j][j].setIcon(wall);
+                break;
+            case "X":
+                lookWindow[i%j][j].setIcon(lava);
+                break;
+            case "G":
+                lookWindow[i%j][j].setIcon(gold);
+                break;
+            case "E":
+                lookWindow[i%j][j].setIcon(exit);
+                break;
+        }
     }
 
 
