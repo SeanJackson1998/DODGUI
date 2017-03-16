@@ -60,8 +60,7 @@ public class HumanClientGUI{
         gbc.gridy = 0;
         gbc.gridheight = 2;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.BOTH;
 
         lookOuterPanel.setPreferredSize(new Dimension(600,600));
         lookOuterPanel.setBackground(Color.black);
@@ -73,8 +72,7 @@ public class HumanClientGUI{
         gbc.gridy = 0;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.BOTH;
         controlPanel.setPreferredSize(new Dimension(300,600));
         controlPanel.setBackground(Color.red);
         HumanClientGUIFrame.getContentPane().add(controlPanel, gbc);
@@ -85,8 +83,7 @@ public class HumanClientGUI{
         gbc.gridy = 2;
         gbc.gridheight = 1;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.BOTH;
         chatPanel.setPreferredSize(new Dimension(600,200));
         chatPanel.setBackground(Color.green);
         HumanClientGUIFrame.getContentPane().add(chatPanel, gbc);
@@ -97,8 +94,7 @@ public class HumanClientGUI{
         gbc.gridy = 2;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.BOTH;
         IPPanel.setPreferredSize(new Dimension(300,200));
         IPPanel.setBackground(Color.pink);
         HumanClientGUIFrame.getContentPane().add(IPPanel, gbc);
@@ -134,7 +130,7 @@ public class HumanClientGUI{
             for(int j=0;j<5;j++)
             {
                 Random rand = new Random();
-                int u = rand.nextInt(7);
+                int u = rand.nextInt(8);
                 switch (u){
                     case 0:
                         lookWindow[i][j].setIcon(gold);
@@ -173,8 +169,7 @@ public class HumanClientGUI{
         gbcForPanel.gridy = 0;
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 4;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(HelloButton, gbcForPanel);
 
         HelloButton.addActionListener(new ActionListener() {
@@ -197,8 +192,7 @@ public class HumanClientGUI{
         gbcForPanel.gridy = 1;
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 4;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(PickupButton, gbcForPanel);
         PickupButton.setForeground(Color.BLACK);
         PickupButton.setBackground(Color.YELLOW);
@@ -214,29 +208,25 @@ public class HumanClientGUI{
         gbcForPanel.gridy = 2;
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 1;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(NorthButton, gbcForPanel);
 
         JButton SouthButton = new JButton("S");
         gbcForPanel.gridx = 1;
         gbcForPanel.gridy = 4;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(SouthButton, gbcForPanel);
 
         JButton EastButton = new JButton("E");
         gbcForPanel.gridx = 3;
         gbcForPanel.gridy = 3;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(EastButton, gbcForPanel);
 
         JButton WestButton = new JButton("W");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 3;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(WestButton, gbcForPanel);
 
         JButton QuitButton = new JButton("Quit");
@@ -244,8 +234,7 @@ public class HumanClientGUI{
         gbcForPanel.gridy = 5;
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 4;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         QuitButton.setForeground(Color.RED);
         QuitButton.setBackground(Color.BLACK);
         controlPanel.add(QuitButton, gbcForPanel);
@@ -265,8 +254,7 @@ public class HumanClientGUI{
         gbcForPanel.gridy = 7;
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 5;
-        gbcForPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         controlPanel.add(goldCollected, gbcForPanel);
 
@@ -280,8 +268,7 @@ public class HumanClientGUI{
         gbcForChatPanel.gridy = 0;
         gbcForChatPanel.gridheight = 3;
         gbcForChatPanel.gridwidth = 1;
-        gbcForChatPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForChatPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(chatWindow,gbcForChatPanel);
 
         JTextField chatField = new JTextField(40);
@@ -290,8 +277,7 @@ public class HumanClientGUI{
         gbcForChatPanel.gridy = 4;
         gbcForChatPanel.gridheight = 1;
         gbcForChatPanel.gridwidth = 1;
-        gbcForChatPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForChatPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(chatField,gbcForChatPanel);
 
         JButton send = new JButton("Send");
@@ -299,8 +285,7 @@ public class HumanClientGUI{
         gbcForChatPanel.gridy = 4;
         gbcForChatPanel.gridheight = 1;
         gbcForChatPanel.gridwidth = 1;
-        gbcForChatPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForChatPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(send, gbcForChatPanel);
 
         JButton clear = new JButton("Clear");
@@ -308,8 +293,7 @@ public class HumanClientGUI{
         gbcForChatPanel.gridy = 0;
         gbcForChatPanel.gridheight = 3;
         gbcForChatPanel.gridwidth = 1;
-        gbcForChatPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForChatPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(clear, gbcForChatPanel);
 
         //##############################################################################
@@ -320,8 +304,7 @@ public class HumanClientGUI{
         gbcForIPPanel.gridy = 0;
         gbcForIPPanel.gridheight = 1;
         gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         IPPanel.add(ipAddress, gbcForIPPanel);
 
@@ -332,8 +315,7 @@ public class HumanClientGUI{
         gbcForIPPanel.gridy = 0;
         gbcForIPPanel.gridheight = 1;
         gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
         IPPanel.add(IPField,gbcForIPPanel);
 
         JLabel portNumber = new JLabel("Port Number:");
@@ -341,8 +323,7 @@ public class HumanClientGUI{
         gbcForIPPanel.gridy = 1;
         gbcForIPPanel.gridheight = 1;
         gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         IPPanel.add(portNumber, gbcForIPPanel);
 
@@ -352,8 +333,7 @@ public class HumanClientGUI{
         gbcForIPPanel.gridy = 1;
         gbcForIPPanel.gridheight = 1;
         gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
         IPPanel.add(PortField,gbcForIPPanel);
 
         JButton changePort = new JButton("Change");
@@ -361,8 +341,7 @@ public class HumanClientGUI{
         gbcForIPPanel.gridy = 2;
         gbcForIPPanel.gridheight = 1;
         gbcForIPPanel.gridwidth = 3;
-        gbcForIPPanel.fill = GridBagConstraints.VERTICAL;
-        gbcForIPPanel.fill = GridBagConstraints.HORIZONTAL;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
         IPPanel.add(changePort, gbcForIPPanel);
 
         // make the labels for the ip and port number
@@ -391,16 +370,24 @@ public class HumanClientGUI{
         int i, j = 0; // i = line count, j = char count
 
         for (i = 0; i < lookstring.length(); i++) {
-            if (i % 5 == 0 && i != 0) {
-                j++;
-                putInImage(looklines[i], i % j, j);
-            } else {
-                if (j == 0) {
-                    putInImage(looklines[i], i, j);
-                } else {
+            if(i==12)
+            {
+                lookWindow[i][j].setIcon(human);
+            }
+            else
+            {
+                if (i % 5 == 0 && i != 0) {
+                    j++;
                     putInImage(looklines[i], i % j, j);
+                } else {
+                    if (j == 0) {
+                        putInImage(looklines[i], i, j);
+                    } else {
+                        putInImage(looklines[i], i % j, j);
+                    }
                 }
             }
+
         }
     }
 
@@ -408,7 +395,7 @@ public class HumanClientGUI{
 
         switch (tile){
             case "P":
-                lookWindow[i][j].setIcon(human);
+                lookWindow[i][j].setIcon(human2);
                 break;
             case "B":
                 lookWindow[i][j].setIcon(bot);

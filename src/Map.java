@@ -38,7 +38,7 @@ public class Map {
 					reply[j][i] = map[posY][posX];
 				}
 				else{
-					reply[j][i] = '#';
+					reply[j][i] = 'X';
 				}
 			}
 		}
