@@ -26,33 +26,45 @@ public class DODServerGUI {
 
     private JLabel[][] godViewWindow;
 
-    private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
-    private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
-    private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
-    private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
-    private ImageIcon exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
-    private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
-    private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+    private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    private ImageIcon exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 
     public DODServerGUI()
     {
         map.readMap();
         godViewWindow = new JLabel[map.getMapHeight()][map.getMapWidth()];
         setUpServerGUI();
+        setUpGodViewArray(map.getMapHeight(),map.getMapWidth());
         godViewWindow[1][1].setIcon(floor);
         lookInnerPanel.add(godViewWindow[0][0]);
-        //printGodView();
+        printGodView();
         DODServerGUIFrame.setVisible(true);
+    }
+
+    private void setUpGodViewArray(int y, int x) {
+        for(int i=0;i<x;i++)
+        {
+            for(int j=0;j<y; j++)
+            {
+                godViewWindow[j][i] = new JLabel();
+            }
+        }
     }
 
 
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints gbcForPanel = new GridBagConstraints();
+    GridBagConstraints godViewgbc = new GridBagConstraints();
 
     public void setUpServerGUI() {
         DODServerGUIFrame = new JFrame("DOD Server");
 
-        DODServerGUIFrame.setSize(1200, 800);
+        DODServerGUIFrame.setSize(1100, 800);
         DODServerGUIFrame.getContentPane().setBackground(Color.lightGray);
         DODServerGUIFrame.setResizable(false);
         DODServerGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,15 +78,15 @@ public class DODServerGUI {
         gbc.gridheight = 3;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        lookOuterPanel.setPreferredSize(new Dimension(1200, 600));
+        lookOuterPanel.setPreferredSize(new Dimension(1100, 600));
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
         lookInnerPanel = new JPanel();
-        lookOuterPanel.setLayout(new GridBagLayout());
+        lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(),map.getMapWidth()));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        lookInnerPanel.setPreferredSize(new Dimension(1100, 500));
+        lookInnerPanel.setPreferredSize(new Dimension(1000, 450));
         lookInnerPanel.setBackground(Color.red);
         lookOuterPanel.add(lookInnerPanel, gbc);
 
@@ -92,6 +104,7 @@ public class DODServerGUI {
         DODServerGUIFrame.pack();
 
         gbcForPanel.insets = new Insets(10,10,10,10);
+
 
         JButton hideGodView = new JButton("Hide");
         gbcForPanel.gridx = 0;
@@ -147,46 +160,43 @@ public class DODServerGUI {
 
     public void printGodView() {
         char[][] mapArray = map.getMap();
-        System.out.println(Arrays.deepToString(mapArray));
         int i, j = 0; // i = row count, j = column count
 
         for (i = 0; i < map.getMapHeight(); i++) {
             for(j=0;j<map.getMapWidth();j++)
             {
-                System.out.println(mapArray[i][j]);
-                //putInImage((mapArray[i][j]), j, i);
+                putInImage((mapArray[i][j]), i, j);
             }
         }
     }
 
-    /*private void putInImage(char tile, int i, int j) {
+    private void putInImage(char tile, int i, int j) {
 
         switch (tile){
             case 'P':
-                godViewWindow[j][i].setIcon(human2);
+                godViewWindow[i][j].setIcon(human2);
                 break;
             case 'B':
-                godViewWindow[j][i].setIcon(bot);
+                godViewWindow[i][j].setIcon(bot);
                 break;
             case '.':
-                godViewWindow[j][i].setIcon(floor);
+                godViewWindow[i][j].setIcon(floor);
                 break;
             case '#':
-                System.out.println(i + ":" + j);
-                godViewWindow[j][i].setIcon(wall);
+                godViewWindow[i][j].setIcon(wall);
                 break;
             case 'X':
-                godViewWindow[j][i].setIcon(lava);
+                godViewWindow[i][j].setIcon(lava);
                 break;
             case 'G':
-                godViewWindow[j][i].setIcon(goldimage);
+                godViewWindow[i][j].setIcon(goldimage);
                 break;
             case 'E':
-                godViewWindow[j][i].setIcon(exit);
+                godViewWindow[i][j].setIcon(exit);
                 break;
         }
-        lookInnerPanel.add(godViewWindow[j][i]);
-    }*/
+        lookInnerPanel.add(godViewWindow[i][j]);
+    }
 
     public static void main(String[] args) throws IOException {
 
