@@ -192,7 +192,6 @@ public class HumanClientGUI{
             }
         });
 
-
         JButton PickupButton = new JButton("Pick Up");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 1;
@@ -201,7 +200,6 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.VERTICAL;
         gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
         controlPanel.add(PickupButton, gbcForPanel);
-
         PickupButton.setForeground(Color.BLACK);
         PickupButton.setBackground(Color.YELLOW);
         PickupButton.addActionListener(new ActionListener() {
@@ -348,9 +346,8 @@ public class HumanClientGUI{
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         IPPanel.add(portNumber, gbcForIPPanel);
 
-
         JTextField PortField = new JTextField(10);
-        chatField.setEditable(true);
+        PortField.setEditable(true);
         gbcForIPPanel.gridx = 1;
         gbcForIPPanel.gridy = 1;
         gbcForIPPanel.gridheight = 1;

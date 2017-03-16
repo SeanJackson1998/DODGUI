@@ -53,6 +53,9 @@ public class DODServerGUI {
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
+        
+
+
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridBagLayout());
         gbc.gridx = 0;
@@ -62,10 +65,69 @@ public class DODServerGUI {
         gbc.fill = GridBagConstraints.VERTICAL;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         controlPanel.setPreferredSize(new Dimension(1200, 200));
-        controlPanel.setBackground(Color.red);
+        controlPanel.setBackground(Color.pink);
         DODServerGUIFrame.getContentPane().add(controlPanel, gbc);
 
         DODServerGUIFrame.pack();
+
+        gbcForPanel.insets = new Insets(10,10,10,10);
+
+        JButton hideGodView = new JButton("Hide");
+        gbcForPanel.gridx = 0;
+        gbcForPanel.gridy = 0;
+        gbcForPanel.gridheight = 2;
+        gbcForPanel.gridwidth = 3;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        controlPanel.add(hideGodView, gbcForPanel);
+
+        JLabel portNumber = new JLabel("Port Number:");
+        gbcForPanel.gridx = 3;
+        gbcForPanel.gridy = 0;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 1;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        controlPanel.add(portNumber, gbcForPanel);
+
+        JTextField PortField = new JTextField(10);
+        PortField.setEditable(true);
+        gbcForPanel.gridx = 4;
+        gbcForPanel.gridy = 0;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 1;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        controlPanel.add(PortField,gbcForPanel);
+
+        JLabel IPAddress = new JLabel("IP Address:");
+        gbcForPanel.gridx = 3;
+        gbcForPanel.gridy = 1;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 1;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        controlPanel.add(IPAddress, gbcForPanel);
+
+        JTextField AddressField = new JTextField(10);
+        AddressField.setEditable(true);
+        gbcForPanel.gridx = 4;
+        gbcForPanel.gridy = 1;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 1;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        controlPanel.add(AddressField,gbcForPanel);
+
+        JButton changePort = new JButton("Change");
+        gbcForPanel.gridx = 5;
+        gbcForPanel.gridy = 0;
+        gbcForPanel.gridheight = 2;
+        gbcForPanel.gridwidth = 1;
+        gbcForPanel.fill = GridBagConstraints.VERTICAL;
+        gbcForPanel.fill = GridBagConstraints.HORIZONTAL;
+        controlPanel.add(changePort, gbcForPanel);
+
     }
 
 
