@@ -113,7 +113,6 @@ public class HumanClientGUI{
         lookOuterPanel.add(lookInnerPanel);
 
 
-
         gbcForPanel.insets = new Insets(20,10,20,10);
         gbcForChatPanel.insets = new Insets(5,20,5,20);
         gbcForIPPanel.insets = new Insets(5,10,10,10);

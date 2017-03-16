@@ -45,6 +45,12 @@ public class Map {
 		return reply;
     }
 
+	protected char[][] getMap() {
+		return map;
+	}
+
+
+
     /**
      * @return : The name of the current map.
      */

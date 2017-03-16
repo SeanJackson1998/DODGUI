@@ -10,6 +10,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 
 /**
@@ -17,13 +18,30 @@ import java.util.Calendar;
  */
 public class DODServerGUI {
 
-    private JLabel[][] lookWindow = new JLabel[5][5];
+
+    private Map map = new Map();
 
     private JFrame DODServerGUIFrame;
+    private JPanel lookInnerPanel;
+
+    private JLabel[][] godViewWindow;
+
+    private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+    private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+    private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+    private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+    private ImageIcon exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+    private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+    private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
 
     public DODServerGUI()
     {
+        map.readMap();
+        godViewWindow = new JLabel[map.getMapHeight()][map.getMapWidth()];
         setUpServerGUI();
+        godViewWindow[1][1].setIcon(floor);
+        lookInnerPanel.add(godViewWindow[0][0]);
+        //printGodView();
         DODServerGUIFrame.setVisible(true);
     }
 
@@ -51,6 +69,14 @@ public class DODServerGUI {
         lookOuterPanel.setPreferredSize(new Dimension(1200, 600));
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
+
+        lookInnerPanel = new JPanel();
+        lookOuterPanel.setLayout(new GridBagLayout());
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        lookInnerPanel.setPreferredSize(new Dimension(1100, 500));
+        lookInnerPanel.setBackground(Color.red);
+        lookOuterPanel.add(lookInnerPanel, gbc);
 
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridBagLayout());
@@ -116,9 +142,51 @@ public class DODServerGUI {
         gbcForPanel.gridwidth = 1;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(changePort, gbcForPanel);
-
     }
 
+
+    public void printGodView() {
+        char[][] mapArray = map.getMap();
+        System.out.println(Arrays.deepToString(mapArray));
+        int i, j = 0; // i = row count, j = column count
+
+        for (i = 0; i < map.getMapHeight(); i++) {
+            for(j=0;j<map.getMapWidth();j++)
+            {
+                System.out.println(mapArray[i][j]);
+                //putInImage((mapArray[i][j]), j, i);
+            }
+        }
+    }
+
+    /*private void putInImage(char tile, int i, int j) {
+
+        switch (tile){
+            case 'P':
+                godViewWindow[j][i].setIcon(human2);
+                break;
+            case 'B':
+                godViewWindow[j][i].setIcon(bot);
+                break;
+            case '.':
+                godViewWindow[j][i].setIcon(floor);
+                break;
+            case '#':
+                System.out.println(i + ":" + j);
+                godViewWindow[j][i].setIcon(wall);
+                break;
+            case 'X':
+                godViewWindow[j][i].setIcon(lava);
+                break;
+            case 'G':
+                godViewWindow[j][i].setIcon(goldimage);
+                break;
+            case 'E':
+                godViewWindow[j][i].setIcon(exit);
+                break;
+        }
+        lookInnerPanel.add(godViewWindow[j][i]);
+    }*/
 
     public static void main(String[] args) throws IOException {
 
