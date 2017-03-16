@@ -64,7 +64,7 @@ public class DODServerGUI {
     public void setUpServerGUI() {
         DODServerGUIFrame = new JFrame("DOD Server");
 
-        DODServerGUIFrame.setSize(1100, 800);
+        DODServerGUIFrame.setSize((map.getMapWidth()*50)+100, (map.getMapHeight()*50)+300);
         DODServerGUIFrame.getContentPane().setBackground(Color.lightGray);
         DODServerGUIFrame.setResizable(false);
         DODServerGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,7 +78,7 @@ public class DODServerGUI {
         gbc.gridheight = 3;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        lookOuterPanel.setPreferredSize(new Dimension(1100, 600));
+        lookOuterPanel.setPreferredSize(new Dimension((map.getMapWidth()*50)+100, (map.getMapHeight()*50)+100));
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
@@ -86,7 +86,7 @@ public class DODServerGUI {
         lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(),map.getMapWidth()));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        lookInnerPanel.setPreferredSize(new Dimension(1000, 450));
+        lookInnerPanel.setPreferredSize(new Dimension(map.getMapWidth()*50, map.getMapHeight()*50));
         lookInnerPanel.setBackground(Color.red);
         lookOuterPanel.add(lookInnerPanel, gbc);
 
