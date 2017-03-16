@@ -25,9 +25,11 @@ public class ThreadClient extends Thread{
         this.type = type;
         this.Name = Name;
     }
-    
-    
-    /* The new user is fully created through game logic and the user is then checked against their id to make sure they have the id they were given
+
+	//outputThread look = new outputThread(GP_Look);
+
+
+	/* The new user is fully created through game logic and the user is then checked against their id to make sure they have the id they were given
     * Then the user is set so that it is not created outside the map or on top of another player
     * Then while the thread receives the input it processes it with the user and outputs it back to the human client
     * If a player is a BOT type then it outputs nothing
@@ -86,7 +88,7 @@ public class ThreadClient extends Thread{
 	            	game.setUser(correctUser);
 
 	                outputLine = game.processInput(inputLine, correctUser);
-	                out.println(outputLine);
+	                //out.println(outputLine);
 	                // if the player has said they want to quit then remove them from the game
 	                if(inputLine.equalsIgnoreCase("quit"))
 	                {

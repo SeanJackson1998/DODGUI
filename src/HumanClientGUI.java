@@ -10,8 +10,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Random;
 
 public class HumanClientGUI{
+
+
+    private static Socket clientSocket;
+    private static PrintWriter out;
+    private static BufferedReader in;
 
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints gbcForPanel = new GridBagConstraints();
@@ -21,6 +27,7 @@ public class HumanClientGUI{
     private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon gold = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon human = new ImageIcon(new ImageIcon("images/human.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -33,18 +40,12 @@ public class HumanClientGUI{
 
     public HumanClientGUI()
     {
-        introGUIS();
         setUpPlayGUI();
         HumanClientGUIFrame.setVisible(true);
     }
 
-    private void introGUIS() {
-
-    }
-
     public void setUpPlayGUI(){
         HumanClientGUIFrame = new JFrame("Human Client");
-        HumanClientGUIFrame.setLayout(new FlowLayout());
 
         HumanClientGUIFrame.setSize(900,800);
         HumanClientGUIFrame.getContentPane().setBackground(Color.lightGray);
@@ -126,14 +127,15 @@ public class HumanClientGUI{
             {
                 lookWindow[i][j] = new JLabel();
             }
-
         }
 
         for(int i=0;i<5;i++)
         {
             for(int j=0;j<5;j++)
             {
-                switch (i){
+                Random rand = new Random();
+                int u = rand.nextInt(7);
+                switch (u){
                     case 0:
                         lookWindow[i][j].setIcon(gold);
                         break;
@@ -148,6 +150,15 @@ public class HumanClientGUI{
                         break;
                     case 4:
                         lookWindow[i][j].setIcon(lava);
+                        break;
+                    case 5:
+                        lookWindow[i][j].setIcon(human);
+                        break;
+                    case 6:
+                        lookWindow[i][j].setIcon(human2);
+                        break;
+                    case 7:
+                        lookWindow[i][j].setIcon(bot);
                         break;
                 }
 
@@ -169,7 +180,15 @@ public class HumanClientGUI{
         HelloButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(HumanClientGUIFrame, "HI!");
+
+                JOptionPane.showMessageDialog(HumanClientGUIFrame, "hi");
+
+                out.println("hello");
+                try {
+                    JOptionPane.showMessageDialog(HumanClientGUIFrame, in.readLine());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -377,36 +396,40 @@ public class HumanClientGUI{
         for (i = 0; i < lookstring.length(); i++) {
             if (i % 5 == 0 && i != 0) {
                 j++;
-                putInImage(looklines[i],i,j);
-            } else
-                putInImage(looklines[i],i,j);
+                putInImage(looklines[i], i % j, j);
+            } else {
+                if (j == 0) {
+                    putInImage(looklines[i], i, j);
+                } else {
+                    putInImage(looklines[i], i % j, j);
+                }
+            }
         }
-
     }
 
     private void putInImage(String tile, int i, int j) {
 
         switch (tile){
             case "P":
-                lookWindow[i%j][j].setIcon(human);
+                lookWindow[i][j].setIcon(human);
                 break;
             case "B":
-                lookWindow[i%j][j].setIcon(bot);
+                lookWindow[i][j].setIcon(bot);
                 break;
             case ".":
-                lookWindow[i%j][j].setIcon(floor);
+                lookWindow[i][j].setIcon(floor);
                 break;
             case "#":
-                lookWindow[i%j][j].setIcon(wall);
+                lookWindow[i][j].setIcon(wall);
                 break;
             case "X":
-                lookWindow[i%j][j].setIcon(lava);
+                lookWindow[i][j].setIcon(lava);
                 break;
             case "G":
-                lookWindow[i%j][j].setIcon(gold);
+                lookWindow[i][j].setIcon(gold);
                 break;
             case "E":
-                lookWindow[i%j][j].setIcon(exit);
+                lookWindow[i][j].setIcon(exit);
                 break;
         }
     }
@@ -421,9 +444,7 @@ public class HumanClientGUI{
      */
     public static void main(String[] args) throws IOException {
 
-        HumanClientGUI human = new HumanClientGUI();
-
-        /*if (args.length != 2) {
+        if (args.length != 2) {
             System.err.println(
                     "Usage: java HumanClient <host name> <port number>");
             System.exit(1);
@@ -432,12 +453,10 @@ public class HumanClientGUI{
         String hostName = args[0];
         int portNumber = Integer.parseInt(args[1]);
 
-        try (
-                Socket clientSocket = new Socket(hostName, portNumber);
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        ) {
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            clientSocket = new Socket(hostName, portNumber);
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
             out.println("human");
 
@@ -456,17 +475,10 @@ public class HumanClientGUI{
             +"GOOD LUCK!");
 
             // OutThread to output anything to the terminal that is waiting to be displayed
-            new OutThread(in).start();
+            //new OutThread(in).start();
 
 
-            // while(quitbool!=quit) output to the server, if quit is clicked, change this boolean
-            while (!(fromUser = stdIn.readLine()).equalsIgnoreCase("quit")) {
-                System.out.println(name + ": " + fromUser);
-                out.println(fromUser);
-            }
-
-            System.out.println(name + ": " + fromUser);
-            out.println(fromUser);
+            HumanClientGUI human = new HumanClientGUI();
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
@@ -476,7 +488,6 @@ public class HumanClientGUI{
             System.exit(1);
         }
 
-        */
     }
 
 }
