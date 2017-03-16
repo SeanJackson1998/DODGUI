@@ -261,9 +261,8 @@ public class GameLogic {
 		String lookWindow = "";
 		for (int i = 0; i < look.length; i++) {
 			for (int j = 0; j < look[i].length; j++) {
-				lookWindow += look[j][i] + " ";
+				lookWindow += look[j][i];
 			}
-			lookWindow += System.lineSeparator();
 		}
 		return lookWindow;
 	}

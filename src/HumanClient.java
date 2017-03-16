@@ -52,8 +52,8 @@ public class HumanClient {
             System.out.println("To see the chat look in log.txt");
             System.out.println("GOOD LUCK!");
             
-            // OutThread to output anything to the terminal that is waiting to be displayed
-            new OutThread(in).start();
+            // ChatThread to output anything to the terminal that is waiting to be displayed
+            new ChatThread(in).start();
             
             while (!(fromUser = stdIn.readLine()).equalsIgnoreCase("quit")) {
             	System.out.println(name + ": " + fromUser);

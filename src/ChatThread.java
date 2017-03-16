@@ -10,9 +10,9 @@ import java.io.IOException;
  * So when another player shouts, this thread will output the command to the clients terminal
  */
 
-public class OutThread extends Thread {
+public class ChatThread extends Thread {
 	 BufferedReader in;
-	 public OutThread(BufferedReader br){
+	 public ChatThread(BufferedReader br){
 	    in = br;
 	 }
 	    
@@ -25,7 +25,6 @@ public class OutThread extends Thread {
 	             }
 	         }
 	     } catch (IOException|NullPointerException e) {
-	     	System.out.println("Disconnected from Server: type 'quit' to exit");
 	     }	    
 	 }
 }

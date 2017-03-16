@@ -45,7 +45,7 @@ public class DODServer{
 		            	type = 'P';
 		            	System.out.println("human connected");
 		            	user = new User(map.getMapWidth(), map.getMapHeight(), playerID, 0, type, socket1, name);
-		            	new ThreadClient(socket1,game,playerID, user, type, name).start();
+		            	new ThreadClient(socket1, game, playerID, user, type, name).start();
 				            playerID++;
 		            }
 		            else
@@ -53,7 +53,7 @@ public class DODServer{
 		            	type = 'B';
 		            	System.out.println("bot connected");
 		            	user = new User(map.getMapWidth(), map.getMapHeight(), playerID, 0, type, socket1, name);
-		            	new ThreadClient(socket1,game,playerID, user, type, name).start();
+		            	new ThreadClient(socket1, game, playerID, user, type, name).start();
 				            playerID++;
 		            }
 		        }

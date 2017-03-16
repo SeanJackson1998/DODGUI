@@ -19,13 +19,17 @@ public class HumanClientGUI{
     private static PrintWriter out;
     private static BufferedReader in;
 
+    private JLabel goldCollected;
+    private JLabel CommandStatus;
+    private  int gold = 0;
+
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints gbcForPanel = new GridBagConstraints();
     GridBagConstraints gbcForChatPanel = new GridBagConstraints();
     GridBagConstraints gbcForIPPanel = new GridBagConstraints();
 
     private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-    private ImageIcon gold = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon human = new ImageIcon(new ImageIcon("images/human.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -133,7 +137,7 @@ public class HumanClientGUI{
                 int u = rand.nextInt(8);
                 switch (u){
                     case 0:
-                        lookWindow[i][j].setIcon(gold);
+                        lookWindow[i][j].setIcon(goldimage);
                         break;
                     case 1:
                         lookWindow[i][j].setIcon(exit);
@@ -174,13 +178,10 @@ public class HumanClientGUI{
 
         HelloButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-
-                JOptionPane.showMessageDialog(HumanClientGUIFrame, "hi");
-
+            public synchronized void actionPerformed(ActionEvent e) {
                 out.println("hello");
                 try {
-                    JOptionPane.showMessageDialog(HumanClientGUIFrame, in.readLine());
+                    CommandStatus.setText("Command Status: " + in.readLine());
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -198,8 +199,25 @@ public class HumanClientGUI{
         PickupButton.setBackground(Color.YELLOW);
         PickupButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(HumanClientGUIFrame, "GOLD!!");
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("pickup");
+                try {
+                    String pickUpLine = in.readLine();
+
+                    if(pickUpLine.contains("SUCCESS"))
+                    {
+                        CommandStatus.setText("Command Status: " + pickUpLine);
+                        gold++;
+                    }
+                    else
+                    {
+                        CommandStatus.setText("Command Status: " + pickUpLine);
+                    }
+                    goldCollected.setText("Gold Collected: " + gold);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
             }
         });
 
@@ -211,11 +229,35 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(NorthButton, gbcForPanel);
 
+        NorthButton.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("move n");
+                try {
+                    CommandStatus.setText("Command Status: " + in.readLine());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
         JButton SouthButton = new JButton("S");
         gbcForPanel.gridx = 1;
         gbcForPanel.gridy = 4;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(SouthButton, gbcForPanel);
+
+        SouthButton.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("move s");
+                try {
+                    CommandStatus.setText("Command Status: " + in.readLine());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
         JButton EastButton = new JButton("E");
         gbcForPanel.gridx = 3;
@@ -223,11 +265,35 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(EastButton, gbcForPanel);
 
+        EastButton.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("move e");
+                try {
+                    CommandStatus.setText("Command Status: " + in.readLine());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
         JButton WestButton = new JButton("W");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(WestButton, gbcForPanel);
+
+        WestButton.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("move w");
+                try {
+                    CommandStatus.setText("Command Status: " + in.readLine());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
         JButton QuitButton = new JButton("Quit");
         gbcForPanel.gridx = 0;
@@ -241,15 +307,22 @@ public class HumanClientGUI{
 
         QuitButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(HumanClientGUIFrame, "CYA");
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("quit");
+                try {
+                    CommandStatus.setText("Command Status: " + in.readLine());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
                 HumanClientGUIFrame.dispose();
+                System.exit(0);
             }
         });
 
 
-      int gold = 0;
-        JLabel goldCollected = new JLabel("Gold collected: " + gold);
+
+        goldCollected = new JLabel("Gold Collected: " + gold);
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 7;
         gbcForPanel.gridheight = 1;
@@ -258,6 +331,14 @@ public class HumanClientGUI{
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         controlPanel.add(goldCollected, gbcForPanel);
 
+        CommandStatus = new JLabel("Command Status: ");
+        gbcForPanel.gridx = 0;
+        gbcForPanel.gridy = 8;
+        gbcForPanel.gridheight = 1;
+        gbcForPanel.gridwidth = 5;
+        gbcForPanel.fill = GridBagConstraints.BOTH;
+        goldCollected.setFont (CommandStatus.getFont ().deriveFont (20.0f));
+        controlPanel.add(CommandStatus, gbcForPanel);
 
         // #########################################################################
         // chat panel components
@@ -360,30 +441,28 @@ public class HumanClientGUI{
      * characters. One by one the characters are fed into the char array and for
      * each 5th character a new line in the array is made.
      */
-    public void printLook() {
-        GameLogic Game = new GameLogic();
-        String lookstring = null;// = Game.look();
+    public void printLook(String lookstring) {
         String[] looklines;
 
-        looklines = lookstring.split("(?!^)");
+        looklines = lookstring.split("");
 
         int i, j = 0; // i = line count, j = char count
 
         for (i = 0; i < lookstring.length(); i++) {
             if(i==12)
             {
-                lookWindow[i][j].setIcon(human);
+                lookWindow[2][2].setIcon(human);
             }
             else
             {
                 if (i % 5 == 0 && i != 0) {
                     j++;
-                    putInImage(looklines[i], i % j, j);
+                    putInImage(looklines[i], i % 5, j);
                 } else {
                     if (j == 0) {
-                        putInImage(looklines[i], i, j);
+                        putInImage(looklines[i], i%5, j);
                     } else {
-                        putInImage(looklines[i], i % j, j);
+                        putInImage(looklines[i], i % 5, j);
                     }
                 }
             }
@@ -395,25 +474,25 @@ public class HumanClientGUI{
 
         switch (tile){
             case "P":
-                lookWindow[i][j].setIcon(human2);
+                lookWindow[j][i].setIcon(human2);
                 break;
             case "B":
-                lookWindow[i][j].setIcon(bot);
+                lookWindow[j][i].setIcon(bot);
                 break;
             case ".":
-                lookWindow[i][j].setIcon(floor);
+                lookWindow[j][i].setIcon(floor);
                 break;
             case "#":
-                lookWindow[i][j].setIcon(wall);
+                lookWindow[j][i].setIcon(wall);
                 break;
             case "X":
-                lookWindow[i][j].setIcon(lava);
+                lookWindow[j][i].setIcon(lava);
                 break;
             case "G":
-                lookWindow[i][j].setIcon(gold);
+                lookWindow[j][i].setIcon(goldimage);
                 break;
             case "E":
-                lookWindow[i][j].setIcon(exit);
+                lookWindow[j][i].setIcon(exit);
                 break;
         }
     }
@@ -458,11 +537,11 @@ public class HumanClientGUI{
             +"To see the chat look in log.txt\n\n"
             +"GOOD LUCK!");
 
-            // OutThread to output anything to the terminal that is waiting to be displayed
-            //new OutThread(in).start();
-
-
+            // ChatThread to output anything to the terminal that is waiting to be displayed
+            //new ChatThread(in).start();
             HumanClientGUI human = new HumanClientGUI();
+            new LookThread(in, out, human).start();
+
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);

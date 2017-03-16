@@ -88,11 +88,12 @@ public class ThreadClient extends Thread{
 	            	game.setUser(correctUser);
 
 	                outputLine = game.processInput(inputLine, correctUser);
-	                //out.println(outputLine);
+	                out.println(outputLine);
 	                // if the player has said they want to quit then remove them from the game
 	                if(inputLine.equalsIgnoreCase("quit"))
 	                {
 	                	game.removeUser(correctUser);
+	                	break;
 	                }
 
 					/** if the user didn't quit but the while loop still exited then the game must be over
