@@ -3,7 +3,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
+
+import static java.util.Arrays.deepToString;
 
 /**
  * Contains the main logic part of the game, as it processes.
@@ -12,7 +15,7 @@ import java.util.Random;
  */
 public class GameLogic {
 
-	private Map map = new Map();
+	private Map map;
 	private ArrayList<User> players;
 	private int[] playerPosition;
 	private int collectedGold;
@@ -32,6 +35,13 @@ public class GameLogic {
 		// collectedGold[0] is human players total collected gold
 		collectedGold = 0;
 
+		map = new Map();
+		map.readMap();
+
+	}
+
+	public Map getMapObj() {
+		return map;
 	}
 
 	public boolean isGameRunning() {
@@ -200,8 +210,8 @@ public class GameLogic {
 		if ((map.getTile(newX, newY) != '#') && checkMoveTile(newX, newY, user.getID())) {
 
 			// set coordinates for player
-			setPlayersXCoordinate(newX);
-			setPlayersYCoordinate(newY);
+			//setPlayersXCoordinate(newX);
+			//setPlayersYCoordinate(newY);
 
 			// set coordinates for object to new coordinates of player
 			user.setX(newX);
@@ -465,12 +475,60 @@ public class GameLogic {
 		chatLogger.chatLog(user.getName() + message);
 	}
 
-	public char[][] getGodView() {
-		char[][] mapArray = map.getMap();
-		for (User userTest : players) {
-			mapArray[userTest.getY()][userTest.getX()] = userTest.getType();
+	public synchronized char[][] getGodView() {
+		char[][] map1 = new char[map.getMapHeight()][map.getMapWidth()];
+		for(int i = 0; i < map.getMapHeight(); i ++){
+			for(int j = 0; j < map.getMapWidth(); j++){
+				int[] location = {i,j};
+				boolean isPlayer = false;
+				for(User u : players){
+					int[] userLoc = {u.getY(), u.getX()};
+					System.out.println(Arrays.toString(userLoc));
+					System.out.println(Arrays.toString(location));
+					if(Arrays.equals(location, userLoc)){
+						System.out.println("qwertyuiop");
+						map1[i][j] = u.getType();
+						isPlayer = true;
+					}
+				}
+				if(!isPlayer){
+					map1[i][j] = map.getTile(j, i);
+				}
+			}
 		}
-		return mapArray;
+		System.out.println(deepToString(map1));
+		return map1;
 	}
+/*
+	public String look() {
+		// get look window for current player
+		char[][] look = map.look(getPlayersXCoordinate(), getPlayersYCoordinate());
+
+		// search for user coordinates in the array list and if they are between the bounds then print them
+		User userTest;
+		for (int i = 0; i <= players.size() - 1; i++) {
+			userTest = players.get(i);
+
+			int userXDif = getPlayersXCoordinate() - userTest.getX();
+			int userYDif = getPlayersYCoordinate() - userTest.getY();
+
+			if (Math.abs(userXDif) <= 2 && Math.abs(userYDif) <= 2) {
+				// check the character for if its a BOT as well
+				look[2 - userXDif][2 - userYDif] = userTest.getType();
+			}
+		}
+
+		// return look window as a String for printing
+		String lookWindow = "";
+		for (int i = 0; i < look.length; i++) {
+			for (int j = 0; j < look[i].length; j++) {
+				lookWindow += look[j][i];
+			}
+		}
+		return lookWindow;
+	}*/
+
+
+
 
 }

@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.util.Arrays.deepToString;
+
 /**
  * Reads and contains in memory the map of the game.
  *
@@ -46,7 +48,7 @@ public class Map {
     }
 
 	protected char[][] getMap() {
-		return map;
+    	 return map;
 	}
 
 

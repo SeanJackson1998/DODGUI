@@ -3,14 +3,11 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 
 /**
@@ -19,7 +16,10 @@ import java.util.Calendar;
 public class DODServerGUI {
 
 
-    private Map map = new Map();
+    private static Map map;
+    private static GameLogic game;
+    private static char[][] mapCharArray;
+
 
     private JFrame DODServerGUIFrame;
     private JPanel lookInnerPanel;
@@ -36,7 +36,9 @@ public class DODServerGUI {
 
     public DODServerGUI()
     {
-        map.readMap();
+        game = new GameLogic();
+        map = game.getMapObj();
+        mapCharArray = map.getMap();
         godViewWindow = new JLabel[map.getMapHeight()][map.getMapWidth()];
         setUpServerGUI();
         setUpGodViewArray(map.getMapHeight(),map.getMapWidth());
@@ -156,6 +158,39 @@ public class DODServerGUI {
         controlPanel.add(changePort, gbcForPanel);
     }
 
+    public synchronized void refreshMap() {
+        mapCharArray = game.getGodView();
+        for (int i = 0; i < mapCharArray.length; i++) {
+            for (int j = 0; j < mapCharArray[0].length; j++) {
+                switch (mapCharArray[i][j]){
+                    case 'P':
+                        godViewWindow[i][j].setIcon(human2);
+                        break;
+                    case 'B':
+                        godViewWindow[i][j].setIcon(bot);
+                        break;
+                    case '.':
+                        godViewWindow[i][j].setIcon(floor);
+                        break;
+                    case '#':
+                        godViewWindow[i][j].setIcon(wall);
+                        break;
+                    case 'X':
+                        godViewWindow[i][j].setIcon(lava);
+                        break;
+                    case 'G':
+                        godViewWindow[i][j].setIcon(goldimage);
+                        break;
+                    case 'E':
+                        godViewWindow[i][j].setIcon(exit);
+                        break;
+                }
+            }
+        }
+        lookInnerPanel.repaint();
+
+
+    }
 
     public void printGodView(char[][] mapArray) {
         int i, j = 0; // i = row count, j = column count
@@ -205,16 +240,15 @@ public class DODServerGUI {
         }
         int portNumber = Integer.parseInt(args[0]);
         int playerID = 0;
-        GameLogic game = new GameLogic();
-        Map map = new Map();
-        map.readMap();
+        //GameLogic game = new GameLogic();
+        //char[][] mapSS = game.getMap();
         User user;
         char type;
         String name = "";
 
         // setting up the chat file for the next game
-        game.chatLogger.chatLog("---------------------------------------------------------------------------------");
-        game.chatLogger.chatLog("Game Started: " + getTime());
+        //game.chatLogger.chatLog("---------------------------------------------------------------------------------");
+        //game.chatLogger.chatLog("Game Started: " + getTime());
 
         DODServerGUI dodServer = new DODServerGUI();
         new GodViewThread(dodServer,game).start();
