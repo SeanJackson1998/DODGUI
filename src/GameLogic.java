@@ -464,4 +464,13 @@ public class GameLogic {
 		}
 		chatLogger.chatLog(user.getName() + message);
 	}
+
+	public char[][] getGodView() {
+		char[][] mapArray = map.getMap();
+		for (User userTest : players) {
+			mapArray[userTest.getY()][userTest.getX()] = userTest.getType();
+		}
+		return mapArray;
+	}
+
 }

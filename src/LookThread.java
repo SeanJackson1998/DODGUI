@@ -17,10 +17,8 @@ public class LookThread extends Thread {
         hcg = hc;
     }
 
-
     public void run(){
         try {
-            String fromServer = "";
             while(true){
                 out.println("look");
                 hcg.printLook(in.readLine());

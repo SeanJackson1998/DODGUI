@@ -40,9 +40,7 @@ public class DODServerGUI {
         godViewWindow = new JLabel[map.getMapHeight()][map.getMapWidth()];
         setUpServerGUI();
         setUpGodViewArray(map.getMapHeight(),map.getMapWidth());
-        godViewWindow[1][1].setIcon(floor);
-        lookInnerPanel.add(godViewWindow[0][0]);
-        printGodView();
+        printGodView(map.getMap());
         DODServerGUIFrame.setVisible(true);
     }
 
@@ -158,8 +156,7 @@ public class DODServerGUI {
     }
 
 
-    public void printGodView() {
-        char[][] mapArray = map.getMap();
+    public void printGodView(char[][] mapArray) {
         int i, j = 0; // i = row count, j = column count
 
         for (i = 0; i < map.getMapHeight(); i++) {
@@ -200,8 +197,8 @@ public class DODServerGUI {
 
     public static void main(String[] args) throws IOException {
 
-        DODServerGUI dodServer = new DODServerGUI();
-        /*if (args.length != 1) {
+
+        if (args.length != 1) {
             System.err.println("Usage: java DODMultiServer <port number>");
             System.exit(1);
         }
@@ -218,11 +215,14 @@ public class DODServerGUI {
         game.chatLogger.chatLog("---------------------------------------------------------------------------------");
         game.chatLogger.chatLog("Game Started: " + getTime());
 
+        DODServerGUI dodServer = new DODServerGUI();
+
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
             while (true) {
                 Socket socket1 = serverSocket.accept();
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
                 String playerType = in.readLine();
+                new GodViewThread(dodServer,game).start();
 
                 if(playerType.equals("human"))
                 {
@@ -247,7 +247,7 @@ public class DODServerGUI {
         } catch (IOException e) {
             System.err.println("Could not listen on port " + portNumber);
             System.exit(1);
-        }*/
+        }
     }
 
     private static String getTime() {
