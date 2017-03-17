@@ -45,11 +45,12 @@ public class DODServerGUI {
     }
 
     private void setUpGodViewArray(int y, int x) {
-        for(int i=0;i<x;i++)
+        for(int i=0;i<y;i++)
         {
-            for(int j=0;j<y; j++)
+            for(int j=0;j<x; j++)
             {
-                godViewWindow[j][i] = new JLabel();
+                godViewWindow[i][j] = new JLabel();
+
             }
         }
     }
@@ -216,13 +217,14 @@ public class DODServerGUI {
         game.chatLogger.chatLog("Game Started: " + getTime());
 
         DODServerGUI dodServer = new DODServerGUI();
+        new GodViewThread(dodServer,game).start();
 
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
             while (true) {
                 Socket socket1 = serverSocket.accept();
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
                 String playerType = in.readLine();
-                new GodViewThread(dodServer,game).start();
+
 
                 if(playerType.equals("human"))
                 {
