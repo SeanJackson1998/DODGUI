@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -114,6 +116,23 @@ public class DODServerGUI {
         gbcForPanel.gridwidth = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(hideGodView, gbcForPanel);
+
+        hideGodView.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                if(hideGodView.getText().equals("Hide"))
+                {
+                    lookInnerPanel.setVisible(false);
+                    hideGodView.setText("Show");
+                }
+                else
+                {
+                    lookInnerPanel.setVisible(true);
+                    hideGodView.setText("Hide");
+                }
+
+            }
+        });
 
         JLabel portNumber = new JLabel("Port Number:");
         gbcForPanel.gridx = 3;

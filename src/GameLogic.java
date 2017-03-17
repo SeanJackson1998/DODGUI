@@ -483,10 +483,7 @@ public class GameLogic {
 				boolean isPlayer = false;
 				for(User u : players){
 					int[] userLoc = {u.getY(), u.getX()};
-					System.out.println(Arrays.toString(userLoc));
-					System.out.println(Arrays.toString(location));
 					if(Arrays.equals(location, userLoc)){
-						System.out.println("qwertyuiop");
 						map1[i][j] = u.getType();
 						isPlayer = true;
 					}
@@ -496,7 +493,6 @@ public class GameLogic {
 				}
 			}
 		}
-		System.out.println(deepToString(map1));
 		return map1;
 	}
 /*
