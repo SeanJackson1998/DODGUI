@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -25,6 +26,8 @@ public class DODServerGUI {
 
     private JFrame DODServerGUIFrame;
     private JPanel lookInnerPanel;
+    private static JTextField AddressField;
+    private static JTextField PortField;
 
     private JLabel[][] godViewWindow;
 
@@ -134,6 +137,7 @@ public class DODServerGUI {
             }
         });
 
+
         JLabel portNumber = new JLabel("Port Number:");
         gbcForPanel.gridx = 3;
         gbcForPanel.gridy = 0;
@@ -142,7 +146,7 @@ public class DODServerGUI {
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(portNumber, gbcForPanel);
 
-        JTextField PortField = new JTextField(10);
+        PortField = new JTextField(10);
         PortField.setEditable(true);
         gbcForPanel.gridx = 4;
         gbcForPanel.gridy = 0;
@@ -159,7 +163,7 @@ public class DODServerGUI {
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(IPAddress, gbcForPanel);
 
-        JTextField AddressField = new JTextField(10);
+        AddressField = new JTextField(10);
         AddressField.setEditable(true);
         gbcForPanel.gridx = 4;
         gbcForPanel.gridy = 1;
@@ -177,7 +181,7 @@ public class DODServerGUI {
         controlPanel.add(changePort, gbcForPanel);
     }
 
-    public synchronized void refreshMap() {
+    public void refreshMap() {
         mapCharArray = game.getGodView();
         for (int i = 0; i < mapCharArray.length; i++) {
             for (int j = 0; j < mapCharArray[0].length; j++) {
@@ -265,11 +269,17 @@ public class DODServerGUI {
         char type;
         String name = "";
 
-        // setting up the chat file for the next game
-        //game.chatLogger.chatLog("---------------------------------------------------------------------------------");
-        //game.chatLogger.chatLog("Game Started: " + getTime());
+        //setting up the chat file for the next game
+//        game.chatLogger.chatLog("---------------------------------------------------------------------------------");
+//        game.chatLogger.chatLog("Game Started: " + getTime());
+
+
+        //AddressField.setText((InetAddress.getLocalHost()));
+
 
         DODServerGUI dodServer = new DODServerGUI();
+        PortField.setText(Integer.toString(portNumber));
+
         new GodViewThread(dodServer,game).start();
 
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {

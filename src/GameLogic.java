@@ -475,7 +475,7 @@ public class GameLogic {
 		chatLogger.chatLog(user.getName() + message);
 	}
 
-	public synchronized char[][] getGodView() {
+	public char[][] getGodView() {
 		char[][] map1 = new char[map.getMapHeight()][map.getMapWidth()];
 		for(int i = 0; i < map.getMapHeight(); i ++){
 			for(int j = 0; j < map.getMapWidth(); j++){

@@ -22,6 +22,11 @@ public class LookThread extends Thread {
             while(true){
                 out.println("look");
                 hcg.printLook(in.readLine());
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (IOException |NullPointerException e) {
 

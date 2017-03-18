@@ -22,6 +22,8 @@ public class HumanClientGUI{
     private JLabel goldCollected;
     private JLabel CommandStatus;
     private  int gold = 0;
+    private static JTextField PortField;
+    private static JTextField IPField;
 
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints gbcForPanel = new GridBagConstraints();
@@ -230,7 +232,7 @@ public class HumanClientGUI{
 
         NorthButton.addActionListener(new ActionListener() {
 
-            public synchronized void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 out.println("move n");
                 try {
                     CommandStatus.setText("Command Status: " + in.readLine());
@@ -248,7 +250,7 @@ public class HumanClientGUI{
 
         SouthButton.addActionListener(new ActionListener() {
 
-            public synchronized void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 out.println("move s");
                 try {
                     CommandStatus.setText("Command Status: " + in.readLine());
@@ -266,7 +268,7 @@ public class HumanClientGUI{
 
         EastButton.addActionListener(new ActionListener() {
 
-            public synchronized void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 out.println("move e");
                 try {
                     CommandStatus.setText("Command Status: " + in.readLine());
@@ -284,7 +286,7 @@ public class HumanClientGUI{
 
         WestButton.addActionListener(new ActionListener() {
 
-            public synchronized void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 out.println("move w");
                 try {
                     CommandStatus.setText("Command Status: " + in.readLine());
@@ -306,14 +308,8 @@ public class HumanClientGUI{
 
         QuitButton.addActionListener(new ActionListener() {
 
-            public synchronized void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 out.println("quit");
-                try {
-                    CommandStatus.setText("Command Status: " + in.readLine());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
                 HumanClientGUIFrame.dispose();
                 System.exit(0);
             }
@@ -389,8 +385,8 @@ public class HumanClientGUI{
         IPPanel.add(ipAddress, gbcForIPPanel);
 
 
-        JTextField IPField = new JTextField(10);
-        chatField.setEditable(true);
+        IPField = new JTextField(10);
+        IPField.setEditable(true);
         gbcForIPPanel.gridx = 1;
         gbcForIPPanel.gridy = 0;
         gbcForIPPanel.gridheight = 1;
@@ -407,7 +403,7 @@ public class HumanClientGUI{
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         IPPanel.add(portNumber, gbcForIPPanel);
 
-        JTextField PortField = new JTextField(10);
+        PortField = new JTextField(10);
         PortField.setEditable(true);
         gbcForIPPanel.gridx = 1;
         gbcForIPPanel.gridy = 1;
@@ -539,6 +535,9 @@ public class HumanClientGUI{
             // ChatThread to output anything to the terminal that is waiting to be displayed
             //new ChatThread(in).start();
             HumanClientGUI human = new HumanClientGUI();
+            IPField.setText(hostName);
+            PortField.setText(Integer.toString(portNumber));
+
             new LookThread(in, out, human).start();
 
 

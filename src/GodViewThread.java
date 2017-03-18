@@ -2,9 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Created by skatt on 17/03/2017.
- */
 public class GodViewThread extends Thread {
     DODServerGUI dsg;
     GameLogic gl;
@@ -17,6 +14,11 @@ public class GodViewThread extends Thread {
         char[][] map;
         while(true){
             dsg.refreshMap();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
