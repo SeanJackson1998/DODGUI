@@ -50,6 +50,10 @@ public class HumanClientGUI{
         HumanClientGUIFrame.setVisible(true);
     }
 
+
+    /*
+     * set up play GUI simply creates he frame and add all the necessary components to it
+     */
     public void setUpPlayGUI(){
         HumanClientGUIFrame = new JFrame("Human Client");
 
@@ -60,6 +64,9 @@ public class HumanClientGUI{
 
         HumanClientGUIFrame.setLayout(new GridBagLayout());
 
+        /*
+         * The panel that holds the inner panel to show the user their view
+         */
         JPanel lookOuterPanel = new JPanel();
         lookOuterPanel.setLayout(new GridBagLayout());
         gbc.gridx = 0;
@@ -67,11 +74,13 @@ public class HumanClientGUI{
         gbc.gridheight = 2;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
-
         lookOuterPanel.setPreferredSize(new Dimension(600,600));
         lookOuterPanel.setBackground(Color.black);
         HumanClientGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
+        /*
+         * The panel that holds the controls allowing the use to move the player and pickup gold
+         */
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridBagLayout());
         gbc.gridx = 2;
@@ -83,6 +92,9 @@ public class HumanClientGUI{
         controlPanel.setBackground(Color.red);
         HumanClientGUIFrame.getContentPane().add(controlPanel, gbc);
 
+        /*
+         * The panel that holds the components to chat, the message window, message field, the send button
+         */
         JPanel chatPanel = new JPanel();
         chatPanel.setLayout(new GridBagLayout());
         gbc.gridx = 0;
@@ -94,6 +106,9 @@ public class HumanClientGUI{
         chatPanel.setBackground(Color.green);
         HumanClientGUIFrame.getContentPane().add(chatPanel, gbc);
 
+        /*
+         * The panel that holds the IP address and port number of the server
+         */
         JPanel IPPanel = new JPanel();
         IPPanel.setLayout(new GridBagLayout());
         gbc.gridx = 2;
@@ -105,9 +120,15 @@ public class HumanClientGUI{
         IPPanel.setBackground(Color.pink);
         HumanClientGUIFrame.getContentPane().add(IPPanel, gbc);
 
+        /*
+         * Makes sure that the frame is filled and puts all of the panels in the correct place
+         */
         HumanClientGUIFrame.pack();
 
 
+        /*
+         * The panel that holds the JLabels to display the look function
+         */
         JPanel lookInnerPanel = new JPanel();
         lookInnerPanel.setLayout(new GridLayout(5,5));
         lookInnerPanel.setPreferredSize(new Dimension(500,500));
@@ -115,13 +136,16 @@ public class HumanClientGUI{
         lookOuterPanel.add(lookInnerPanel);
 
 
+        /*
+         * Insets allow spaces between components making the frame more aesthetically pleasing
+         */
         gbcForPanel.insets = new Insets(20,10,20,10);
         gbcForChatPanel.insets = new Insets(5,20,5,20);
         gbcForIPPanel.insets = new Insets(5,10,10,10);
 
-        // ##############################################################
-        // look inner panel components
-
+        /*
+         * Adding the Labels to the array
+         */
         for(int i=0;i<5;i++)
         {
             for(int j=0;j<5;j++)
@@ -130,6 +154,9 @@ public class HumanClientGUI{
             }
         }
 
+        /*
+         * Initially randomly filling the labels (will be correctly filed in another method)
+         */
         for(int i=0;i<5;i++)
         {
             for(int j=0;j<5;j++)
@@ -167,8 +194,10 @@ public class HumanClientGUI{
             }
 
         }
-        // ###############################################################
-        // controls panel components
+
+        /*
+         * Hello button functions as the "hello" command
+         */
         JButton HelloButton = new JButton("Hello");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 0;
@@ -189,6 +218,9 @@ public class HumanClientGUI{
             }
         });
 
+        /*
+         * Pick up button functions as the "pickup" command
+         */
         JButton PickupButton = new JButton("Pick Up");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 1;
@@ -222,6 +254,9 @@ public class HumanClientGUI{
             }
         });
 
+        /*
+         * North button functions as the "move n" command
+         */
         JButton NorthButton = new JButton("N");
         gbcForPanel.gridx = 1;
         gbcForPanel.gridy = 2;
@@ -242,6 +277,10 @@ public class HumanClientGUI{
             }
         });
 
+
+        /*
+         * South button functions as the "move s" command
+         */
         JButton SouthButton = new JButton("S");
         gbcForPanel.gridx = 1;
         gbcForPanel.gridy = 4;
@@ -260,6 +299,10 @@ public class HumanClientGUI{
             }
         });
 
+
+        /*
+         * East button functions as the "move e" command
+         */
         JButton EastButton = new JButton("E");
         gbcForPanel.gridx = 3;
         gbcForPanel.gridy = 3;
@@ -278,6 +321,10 @@ public class HumanClientGUI{
             }
         });
 
+
+        /*
+         * West button functions as the "move w" command
+         */
         JButton WestButton = new JButton("W");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 3;
@@ -296,6 +343,10 @@ public class HumanClientGUI{
             }
         });
 
+
+        /*
+         * Quit button functions as the "quit" command
+         */
         JButton QuitButton = new JButton("Quit");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 5;
@@ -315,8 +366,9 @@ public class HumanClientGUI{
             }
         });
 
-
-
+        /*
+         * Displays how much gold the user has
+         */
         goldCollected = new JLabel("Gold Collected: " + gold);
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 7;
@@ -326,6 +378,9 @@ public class HumanClientGUI{
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         controlPanel.add(goldCollected, gbcForPanel);
 
+        /*
+         * Returns the response from their input
+         */
         CommandStatus = new JLabel("Command Status: ");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 8;
@@ -335,8 +390,9 @@ public class HumanClientGUI{
         goldCollected.setFont (CommandStatus.getFont ().deriveFont (20.0f));
         controlPanel.add(CommandStatus, gbcForPanel);
 
-        // #########################################################################
-        // chat panel components
+        /*
+         * chatWindow displays the history of the chat
+         */
         JTextArea chatWindow = new JTextArea(7, 40);
         chatWindow.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(chatWindow);
@@ -347,6 +403,9 @@ public class HumanClientGUI{
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(chatWindow,gbcForChatPanel);
 
+        /*
+         * chatField allows the user to type their next message
+         */
         JTextField chatField = new JTextField(40);
         chatField.setEditable(true);
         gbcForChatPanel.gridx = 0;
@@ -356,6 +415,9 @@ public class HumanClientGUI{
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(chatField,gbcForChatPanel);
 
+        /*
+         * the send button sends the message to the other players
+         */
         JButton send = new JButton("Send");
         gbcForChatPanel.gridx = 1;
         gbcForChatPanel.gridy = 4;
@@ -364,6 +426,9 @@ public class HumanClientGUI{
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(send, gbcForChatPanel);
 
+        /*
+         * clear removes the chat history from the screen // might replace with drop down of players for advanced chat
+         */
         JButton clear = new JButton("Clear");
         gbcForChatPanel.gridx = 1;
         gbcForChatPanel.gridy = 0;
@@ -371,9 +436,6 @@ public class HumanClientGUI{
         gbcForChatPanel.gridwidth = 1;
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(clear, gbcForChatPanel);
-
-        //##############################################################################
-        // IP panel components
 
         JLabel ipAddress = new JLabel("IP Address:");
         gbcForIPPanel.gridx = 0;
@@ -384,7 +446,9 @@ public class HumanClientGUI{
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         IPPanel.add(ipAddress, gbcForIPPanel);
 
-
+        /*
+         * IPField displays the IP address of the server
+         */
         IPField = new JTextField(10);
         IPField.setEditable(true);
         gbcForIPPanel.gridx = 1;
@@ -403,6 +467,9 @@ public class HumanClientGUI{
         goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
         IPPanel.add(portNumber, gbcForIPPanel);
 
+        /*
+         * Port field displays the port number of the server
+         */
         PortField = new JTextField(10);
         PortField.setEditable(true);
         gbcForIPPanel.gridx = 1;
@@ -412,6 +479,9 @@ public class HumanClientGUI{
         gbcForIPPanel.fill = GridBagConstraints.BOTH;
         IPPanel.add(PortField,gbcForIPPanel);
 
+        /*
+         * change port will switch the port numbre and connect to the server with the details currently in the fields
+         */
         JButton changePort = new JButton("Change");
         gbcForIPPanel.gridx = 0;
         gbcForIPPanel.gridy = 2;
@@ -419,8 +489,6 @@ public class HumanClientGUI{
         gbcForIPPanel.gridwidth = 3;
         gbcForIPPanel.fill = GridBagConstraints.BOTH;
         IPPanel.add(changePort, gbcForIPPanel);
-
-        // make the labels for the ip and port number
     }
 
 
@@ -465,6 +533,9 @@ public class HumanClientGUI{
         }
     }
 
+    /**
+     * putInImage take the char of the tile and converts that into the corresponding image
+     */
     private void putInImage(String tile, int i, int j) {
 
         switch (tile){
