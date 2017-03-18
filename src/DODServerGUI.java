@@ -29,8 +29,14 @@ public class DODServerGUI {
     private static JTextField AddressField;
     private static JTextField PortField;
 
+    /**
+     * array to hold the godView screen
+     */
     private JLabel[][] godViewWindow;
 
+    /**
+     * The images to be put into the god view grid
+     */
     private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
@@ -39,6 +45,9 @@ public class DODServerGUI {
     private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 
+    /**
+     * constructor to build the server GUI
+     */
     public DODServerGUI()
     {
         game = new GameLogic();
@@ -51,6 +60,9 @@ public class DODServerGUI {
         DODServerGUIFrame.setVisible(true);
     }
 
+    /**
+     * Adds labels to the god view array ready to be filled in later
+     */
     private void setUpGodViewArray(int y, int x) {
         for(int i=0;i<y;i++)
         {
@@ -62,11 +74,12 @@ public class DODServerGUI {
         }
     }
 
-
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints gbcForPanel = new GridBagConstraints();
-    GridBagConstraints godViewgbc = new GridBagConstraints();
 
+    /**
+     * Adds all of the components and panels to the frame
+     */
     public void setUpServerGUI() {
         DODServerGUIFrame = new JFrame("DOD Server");
 
@@ -77,6 +90,9 @@ public class DODServerGUI {
 
         DODServerGUIFrame.setLayout(new GridBagLayout());
 
+        /**
+         * Panel to store the panel which displays the gods Eye View
+         */
         JPanel lookOuterPanel = new JPanel();
         lookOuterPanel.setLayout(new GridBagLayout());
         gbc.gridx = 0;
@@ -88,6 +104,9 @@ public class DODServerGUI {
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
+        /**
+         * Panel to display the gods Eye View
+         */
         lookInnerPanel = new JPanel();
         lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(),map.getMapWidth()));
         gbc.gridx = 0;
@@ -96,6 +115,9 @@ public class DODServerGUI {
         lookInnerPanel.setBackground(Color.red);
         lookOuterPanel.add(lookInnerPanel, gbc);
 
+        /**
+         * Panel to store IP Address and Port number of the server as well as the hide button of the god eye view
+         */
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridBagLayout());
         gbc.gridx = 0;
@@ -107,11 +129,20 @@ public class DODServerGUI {
         controlPanel.setBackground(Color.pink);
         DODServerGUIFrame.getContentPane().add(controlPanel, gbc);
 
+        /**
+         * Fills the fram with the panels
+         */
         DODServerGUIFrame.pack();
 
+        /**
+         * Insets to create the correct amount of space between components
+         */
         gbcForPanel.insets = new Insets(10,10,10,10);
 
 
+        /**
+         * A button to hide the visibility of the gods eye view
+         */
         JButton hideGodView = new JButton("Hide");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 0;
@@ -133,9 +164,9 @@ public class DODServerGUI {
                     lookInnerPanel.setVisible(true);
                     hideGodView.setText("Hide");
                 }
-
             }
         });
+
 
 
         JLabel portNumber = new JLabel("Port Number:");
@@ -146,12 +177,15 @@ public class DODServerGUI {
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(portNumber, gbcForPanel);
 
+        /**
+         * Text field to store the port number of the server
+         */
         PortField = new JTextField(10);
         PortField.setEditable(true);
         gbcForPanel.gridx = 4;
         gbcForPanel.gridy = 0;
         gbcForPanel.gridheight = 1;
-        gbcForPanel.gridwidth = 1;
+        gbcForPanel.gridwidth = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(PortField,gbcForPanel);
 
@@ -163,17 +197,23 @@ public class DODServerGUI {
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(IPAddress, gbcForPanel);
 
+        /**
+         * Text field to store the IP Address of the server
+         */
         AddressField = new JTextField(10);
         AddressField.setEditable(true);
         gbcForPanel.gridx = 4;
         gbcForPanel.gridy = 1;
         gbcForPanel.gridheight = 1;
-        gbcForPanel.gridwidth = 1;
+        gbcForPanel.gridwidth = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(AddressField,gbcForPanel);
 
+        /**
+         * Button to change the port of the server to the ones inputted in the text fields
+         */
         JButton changePort = new JButton("Change");
-        gbcForPanel.gridx = 5;
+        gbcForPanel.gridx = 7;
         gbcForPanel.gridy = 0;
         gbcForPanel.gridheight = 2;
         gbcForPanel.gridwidth = 1;
@@ -181,6 +221,9 @@ public class DODServerGUI {
         controlPanel.add(changePort, gbcForPanel);
     }
 
+    /**
+     * Method to get the current map with the players on and output the map in the form of images
+     */
     public void refreshMap() {
         mapCharArray = game.getGodView();
         for (int i = 0; i < mapCharArray.length; i++) {
@@ -210,11 +253,17 @@ public class DODServerGUI {
                 }
             }
         }
+        /**
+         * refreshes the panel updating all of the labels
+         */
         lookInnerPanel.repaint();
 
 
     }
 
+    /**
+     * Method to initially put images in the labels and put them on the map
+     */
     public void printGodView(char[][] mapArray) {
         int i, j = 0; // i = row count, j = column count
 
@@ -226,6 +275,9 @@ public class DODServerGUI {
         }
     }
 
+    /**
+     * Method to initially store images in the labels and add them to the panel
+     */
     private void putInImage(char tile, int i, int j) {
 
         switch (tile){
@@ -254,32 +306,36 @@ public class DODServerGUI {
         lookInnerPanel.add(godViewWindow[i][j]);
     }
 
+
+    /**
+     * The DOD server will be made using a port number
+     * Then the server socket is made allowing clients to join
+     * then a user is created after the client joins the server
+     * Then a thread of the new client is created
+     */
     public static void main(String[] args) throws IOException {
 
 
         if (args.length != 1) {
-            System.err.println("Usage: java DODMultiServer <port number>");
+            System.err.println("Usage: java DODServerGUI <port number>");
             System.exit(1);
         }
         int portNumber = Integer.parseInt(args[0]);
         int playerID = 0;
-        //GameLogic game = new GameLogic();
-        //char[][] mapSS = game.getMap();
         User user;
         char type;
         String name = "";
 
-        //setting up the chat file for the next game
-//        game.chatLogger.chatLog("---------------------------------------------------------------------------------");
-//        game.chatLogger.chatLog("Game Started: " + getTime());
-
-
-        //AddressField.setText((InetAddress.getLocalHost()));
-
 
         DODServerGUI dodServer = new DODServerGUI();
-        PortField.setText(Integer.toString(portNumber));
+        //setting up the chat file for the next game
+        game.chatLogger.chatLog("---------------------------------------------------------------------------------");
+        game.chatLogger.chatLog("Game Started: " + getTime());
 
+        PortField.setText(Integer.toString(portNumber));
+        AddressField.setText((InetAddress.getLocalHost().getHostAddress()).toString());
+
+        // initialising the god view thread so it is constantly updated
         new GodViewThread(dodServer,game).start();
 
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {

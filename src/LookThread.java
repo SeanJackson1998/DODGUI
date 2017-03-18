@@ -10,13 +10,20 @@ public class LookThread extends Thread {
     BufferedReader in;
     PrintWriter out;
     HumanClientGUI hcg;
-    public LookThread(BufferedReader br, PrintWriter pw, HumanClientGUI hc){
 
+    /**
+     * Takes in parameters as the buffered reader, print writer and the gui itself
+     */
+    public LookThread(BufferedReader br, PrintWriter pw, HumanClientGUI hc){
         in = br;
         out = pw;
         hcg = hc;
     }
 
+    /**
+     * constantly loops to get the current surroundings of the player from game logic
+     * The result is sent back from game logic and printed into the labels in the gui method print look
+     */
     public void run(){
         try {
             while(true){

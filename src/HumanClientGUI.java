@@ -25,11 +25,17 @@ public class HumanClientGUI{
     private static JTextField PortField;
     private static JTextField IPField;
 
+    /**
+     * different layouts for the different panels
+     */
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints gbcForPanel = new GridBagConstraints();
     GridBagConstraints gbcForChatPanel = new GridBagConstraints();
     GridBagConstraints gbcForIPPanel = new GridBagConstraints();
 
+    /**
+     * The images to be put into the look grid
+     */
     private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon human = new ImageIcon(new ImageIcon("images/human.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -40,10 +46,16 @@ public class HumanClientGUI{
     private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 
 
+    /**
+     * 5x5 array to hold the look screen
+     */
     private JLabel[][] lookWindow = new JLabel[5][5];
 
     private JFrame HumanClientGUIFrame;
 
+    /**
+     * constructor to set up the GUI
+     */
     public HumanClientGUI()
     {
         setUpPlayGUI();
@@ -609,6 +621,7 @@ public class HumanClientGUI{
             IPField.setText(hostName);
             PortField.setText(Integer.toString(portNumber));
 
+            // initialising look thread so its always updated by their surroundings
             new LookThread(in, out, human).start();
 
 
