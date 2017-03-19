@@ -42,7 +42,6 @@ public class ThreadClient extends Thread{
         	// from the client and from the server
         	String inputLine, outputLine = null;
         	// to check if the player has quit or not
-        	boolean quitbool = false;
         	game.newUser(playerID, type, socket);
         	correctUser = game.getCorrectUser(playerID);
         	game.setUser(correctUser);

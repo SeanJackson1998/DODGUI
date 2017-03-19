@@ -11,6 +11,8 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 /**
@@ -18,21 +20,21 @@ import java.util.Calendar;
  */
 public class DODServerGUI {
 
-
+    private static  ServerSocket serverSocket;
     private static Map map;
     private static GameLogic game;
     private static char[][] mapCharArray;
 
 
     private JFrame DODServerGUIFrame;
-    private JPanel lookInnerPanel;
+    private static JPanel lookInnerPanel;
     private static JTextField AddressField;
     private static JTextField PortField;
 
     /**
      * array to hold the godView screen
      */
-    private JLabel[][] godViewWindow;
+    private static JLabel[][] godViewWindow;
 
     /**
      * The images to be put into the god view grid
@@ -169,13 +171,13 @@ public class DODServerGUI {
 
 
 
-        JLabel portNumber = new JLabel("Port Number:");
+        JLabel portNumberLbl = new JLabel("Port Number:");
         gbcForPanel.gridx = 3;
         gbcForPanel.gridy = 0;
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 1;
         gbcForPanel.fill = GridBagConstraints.BOTH;
-        controlPanel.add(portNumber, gbcForPanel);
+        controlPanel.add(portNumberLbl, gbcForPanel);
 
         /**
          * Text field to store the port number of the server
@@ -201,7 +203,7 @@ public class DODServerGUI {
          * Text field to store the IP Address of the server
          */
         AddressField = new JTextField(10);
-        AddressField.setEditable(true);
+        AddressField.setEditable(false);
         gbcForPanel.gridx = 4;
         gbcForPanel.gridy = 1;
         gbcForPanel.gridheight = 1;
@@ -219,45 +221,26 @@ public class DODServerGUI {
         gbcForPanel.gridwidth = 1;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(changePort, gbcForPanel);
-    }
 
-    /**
-     * Method to get the current map with the players on and output the map in the form of images
-     */
-    public void refreshMap() {
-        mapCharArray = game.getGodView();
-        for (int i = 0; i < mapCharArray.length; i++) {
-            for (int j = 0; j < mapCharArray[0].length; j++) {
-                switch (mapCharArray[i][j]){
-                    case 'P':
-                        godViewWindow[i][j].setIcon(human2);
-                        break;
-                    case 'B':
-                        godViewWindow[i][j].setIcon(bot);
-                        break;
-                    case '.':
-                        godViewWindow[i][j].setIcon(floor);
-                        break;
-                    case '#':
-                        godViewWindow[i][j].setIcon(wall);
-                        break;
-                    case 'X':
-                        godViewWindow[i][j].setIcon(lava);
-                        break;
-                    case 'G':
-                        godViewWindow[i][j].setIcon(goldimage);
-                        break;
-                    case 'E':
-                        godViewWindow[i][j].setIcon(exit);
-                        break;
+        changePort.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                if(PortField.getText().matches("[0-9]+") && Integer.parseInt(PortField.getText()) < 65535)
+                {
+                    if(PortField.getText().equals(Integer.toString(portNumber)))
+                    {
+                        JOptionPane.showMessageDialog(DODServerGUIFrame, "You are already using this port");
+                    }
+                    else
+                    {
+                        setServerPort(Integer.parseInt(PortField.getText()));
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(DODServerGUIFrame, "Not a valid port number");
                 }
             }
-        }
-        /**
-         * refreshes the panel updating all of the labels
-         */
-        lookInnerPanel.repaint();
-
+        });
 
     }
 
@@ -307,12 +290,25 @@ public class DODServerGUI {
     }
 
 
+    private void setServerPort(int portNumber)
+    {
+        try {
+            serverSocket.close();
+            serverSocket = new ServerSocket((portNumber));
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * The DOD server will be made using a port number
      * Then the server socket is made allowing clients to join
      * then a user is created after the client joins the server
      * Then a thread of the new client is created
      */
+    private static int portNumber;
+
     public static void main(String[] args) throws IOException {
 
 
@@ -320,7 +316,7 @@ public class DODServerGUI {
             System.err.println("Usage: java DODServerGUI <port number>");
             System.exit(1);
         }
-        int portNumber = Integer.parseInt(args[0]);
+        portNumber = Integer.parseInt(args[0]);
         int playerID = 0;
         User user;
         char type;
@@ -336,14 +332,14 @@ public class DODServerGUI {
         AddressField.setText((InetAddress.getLocalHost().getHostAddress()).toString());
 
         // initialising the god view thread so it is constantly updated
-        new GodViewThread(dodServer,game).start();
+        new GodViewThread(dodServer, game, lookInnerPanel, godViewWindow).start();
 
-        try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
+        try {
+            serverSocket = new ServerSocket(portNumber);
             while (true) {
                 Socket socket1 = serverSocket.accept();
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
                 String playerType = in.readLine();
-
 
                 if(playerType.equals("human"))
                 {
@@ -364,7 +360,7 @@ public class DODServerGUI {
             }
         } catch (SocketException e) {
             System.err.println(e.getLocalizedMessage());
-            System.exit(1);
+            //System.exit(0);
         } catch (IOException e) {
             System.err.println("Could not listen on port " + portNumber);
             System.exit(1);

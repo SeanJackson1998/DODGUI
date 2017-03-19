@@ -21,6 +21,7 @@ public class HumanClientGUI{
 
     private JLabel goldCollected;
     private JLabel CommandStatus;
+    private static JPanel lookInnerPanel;
     private  int gold = 0;
     private static JTextField PortField;
     private static JTextField IPField;
@@ -50,7 +51,7 @@ public class HumanClientGUI{
     /**
      * 5x5 array to hold the look screen
      */
-    private JLabel[][] lookWindow = new JLabel[5][5];
+    private static JLabel[][] lookWindow = new JLabel[5][5];
 
     private JFrame HumanClientGUIFrame;
 
@@ -142,7 +143,7 @@ public class HumanClientGUI{
         /*
          * The panel that holds the JLabels to display the look function
          */
-        JPanel lookInnerPanel = new JPanel();
+        lookInnerPanel = new JPanel();
         lookInnerPanel.setLayout(new GridLayout(5,5));
         lookInnerPanel.setPreferredSize(new Dimension(500,500));
         lookInnerPanel.setBackground(Color.white);
@@ -529,80 +530,8 @@ public class HumanClientGUI{
         {
             JOptionPane.showMessageDialog(HumanClientGUIFrame,"You beat the Dungeon of Doom!");
             winner = true;
-
         }
     }
-    /**
-     * The object MapLook is a 2D array to hold the 5x5 grid when look is
-     * called.
-     */
-    static Object[][] MapLook = new Object[5][5];
-
-    /**
-     * The function print-look calls the look function to get the surroundings
-     * of the player. The string is then cut up into a string array of single
-     * characters. One by one the characters are fed into the char array and for
-     * each 5th character a new line in the array is made.
-     */
-    public void printLook(String lookstring) {
-        String[] looklines;
-
-        looklines = lookstring.split("");
-
-        int i, j = 0; // i = line count, j = char count
-
-        for (i = 0; i < lookstring.length(); i++) {
-            if(i==12)
-            {
-                lookWindow[2][2].setIcon(human);
-            }
-            else
-            {
-                if (i % 5 == 0 && i != 0) {
-                    j++;
-                    putInImage(looklines[i], i % 5, j);
-                } else {
-                    if (j == 0) {
-                        putInImage(looklines[i], i%5, j);
-                    } else {
-                        putInImage(looklines[i], i % 5, j);
-                    }
-                }
-            }
-
-        }
-    }
-
-    /**
-     * putInImage take the char of the tile and converts that into the corresponding image
-     */
-    private void putInImage(String tile, int i, int j) {
-
-        switch (tile){
-            case "P":
-                lookWindow[j][i].setIcon(human2);
-                break;
-            case "B":
-                lookWindow[j][i].setIcon(bot);
-                break;
-            case ".":
-                lookWindow[j][i].setIcon(floor);
-                break;
-            case "#":
-                lookWindow[j][i].setIcon(wall);
-                break;
-            case "X":
-                lookWindow[j][i].setIcon(lava);
-                break;
-            case "G":
-                lookWindow[j][i].setIcon(goldimage);
-                break;
-            case "E":
-                lookWindow[j][i].setIcon(exit);
-                break;
-        }
-    }
-
 
     /**
      * The human client uses the host name and the port number to connect to the host
@@ -650,7 +579,7 @@ public class HumanClientGUI{
             PortField.setText(Integer.toString(portNumber));
 
             // initialising look thread so its always updated by their surroundings
-            new LookThread(in, out, human).start();
+            new LookThread(in, out, lookInnerPanel, lookWindow).start();
 
 
         } catch (UnknownHostException e) {

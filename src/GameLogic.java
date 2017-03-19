@@ -210,8 +210,8 @@ public class GameLogic {
 		if ((map.getTile(newX, newY) != '#') && checkMoveTile(newX, newY, user.getID())) {
 
 			// set coordinates for player
-			//setPlayersXCoordinate(newX);
-			//setPlayersYCoordinate(newY);
+			setPlayersXCoordinate(newX);
+			setPlayersYCoordinate(newY);
 
 			// set coordinates for object to new coordinates of player
 			user.setX(newX);
@@ -219,7 +219,7 @@ public class GameLogic {
 
 			if (checkWin()) {
 				gameRunning = false;
-				return "Congratulations!!! \n You have escaped the Dungeon of Dooom!!!!!! \n Thank you for playing! \n Type 'quit' to leave the server";
+				return "Congratulations!!!";
 
 			}
 			return "SUCCESS";
@@ -361,10 +361,10 @@ public class GameLogic {
 	 * Then it returns the user
 	 */
 	public synchronized User checkSpawnTile(User user) {
-		int x = user.getX();
-		int y = user.getY();
+		int x;
+		int y;
 		boolean onlyUser;
-		char tile = map.getTile(x, y);
+		char tile;
 		Random random = new Random();
 
 		do {
@@ -479,52 +479,14 @@ public class GameLogic {
 		char[][] map1 = new char[map.getMapHeight()][map.getMapWidth()];
 		for(int i = 0; i < map.getMapHeight(); i ++){
 			for(int j = 0; j < map.getMapWidth(); j++){
-				int[] location = {i,j};
-				boolean isPlayer = false;
-				for(User u : players){
-					int[] userLoc = {u.getY(), u.getX()};
-					if(Arrays.equals(location, userLoc)){
-						map1[i][j] = u.getType();
-						isPlayer = true;
-					}
-				}
-				if(!isPlayer){
 					map1[i][j] = map.getTile(j, i);
-				}
 			}
 		}
 		return map1;
 	}
-/*
-	public String look() {
-		// get look window for current player
-		char[][] look = map.look(getPlayersXCoordinate(), getPlayersYCoordinate());
 
-		// search for user coordinates in the array list and if they are between the bounds then print them
-		User userTest;
-		for (int i = 0; i <= players.size() - 1; i++) {
-			userTest = players.get(i);
-
-			int userXDif = getPlayersXCoordinate() - userTest.getX();
-			int userYDif = getPlayersYCoordinate() - userTest.getY();
-
-			if (Math.abs(userXDif) <= 2 && Math.abs(userYDif) <= 2) {
-				// check the character for if its a BOT as well
-				look[2 - userXDif][2 - userYDif] = userTest.getType();
-			}
-		}
-
-		// return look window as a String for printing
-		String lookWindow = "";
-		for (int i = 0; i < look.length; i++) {
-			for (int j = 0; j < look[i].length; j++) {
-				lookWindow += look[j][i];
-			}
-		}
-		return lookWindow;
-	}*/
-
-
-
-
+	public ArrayList<User> getPlayers()
+	{
+		return players;
+	}
 }

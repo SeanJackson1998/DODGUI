@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.net.Socket;
 
 /**
@@ -25,6 +26,7 @@ public class User {
 		this.socket = socket;
 		this.Name = Name;
 	}
+
 
 	/**
 	 * This accessor gets the name for the user
