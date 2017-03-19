@@ -24,6 +24,7 @@ public class HumanClientGUI{
     private  int gold = 0;
     private static JTextField PortField;
     private static JTextField IPField;
+    private boolean winner = false;
 
     /**
      * different layouts for the different panels
@@ -225,7 +226,8 @@ public class HumanClientGUI{
                 try {
                     CommandStatus.setText("Command Status: " + in.readLine());
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    HumanClientGUIFrame.dispose();
+                    System.exit(0);
                 }
             }
         });
@@ -260,7 +262,8 @@ public class HumanClientGUI{
                     }
                     goldCollected.setText("Gold Collected: " + gold);
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    HumanClientGUIFrame.dispose();
+                    System.exit(0);
                 }
 
             }
@@ -282,9 +285,12 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move n");
                 try {
-                    CommandStatus.setText("Command Status: " + in.readLine());
+                    String commandReturn = in.readLine();
+                    CommandStatus.setText("Command Status: " + commandReturn);
+                    checkWin(commandReturn);
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    HumanClientGUIFrame.dispose();
+                    System.exit(0);
                 }
             }
         });
@@ -304,9 +310,12 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move s");
                 try {
-                    CommandStatus.setText("Command Status: " + in.readLine());
+                    String commandReturn = in.readLine();
+                    CommandStatus.setText("Command Status: " + commandReturn);
+                    checkWin(commandReturn);
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    HumanClientGUIFrame.dispose();
+                    System.exit(0);
                 }
             }
         });
@@ -326,9 +335,12 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move e");
                 try {
-                    CommandStatus.setText("Command Status: " + in.readLine());
+                    String commandReturn = in.readLine();
+                    CommandStatus.setText("Command Status: " + commandReturn);
+                    checkWin(commandReturn);
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    HumanClientGUIFrame.dispose();
+                    System.exit(0);
                 }
             }
         });
@@ -348,9 +360,16 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move w");
                 try {
-                    CommandStatus.setText("Command Status: " + in.readLine());
+                    String commandReturn = in.readLine();
+                    CommandStatus.setText("Command Status: " + commandReturn);
+                    checkWin(commandReturn);
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    if(!winner)
+                    {
+                        JOptionPane.showMessageDialog(HumanClientGUIFrame,"Sorry, you lost");
+                    }
+                    HumanClientGUIFrame.dispose();
+                    System.exit(0);
                 }
             }
         });
@@ -407,7 +426,7 @@ public class HumanClientGUI{
          */
         JTextArea chatWindow = new JTextArea(7, 40);
         chatWindow.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(chatWindow);
+        //JScrollPane scrollPane = new JScrollPane(chatWindow);
         gbcForChatPanel.gridx = 0;
         gbcForChatPanel.gridy = 0;
         gbcForChatPanel.gridheight = 3;
@@ -492,7 +511,7 @@ public class HumanClientGUI{
         IPPanel.add(PortField,gbcForIPPanel);
 
         /*
-         * change port will switch the port numbre and connect to the server with the details currently in the fields
+         * change port will switch the port number and connect to the server with the details currently in the fields
          */
         JButton changePort = new JButton("Change");
         gbcForIPPanel.gridx = 0;
@@ -504,6 +523,15 @@ public class HumanClientGUI{
     }
 
 
+    private void checkWin(String fromServer)
+    {
+        if(fromServer.equals("Congratulations!!!"))
+        {
+            JOptionPane.showMessageDialog(HumanClientGUIFrame,"You beat the Dungeon of Doom!");
+            winner = true;
+
+        }
+    }
     /**
      * The object MapLook is a 2D array to hold the 5x5 grid when look is
      * called.
