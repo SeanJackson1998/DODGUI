@@ -20,11 +20,10 @@ import java.util.Calendar;
  */
 public class DODServerGUI {
 
-    private static ServerSocket serverSocket;
-    private static Map map;
-    private static GameLogic game;
-    private static char[][] mapCharArray;
-
+    private ServerSocket serverSocket;
+    private Map map;
+    private GameLogic game;
+    private ArrayList<ThreadClient> threads = new ArrayList<>();
 
     private JFrame DODServerGUIFrame;
     private static JPanel lookInnerPanel;
@@ -54,14 +53,15 @@ public class DODServerGUI {
     {
         game = new GameLogic();
         map = game.getMapObj();
-        mapCharArray = map.getMap();
         godViewWindow = new JLabel[map.getMapHeight()][map.getMapWidth()];
+    }
+
+    private void makeGUI(){
         setUpServerGUI();
         setUpGodViewArray(map.getMapHeight(),map.getMapWidth());
         printGodView(map.getMap());
         DODServerGUIFrame.setVisible(true);
     }
-
     /**
      * Adds labels to the god view array ready to be filled in later
      */
@@ -293,6 +293,7 @@ public class DODServerGUI {
     private void setServerPort(int portNumber)
     {
         try {
+            killPlayers();
             serverSocket.close();
             serverSocket = new ServerSocket((portNumber));
         } catch (SocketException e) {
@@ -301,6 +302,14 @@ public class DODServerGUI {
             e.printStackTrace();
         }
     }
+
+    private void killPlayers()
+    {
+        for(int i=0; i<threads.size();i++) {
+            threads.get(i).killPlayer(threads.get(i));
+        }
+    }
+
     /**
      * The DOD server will be made using a port number
      * Then the server socket is made allowing clients to join
@@ -311,6 +320,7 @@ public class DODServerGUI {
 
     public static void main(String[] args) throws IOException {
 
+        DODServerGUI ServerGUI = new DODServerGUI();
 
         if (args.length != 1) {
             System.err.println("Usage: java DODServerGUI <port number>");
@@ -323,23 +333,24 @@ public class DODServerGUI {
         String name = "";
 
 
-        DODServerGUI dodServer = new DODServerGUI();
+        ServerGUI.makeGUI();
+
         //setting up the chat file for the next game
-        game.chatLogger.chatLog("---------------------------------------------------------------------------------");
-        game.chatLogger.chatLog("Game Started: " + getTime());
+        ServerGUI.game.chatLogger.chatLog("---------------------------------------------------------------------------------");
+        ServerGUI.game.chatLogger.chatLog("Game Started: " + getTime());
 
         PortField.setText(Integer.toString(portNumber));
         AddressField.setText((InetAddress.getLocalHost().getHostAddress()).toString());
 
         // initialising the god view thread so it is constantly updated
-        new GodViewThread(dodServer, game, lookInnerPanel, godViewWindow).start();
+        new GodViewThread(ServerGUI, ServerGUI.game, lookInnerPanel, godViewWindow).start();
 
         try {
-            serverSocket = new ServerSocket(portNumber);
+            ServerGUI.serverSocket = new ServerSocket(portNumber);
             while (true) {
                 Socket socket1 = null;
                 try {
-                    socket1 = serverSocket.accept();
+                    socket1 = ServerGUI.serverSocket.accept();
                 } catch (SocketException e) {
                     System.err.println("in first catch");
                     continue;
@@ -352,22 +363,25 @@ public class DODServerGUI {
                 {
                     type = 'P';
                     System.out.println("human connected");
-                    user = new User(map.getMapWidth(), map.getMapHeight(), playerID, 0, type, socket1, name);
-                    new ThreadClient(socket1,game,playerID, user, type, name).start();
+                    user = new User(ServerGUI.map.getMapWidth(), ServerGUI.map.getMapHeight(), playerID, 0, type, socket1, name);
+                    ThreadClient newthread = new ThreadClient(socket1,ServerGUI.game,playerID, user, type, name);
+                    ServerGUI.threads.add(newthread);
+                    newthread.start();
                     playerID++;
                 }
                 else
                 {
                     type = 'B';
                     System.out.println("bot connected");
-                    user = new User(map.getMapWidth(), map.getMapHeight(), playerID, 0, type, socket1, name);
-                    new ThreadClient(socket1,game,playerID, user, type, name).start();
+                    user = new User(ServerGUI.map.getMapWidth(), ServerGUI.map.getMapHeight(), playerID, 0, type, socket1, name);
+                    ThreadClient newthread = new ThreadClient(socket1,ServerGUI.game,playerID, user, type, name);
+                    ServerGUI.threads.add(newthread);
+                    newthread.start();
                     playerID++;
                 }
             }
         } catch (SocketException e) {
             System.err.println(e.getLocalizedMessage());
-            //System.exit(0);
         } catch (IOException e) {
             System.err.println("Could not listen on port " + portNumber);
             System.exit(1);

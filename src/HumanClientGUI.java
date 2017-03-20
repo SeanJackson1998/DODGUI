@@ -15,9 +15,9 @@ import java.util.Random;
 public class HumanClientGUI{
 
 
-    private static Socket clientSocket;
-    private static PrintWriter out;
-    private static BufferedReader in;
+    private Socket clientSocket;
+    private PrintWriter out;
+    private BufferedReader in;
 
     private JLabel goldCollected;
     private JLabel CommandStatus;
@@ -60,10 +60,16 @@ public class HumanClientGUI{
      */
     public HumanClientGUI()
     {
+
+    }
+
+    /*
+
+     */
+    private void makeGUI(){
         setUpPlayGUI();
         HumanClientGUIFrame.setVisible(true);
     }
-
 
     /*
      * set up play GUI simply creates he frame and add all the necessary components to it
@@ -286,12 +292,9 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move n");
                 try {
-                    String commandReturn = in.readLine();
-                    CommandStatus.setText("Command Status: " + commandReturn);
-                    checkWin(commandReturn);
+                    output(in.readLine());
                 } catch (IOException e1) {
-                    HumanClientGUIFrame.dispose();
-                    System.exit(0);
+                    checkSocket();
                 }
             }
         });
@@ -311,12 +314,9 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move s");
                 try {
-                    String commandReturn = in.readLine();
-                    CommandStatus.setText("Command Status: " + commandReturn);
-                    checkWin(commandReturn);
+                    output(in.readLine());
                 } catch (IOException e1) {
-                    HumanClientGUIFrame.dispose();
-                    System.exit(0);
+                    checkSocket();
                 }
             }
         });
@@ -336,12 +336,9 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move e");
                 try {
-                    String commandReturn = in.readLine();
-                    CommandStatus.setText("Command Status: " + commandReturn);
-                    checkWin(commandReturn);
+                    output(in.readLine());
                 } catch (IOException e1) {
-                    HumanClientGUIFrame.dispose();
-                    System.exit(0);
+                    checkSocket();
                 }
             }
         });
@@ -361,16 +358,9 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 out.println("move w");
                 try {
-                    String commandReturn = in.readLine();
-                    CommandStatus.setText("Command Status: " + commandReturn);
-                    checkWin(commandReturn);
+                    output(in.readLine());
                 } catch (IOException e1) {
-                    if(!winner)
-                    {
-                        JOptionPane.showMessageDialog(HumanClientGUIFrame,"Sorry, you lost");
-                    }
-                    HumanClientGUIFrame.dispose();
-                    System.exit(0);
+                    checkSocket();
                 }
             }
         });
@@ -523,16 +513,32 @@ public class HumanClientGUI{
         IPPanel.add(changePort, gbcForIPPanel);
     }
 
-
-    private void checkWin(String fromServer)
+    private void checkSocket()
     {
-        if(fromServer.equals("Congratulations!!!"))
+        if(clientSocket.isClosed())
         {
-            JOptionPane.showMessageDialog(HumanClientGUIFrame,"You beat the Dungeon of Doom!");
-            winner = true;
+            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
+        }
+        else if(!winner)
+        {
+            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Sorry, you lost");
+            HumanClientGUIFrame.dispose();
+            System.exit(0);
         }
     }
 
+    private void output(String commandReturn){
+        if(commandReturn.length()==25)
+        {}
+        else{
+            CommandStatus.setText("Command Status: " + commandReturn);
+            if(commandReturn.equals("Congratulations!!!"))
+            {
+                JOptionPane.showMessageDialog(HumanClientGUIFrame,"You beat the Dungeon of Doom!");
+                winner = true;
+            }
+        }
+    }
     /**
      * The human client uses the host name and the port number to connect to the host
      * Then the client socket is made so that it can send and receive data to and from the server
@@ -542,6 +548,7 @@ public class HumanClientGUI{
      */
     public static void main(String[] args) throws IOException {
 
+        HumanClientGUI hcg = new HumanClientGUI();
         if (args.length != 2) {
             System.err.println(
                     "Usage: java HumanClient <host name> <port number>");
@@ -552,18 +559,16 @@ public class HumanClientGUI{
         int portNumber = Integer.parseInt(args[1]);
 
         try {
-            clientSocket = new Socket(hostName, portNumber);
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            hcg.clientSocket = new Socket(hostName, portNumber);
+            hcg.out = new PrintWriter(hcg.clientSocket.getOutputStream(), true);
+            hcg.in = new BufferedReader(new InputStreamReader(hcg.clientSocket.getInputStream()));
 
-            out.println("human");
-
-            String fromUser;
+            hcg.out.println("human");
 
             JFrame nameWindow = new JFrame("Username Input");
             String name = JOptionPane.showInputDialog("Choose a username:");
 
-            out.println(name);
+            hcg.out.println(name);
 
             JOptionPane.showMessageDialog(nameWindow,"Welcome to dungeons of doom " + name + "!\n"
             + "You already know most of the commands, but with the new chat system there's a few more.\n"
@@ -574,12 +579,12 @@ public class HumanClientGUI{
 
             // ChatThread to output anything to the terminal that is waiting to be displayed
             //new ChatThread(in).start();
-            HumanClientGUI human = new HumanClientGUI();
+            hcg.makeGUI();
             IPField.setText(hostName);
             PortField.setText(Integer.toString(portNumber));
 
             // initialising look thread so its always updated by their surroundings
-            new LookThread(in, out, lookInnerPanel, lookWindow).start();
+            new LookThread(hcg.in, hcg.out, lookInnerPanel, lookWindow).start();
 
 
         } catch (UnknownHostException e) {

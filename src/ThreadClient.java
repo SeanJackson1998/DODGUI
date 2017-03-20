@@ -29,6 +29,15 @@ public class ThreadClient extends Thread{
 	//outputThread look = new outputThread(GP_Look);
 
 
+	public void killPlayer(ThreadClient thread)
+	{
+		try {
+			thread.socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/* The new user is fully created through game logic and the user is then checked against their id to make sure they have the id they were given
     * Then the user is set so that it is not created outside the map or on top of another player
     * Then while the thread receives the input it processes it with the user and outputs it back to the human client
