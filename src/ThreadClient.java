@@ -83,11 +83,13 @@ public class ThreadClient extends Thread{
 
             	while ((inputLine = in.readLine()) != null && !correctUser.getSocket().isClosed() && game.isGameRunning()){
 	            	// sets it to the player coordinates of this thread
-	            	correctUser = game.getCorrectUser(playerID);
-	            	game.setUser(correctUser);
+	            	synchronized (game){
+                        correctUser = game.getCorrectUser(playerID);
+                        game.setUser(correctUser);
+                        outputLine = game.processInput(inputLine, correctUser);
+                        out.println(outputLine);
+                    }
 
-	                outputLine = game.processInput(inputLine, correctUser);
-	                out.println(outputLine);
 	                // if the player has said they want to quit then remove them from the game
 	                if(inputLine.equalsIgnoreCase("quit"))
 	                {

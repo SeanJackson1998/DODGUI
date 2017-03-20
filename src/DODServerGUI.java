@@ -20,7 +20,7 @@ import java.util.Calendar;
  */
 public class DODServerGUI {
 
-    private static  ServerSocket serverSocket;
+    private static ServerSocket serverSocket;
     private static Map map;
     private static GameLogic game;
     private static char[][] mapCharArray;
@@ -233,7 +233,8 @@ public class DODServerGUI {
                     }
                     else
                     {
-                        setServerPort(Integer.parseInt(PortField.getText()));
+                        portNumber = Integer.parseInt(PortField.getText());
+                        setServerPort(portNumber);
                     }
                 }
                 else{
@@ -241,7 +242,6 @@ public class DODServerGUI {
                 }
             }
         });
-
     }
 
     /**
@@ -337,7 +337,14 @@ public class DODServerGUI {
         try {
             serverSocket = new ServerSocket(portNumber);
             while (true) {
-                Socket socket1 = serverSocket.accept();
+                Socket socket1 = null;
+                try {
+                    socket1 = serverSocket.accept();
+                } catch (SocketException e) {
+                    System.err.println("in first catch");
+                    continue;
+                }
+
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
                 String playerType = in.readLine();
 

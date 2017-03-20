@@ -88,9 +88,7 @@ public class LookThread extends Thread {
                     }
                 }
             }
-
         }
-
         lookInnerPanel.repaint();
     }
 
