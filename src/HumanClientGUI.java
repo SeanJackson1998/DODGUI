@@ -21,6 +21,8 @@ public class HumanClientGUI{
     private PrintWriter out;
     private BufferedReader in;
 
+    private LookThread lt = null;
+
     private JLabel goldCollected;
     private JLabel CommandStatus;
     private JPanel lookInnerPanel;
@@ -67,12 +69,11 @@ public class HumanClientGUI{
 
     }
 
-    /*
 
-     */
     private void makeGUI(){
         setUpPlayGUI();
         HumanClientGUIFrame.setVisible(true);
+
     }
 
     /*
@@ -537,13 +538,16 @@ public class HumanClientGUI{
                 }
             }
         });
-
     }
 
     private void changePortAndIP(String hostName, int portNo) {
         try {
-            clientSocket.close();
-            clientSocket = new Socket(hostName, portNo);
+            HumanClientGUIFrame.dispose();
+            this.main(new String[] {hostName, String.valueOf(portNo)});
+
+            /*lt = new LookThread(in, out, lookInnerPanel, lookWindow, this);
+            lt.start();*/
+
         } catch (SocketException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -556,10 +560,17 @@ public class HumanClientGUI{
         try {
             JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
             clientSocket.close();
+            out.close();
+            in.close();
+            lt.interrupt();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
 
     private void checkSocket()
     {
@@ -597,12 +608,13 @@ public class HumanClientGUI{
      */
     public static void main(String[] args) throws IOException {
 
-        HumanClientGUI hcg = new HumanClientGUI();
+
         if (args.length != 2) {
-            System.err.println(
-                    "Usage: java HumanClient <host name> <port number>");
+            System.err.println("Usage: java HumanClient <host name> <port number>");
             System.exit(1);
         }
+
+        HumanClientGUI hcg = new HumanClientGUI();
 
         hcg.hostName = args[0];
         hcg.portNo = Integer.parseInt(args[1]);
@@ -633,8 +645,8 @@ public class HumanClientGUI{
             hcg.PortField.setText(Integer.toString(hcg.portNo));
 
             // initialising look thread so its always updated by their surroundings
-            new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg).start();
-
+            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg);
+            hcg.lt.start();
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hcg.hostName);

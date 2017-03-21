@@ -46,16 +46,7 @@ public class LookThread extends Thread {
             while(true){
                 out.println("look");
                 String look = in.readLine();
-                if(look.equals(null))
-                {
-
-
-                    break;
-                }
-
-                else
-                    printLook(look);
-
+                printLook(look);
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -64,6 +55,7 @@ public class LookThread extends Thread {
             }
         } catch (IOException | NullPointerException e) {
             hcg.disconnect();
+            //e.printStackTrace();
         }
     }
 
