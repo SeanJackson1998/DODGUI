@@ -352,7 +352,7 @@ public class DODServerGUI {
                 try {
                     socket1 = ServerGUI.serverSocket.accept();
                 } catch (SocketException e) {
-                    System.err.println("in first catch");
+                    System.out.println("Socket Changed");
                     continue;
                 }
 

@@ -5,7 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log.txt" afterPath="$PROJECT_DIR$/log.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DODServerGUI.java" afterPath="$PROJECT_DIR$/src/DODServerGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GodViewThread.java" afterPath="$PROJECT_DIR$/src/GodViewThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HumanClientGUI.java" afterPath="$PROJECT_DIR$/src/HumanClientGUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LookThread.java" afterPath="$PROJECT_DIR$/src/LookThread.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +22,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="HumanClientGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
+      <file leaf-file-name="DODServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DODServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1870">
-              <caret line="541" column="51" lean-forward="true" selection-start-line="541" selection-start-column="12" selection-end-line="541" selection-end-column="51" />
+            <state relative-caret-position="66">
+              <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HumanClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HumanClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="32" column="28" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -34,8 +45,50 @@
       <file leaf-file-name="DODServerGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DODServerGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2662">
-              <caret line="26" column="11" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+            <state relative-caret-position="272">
+              <caret line="308" column="33" lean-forward="false" selection-start-line="308" selection-start-column="33" selection-end-line="308" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThreadClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ThreadClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HumanClientGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="559" column="32" lean-forward="true" selection-start-line="559" selection-start-column="32" selection-end-line="559" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BotClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BotClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LookThread.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/LookThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="446">
+              <caret line="64" column="56" lean-forward="false" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,30 +99,17 @@
       <file leaf-file-name="GameLogic.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameLogic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="473" column="5" lean-forward="true" selection-start-line="473" selection-start-column="5" selection-end-line="473" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ChatThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="26" column="55" lean-forward="false" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LookThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LookThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="349">
+              <caret line="490" column="5" lean-forward="false" selection-start-line="490" selection-start-column="5" selection-end-line="490" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#932#933#0" expanded="true" />
+                <element signature="e#949#950#0" expanded="true" />
+                <element signature="e#1347#1348#0" expanded="true" />
+                <element signature="e#1378#1379#0" expanded="true" />
+                <element signature="e#1464#1465#0" expanded="true" />
+                <element signature="e#1495#1496#0" expanded="true" />
+                <element signature="e#13206#13207#0" expanded="true" />
+                <element signature="e#13227#13228#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,31 +118,11 @@
       <file leaf-file-name="GodViewThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GodViewThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="18" column="60" lean-forward="false" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+            <state relative-caret-position="220">
+              <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/log.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -121,6 +141,18 @@
       <find>gbc</find>
       <find>gold</find>
       <find>map</find>
+      <find>GameLogic</find>
+      <find>Syste</find>
+      <find>System.out.println</find>
+      <find>syn</find>
+      <find>fini</find>
+      <find>refre</find>
+      <find>print</find>
+      <find>repaint</find>
+      <find>lookInnerPanel</find>
+      <find>serverSocket</find>
+      <find>game</find>
+      <find>output</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,17 +166,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DODServer.java" />
         <option value="$PROJECT_DIR$/src/ChatThread.java" />
-        <option value="$PROJECT_DIR$/src/ThreadClient.java" />
-        <option value="$PROJECT_DIR$/src/Map.java" />
-        <option value="$PROJECT_DIR$/src/HumanClientGUI.java" />
         <option value="$PROJECT_DIR$/example_map.txt" />
+        <option value="$PROJECT_DIR$/src/Map.java" />
         <option value="$PROJECT_DIR$/log.txt" />
-        <option value="$PROJECT_DIR$/src/GameLogic.java" />
-        <option value="$PROJECT_DIR$/src/LookThread.java" />
-        <option value="$PROJECT_DIR$/src/DODServerGUI.java" />
+        <option value="$PROJECT_DIR$/src/DODServer.java" />
+        <option value="$PROJECT_DIR$/src/User.java" />
         <option value="$PROJECT_DIR$/src/GodViewThread.java" />
+        <option value="$PROJECT_DIR$/src/GameLogic.java" />
+        <option value="$PROJECT_DIR$/src/ThreadClient.java" />
+        <option value="$PROJECT_DIR$/src/DODServerGUI.java" />
+        <option value="$PROJECT_DIR$/src/HumanClientGUI.java" />
+        <option value="$PROJECT_DIR$/src/LookThread.java" />
       </list>
     </option>
   </component>
@@ -168,8 +201,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -198,42 +229,12 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RunManager" selected="Application.HumanClientGUI">
-    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DODGUI" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="HumanClientGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="HumanClientGUI" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="localhost 12321" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DODGUI" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="DODServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="DODServer" />
@@ -254,6 +255,36 @@
       <option name="MAIN_CLASS_NAME" value="DODServerGUI" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="12321" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DODGUI" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="BotClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="BotClient" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="localhost 12321" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DODGUI" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="HumanClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="HumanClient" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="localhost 12321" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -445,18 +476,34 @@
       <listeners />
       <method />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.HumanClientGUI" />
-      <item index="2" class="java.lang.String" itemvalue="Application.DODServer" />
-      <item index="3" class="java.lang.String" itemvalue="Application.DODServerGUI" />
+    <configuration default="false" name="HumanClientGUI" type="Application" factoryName="Application" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="HumanClientGUI" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="localhost 12321" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DODGUI" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Application.HumanClientGUI" />
+      <item index="1" class="java.lang.String" itemvalue="Application.DODServer" />
+      <item index="2" class="java.lang.String" itemvalue="Application.DODServerGUI" />
+      <item index="3" class="java.lang.String" itemvalue="Application.BotClient" />
+      <item index="4" class="java.lang.String" itemvalue="Application.HumanClient" />
     </list>
     <recent_temporary>
       <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Application.DODServerGUI" />
-        <item index="1" class="java.lang.String" itemvalue="Application.HumanClientGUI" />
-        <item index="2" class="java.lang.String" itemvalue="Application.DODServer" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.HumanClient" />
+        <item index="2" class="java.lang.String" itemvalue="Application.BotClient" />
+        <item index="3" class="java.lang.String" itemvalue="Application.DODServer" />
       </list>
     </recent_temporary>
   </component>
@@ -548,35 +595,112 @@
       <option name="project" value="LOCAL" />
       <updated>1489754085100</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="god view works finally">
+      <created>1489771269665</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1489771269665</updated>
+    </task>
+    <task id="LOCAL-00013" summary="hide and show gods eye view works">
+      <created>1489773332717</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1489773332717</updated>
+    </task>
+    <task id="LOCAL-00014" summary="hide and show gods eye view works">
+      <created>1489773358636</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1489773358636</updated>
+    </task>
+    <task id="LOCAL-00015" summary="can show ip address and port number on human, fixed the look bug for player 1">
+      <created>1489836523609</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1489836523609</updated>
+    </task>
+    <task id="LOCAL-00016" summary="commented the methods of HCGUI">
+      <created>1489856934887</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1489856934887</updated>
+    </task>
+    <task id="LOCAL-00017" summary="commentd all the files and printed the proper ip address in the server gui">
+      <created>1489858721088</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1489858721088</updated>
+    </task>
+    <task id="LOCAL-00018" summary="changing the port number changes the port but clients cant connect to it once its changed">
+      <created>1489939869053</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1489939869053</updated>
+    </task>
+    <task id="LOCAL-00019" summary="got the bot to stop teleporting and resorted the look thread, still need to stop the looks flickering though">
+      <created>1489942837953</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1489942837953</updated>
+    </task>
+    <task id="LOCAL-00020" summary="think i stopped the flickering and the changing server socket remains open? have to kill all the players and display and error msg">
+      <created>1490021697986</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1490021697986</updated>
+    </task>
+    <task id="LOCAL-00021" summary="server disconnect error message doesn't show when then socket closes. Unstaticced all the class stuff, fixed the command status look bug">
+      <created>1490031280075</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1490031280075</updated>
+    </task>
+    <task id="LOCAL-00022" summary="when you forget to add all the classes to your last push">
+      <created>1490031323274</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1490031323274</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1924" height="1038" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52691865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4100802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5887743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14648649" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52462775" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14318442" sideWeight="0.50216216" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.185567" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5040092" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14864865" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24972972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4226804" sideWeight="0.49783784" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -584,36 +708,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19358534" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24856816" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17525773" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14432432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19358534" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -630,10 +724,22 @@
     <MESSAGE value="got the god view working, not hooked up live yet though" />
     <MESSAGE value="God view working, a bit more generalised" />
     <MESSAGE value="God view with the human client joining doesnt show the user, but they do join the server" />
-    <option name="LAST_COMMIT_MESSAGE" value="God view with the human client joining doesnt show the user, but they do join the server" />
+    <MESSAGE value="god view works finally" />
+    <MESSAGE value="hide and show gods eye view works" />
+    <MESSAGE value="can show ip address and port number on human, fixed the look bug for player 1" />
+    <MESSAGE value="commented the methods of HCGUI" />
+    <MESSAGE value="commentd all the files and printed the proper ip address in the server gui" />
+    <MESSAGE value="changing the port number changes the port but clients cant connect to it once its changed" />
+    <MESSAGE value="got the bot to stop teleporting and resorted the look thread, still need to stop the looks flickering though" />
+    <MESSAGE value="think i stopped the flickering and the changing server socket remains open? have to kill all the players and display and error msg" />
+    <MESSAGE value="server disconnect error message doesn't show when then socket closes. Unstaticced all the class stuff, fixed the command status look bug" />
+    <MESSAGE value="when you forget to add all the classes to your last push" />
+    <option name="LAST_COMMIT_MESSAGE" value="when you forget to add all the classes to your last push" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -641,6 +747,85 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11638">
+          <caret line="541" column="51" lean-forward="false" selection-start-line="541" selection-start-column="12" selection-end-line="541" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DODServerGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="11" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9944">
+          <caret line="473" column="5" lean-forward="true" selection-start-line="473" selection-start-column="5" selection-end-line="473" selection-end-column="5" />
+          <folding>
+            <element signature="e#932#933#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
+            <element signature="e#1378#1379#0" expanded="true" />
+            <element signature="e#1464#1465#0" expanded="true" />
+            <element signature="e#1495#1496#0" expanded="true" />
+            <element signature="e#13206#13207#0" expanded="true" />
+            <element signature="e#13227#13228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="26" column="55" lean-forward="false" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LookThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GodViewThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="60" lean-forward="false" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DODServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1078">
@@ -679,7 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -687,7 +871,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4862">
           <caret line="240" column="81" lean-forward="false" selection-start-line="240" selection-start-column="81" selection-end-line="240" selection-end-column="81" />
-          <folding />
+          <folding>
+            <element signature="e#932#933#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
+            <element signature="e#1378#1379#0" expanded="true" />
+            <element signature="e#1464#1465#0" expanded="true" />
+            <element signature="e#1495#1496#0" expanded="true" />
+            <element signature="e#13206#13207#0" expanded="true" />
+            <element signature="e#13227#13228#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -696,7 +889,8 @@
         <state relative-caret-position="880">
           <caret line="47" column="33" lean-forward="false" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
           <folding>
-            <element signature="e#1131#1132#0" expanded="false" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -735,14 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -758,27 +944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-296">
           <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreadClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2068">
-          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="47" column="33" lean-forward="false" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-          <folding>
-            <element signature="e#1131#1132#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -786,7 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -798,18 +962,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DODServer.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LookThread.java">
+    <entry file="file://$PROJECT_DIR$/src/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="726">
+          <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+          <folding>
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BotClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GodViewThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -818,53 +1027,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="473" column="5" lean-forward="true" selection-start-line="473" selection-start-column="5" selection-end-line="473" selection-end-column="5" />
+        <state relative-caret-position="349">
+          <caret line="490" column="5" lean-forward="false" selection-start-line="490" selection-start-column="5" selection-end-line="490" selection-end-column="5" />
+          <folding>
+            <element signature="e#932#933#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
+            <element signature="e#1378#1379#0" expanded="true" />
+            <element signature="e#1464#1465#0" expanded="true" />
+            <element signature="e#1495#1496#0" expanded="true" />
+            <element signature="e#13206#13207#0" expanded="true" />
+            <element signature="e#13227#13228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DODServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
+    <entry file="file://$PROJECT_DIR$/src/HumanClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1870">
-          <caret line="541" column="51" lean-forward="true" selection-start-line="541" selection-start-column="12" selection-end-line="541" selection-end-column="51" />
+        <state relative-caret-position="304">
+          <caret line="32" column="28" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/net/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="1615" column="19" lean-forward="false" selection-start-line="1615" selection-start-column="19" selection-end-line="1615" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ThreadClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DODServerGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2662">
-          <caret line="26" column="11" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+        <state relative-caret-position="272">
+          <caret line="308" column="33" lean-forward="false" selection-start-line="308" selection-start-column="33" selection-end-line="308" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GodViewThread.java">
+    <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="18" column="60" lean-forward="false" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+        <state relative-caret-position="315">
+          <caret line="559" column="32" lean-forward="true" selection-start-line="559" selection-start-column="32" selection-end-line="559" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LookThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="64" column="56" lean-forward="false" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Random;
 
@@ -21,10 +23,10 @@ public class HumanClientGUI{
 
     private JLabel goldCollected;
     private JLabel CommandStatus;
-    private static JPanel lookInnerPanel;
+    private JPanel lookInnerPanel;
     private  int gold = 0;
-    private static JTextField PortField;
-    private static JTextField IPField;
+    private JTextField PortField;
+    private JTextField IPField;
     private boolean winner = false;
 
     /**
@@ -51,9 +53,11 @@ public class HumanClientGUI{
     /**
      * 5x5 array to hold the look screen
      */
-    private static JLabel[][] lookWindow = new JLabel[5][5];
+    private JLabel[][] lookWindow = new JLabel[5][5];
 
     private JFrame HumanClientGUIFrame;
+    private String hostName;
+    private int portNo;
 
     /**
      * constructor to set up the GUI
@@ -511,10 +515,55 @@ public class HumanClientGUI{
         gbcForIPPanel.gridwidth = 3;
         gbcForIPPanel.fill = GridBagConstraints.BOTH;
         IPPanel.add(changePort, gbcForIPPanel);
+
+        changePort.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if(PortField.getText().matches("[0-9]+") && Integer.parseInt(PortField.getText()) < 65535)
+                {
+                    if(PortField.getText().equals(Integer.toString(portNo)) && IPField.getText().equals(hostName))
+                    {
+                        JOptionPane.showMessageDialog(HumanClientGUIFrame, "You are already using this port");
+                    }
+                    else
+                    {
+                        hostName = IPField.getText();
+                        portNo = Integer.parseInt(PortField.getText());
+                        changePortAndIP(hostName, portNo);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(HumanClientGUIFrame, "Not a valid port number");
+                }
+            }
+        });
+
+    }
+
+    private void changePortAndIP(String hostName, int portNo) {
+        try {
+            clientSocket.close();
+            clientSocket = new Socket(hostName, portNo);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnect()
+    {
+        try {
+            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void checkSocket()
     {
+        System.out.println(clientSocket.isClosed());
         if(clientSocket.isClosed())
         {
             JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
@@ -555,11 +604,11 @@ public class HumanClientGUI{
             System.exit(1);
         }
 
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
+        hcg.hostName = args[0];
+        hcg.portNo = Integer.parseInt(args[1]);
 
         try {
-            hcg.clientSocket = new Socket(hostName, portNumber);
+            hcg.clientSocket = new Socket(hcg.hostName, hcg.portNo);
             hcg.out = new PrintWriter(hcg.clientSocket.getOutputStream(), true);
             hcg.in = new BufferedReader(new InputStreamReader(hcg.clientSocket.getInputStream()));
 
@@ -580,18 +629,18 @@ public class HumanClientGUI{
             // ChatThread to output anything to the terminal that is waiting to be displayed
             //new ChatThread(in).start();
             hcg.makeGUI();
-            IPField.setText(hostName);
-            PortField.setText(Integer.toString(portNumber));
+            hcg.IPField.setText(hcg.hostName);
+            hcg.PortField.setText(Integer.toString(hcg.portNo));
 
             // initialising look thread so its always updated by their surroundings
-            new LookThread(hcg.in, hcg.out, lookInnerPanel, lookWindow).start();
+            new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg).start();
 
 
         } catch (UnknownHostException e) {
-            System.err.println("Don't know about host " + hostName);
+            System.err.println("Don't know about host " + hcg.hostName);
             System.exit(1);
         } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to " + hostName);
+            System.err.println("Couldn't get I/O for the connection to " + hcg.hostName);
             System.exit(1);
         }
 

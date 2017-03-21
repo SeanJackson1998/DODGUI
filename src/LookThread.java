@@ -18,11 +18,12 @@ public class LookThread extends Thread {
     /**
      * Takes in parameters as the buffered reader, print writer and the gui itself
      */
-    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView){
+    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, HumanClientGUI humanClient){
         in = br;
         out = pw;
         lookInnerPanel = lookPanel;
         lookWindow = lookView;
+        hcg = humanClient;
     }
 
 
@@ -44,7 +45,16 @@ public class LookThread extends Thread {
         try {
             while(true){
                 out.println("look");
-                printLook(in.readLine());
+                String look = in.readLine();
+                if(look.equals(null))
+                {
+
+
+                    break;
+                }
+
+                else
+                    printLook(look);
 
                 try {
                     Thread.sleep(100);
@@ -52,8 +62,8 @@ public class LookThread extends Thread {
                     e.printStackTrace();
                 }
             }
-        } catch (IOException |NullPointerException e) {
-
+        } catch (IOException | NullPointerException e) {
+            hcg.disconnect();
         }
     }
 
