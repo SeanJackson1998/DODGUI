@@ -14,16 +14,18 @@ public class LookThread extends Thread {
     HumanClientGUI hcg;
     JPanel lookInnerPanel;
     JLabel[][] lookWindow;
+    JTextArea chatWindow;
 
     /**
      * Takes in parameters as the buffered reader, print writer and the gui itself
      */
-    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, HumanClientGUI humanClient){
+    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, HumanClientGUI humanClient){
         in = br;
         out = pw;
         lookInnerPanel = lookPanel;
         lookWindow = lookView;
         hcg = humanClient;
+        chatWindow = chat;
     }
 
 
@@ -46,10 +48,17 @@ public class LookThread extends Thread {
             while(true){
                 out.println("look");
 
-                String look = in.readLine();
+                String line = in.readLine();
                 // if the input is 25 with only XPB.#EG then print look
                 // else print to the text area
-                printLook(look);
+                if(line.length()==25&&line.matches("[XEPGB#.]+"))
+                {
+                    printLook(line);
+                }
+                else
+                {
+                    chatWindow.append(line + "\n");
+                }
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {

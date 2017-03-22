@@ -29,6 +29,7 @@ public class HumanClientGUI{
     private  int gold = 0;
     private JTextField PortField;
     private JTextField IPField;
+    private JTextArea chatWindow;
     private boolean winner = false;
 
     /**
@@ -420,7 +421,7 @@ public class HumanClientGUI{
         /*
          * chatWindow displays the history of the chat
          */
-        JTextArea chatWindow = new JTextArea(7, 40);
+        chatWindow = new JTextArea(7, 40);
         chatWindow.setEditable(false);
         //JScrollPane scrollPane = new JScrollPane(chatWindow);
         gbcForChatPanel.gridx = 0;
@@ -650,7 +651,7 @@ public class HumanClientGUI{
             hcg.PortField.setText(Integer.toString(hcg.portNo));
 
             // initialising look thread so its always updated by their surroundings
-            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg);
+            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg.chatWindow, hcg);
             hcg.lt.start();
 
         } catch (UnknownHostException e) {
