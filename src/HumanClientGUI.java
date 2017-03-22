@@ -453,6 +453,14 @@ public class HumanClientGUI{
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(send, gbcForChatPanel);
 
+        send.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                // have a drop down box, and add this in for the private chat
+                out.println("SHOUT " + chatField.getText());
+            }
+        });
+
         /*
          * clear removes the chat history from the screen // might replace with drop down of players for advanced chat
          */
@@ -544,9 +552,6 @@ public class HumanClientGUI{
         try {
             HumanClientGUIFrame.dispose();
             this.main(new String[] {hostName, String.valueOf(portNo)});
-
-            /*lt = new LookThread(in, out, lookInnerPanel, lookWindow, this);
-            lt.start();*/
 
         } catch (SocketException e) {
             e.printStackTrace();

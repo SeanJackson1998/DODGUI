@@ -45,7 +45,10 @@ public class LookThread extends Thread {
         try {
             while(true){
                 out.println("look");
+
                 String look = in.readLine();
+                // if the input is 25 with only XPB.#EG then print look
+                // else print to the text area
                 printLook(look);
                 try {
                     Thread.sleep(100);
