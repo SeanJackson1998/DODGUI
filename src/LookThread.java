@@ -16,11 +16,12 @@ public class LookThread extends Thread {
     JLabel[][] lookWindow;
     JTextArea chatWindow;
     JLabel status;
+    JFrame HumanClientGUIFrame;
 
     /**
      * Takes in parameters as the buffered reader, print writer and the gui itself
      */
-    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, JLabel command, HumanClientGUI humanClient){
+    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, JLabel command,JFrame hcgf, HumanClientGUI humanClient){
         in = br;
         out = pw;
         lookInnerPanel = lookPanel;
@@ -28,6 +29,7 @@ public class LookThread extends Thread {
         hcg = humanClient;
         chatWindow = chat;
         status = command;
+        HumanClientGUIFrame = hcgf;
     }
 
 
@@ -60,8 +62,20 @@ public class LookThread extends Thread {
                     if(line.contains("said")||line.contains("joined")||line.contains("left"))
                     {
                         chatWindow.append(line + "\n");
-                    } else {
-                        status.setText("COMMAND STATUS: " + line);
+                    }
+                    else if(line.equals("Congratulations!!!"))
+                    {
+                        JOptionPane.showMessageDialog(HumanClientGUIFrame,"You won the Game");
+                        System.exit(0);
+                    }
+                    else if(line.contains("won the game."))
+                    {
+                        JOptionPane.showMessageDialog(HumanClientGUIFrame,"Sorry, you lost");
+                        System.exit(0);
+                    }
+                    else
+                    {
+                        status.setText("SERVER RESPONSE: " + line);
                     }
                 }
 

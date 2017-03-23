@@ -225,7 +225,7 @@ public class DODServerGUI {
         changePort.addActionListener(new ActionListener() {
 
             public synchronized void actionPerformed(ActionEvent e) {
-                if(PortField.getText().matches("[0-9]+") && Integer.parseInt(PortField.getText()) < 65535)
+                if(isNumeric(PortField.getText()))
                 {
                     if(PortField.getText().equals(Integer.toString(portNumber)))
                     {
@@ -237,11 +237,22 @@ public class DODServerGUI {
                         setServerPort(portNumber);
                     }
                 }
-                else{
+                else
+                    {
                     JOptionPane.showMessageDialog(DODServerGUIFrame, "Not a valid port number");
                 }
             }
         });
+    }
+
+    private boolean isNumeric(String stringToBeChecked) {
+        try {
+            int number = Integer.parseInt(stringToBeChecked);
+            if(number < 65535)
+                return true;
+        } catch(NumberFormatException e) {
+            return false;
+        } return false;
     }
 
     /**
@@ -296,6 +307,7 @@ public class DODServerGUI {
             killPlayers();
             serverSocket.close();
             serverSocket = new ServerSocket((portNumber));
+            JOptionPane.showMessageDialog(DODServerGUIFrame, "Port Changed");
         } catch (SocketException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -308,6 +320,7 @@ public class DODServerGUI {
         for(int i=0; i<threads.size();i++) {
             threads.get(i).killPlayer(threads.get(i));
         }
+
     }
 
     /**

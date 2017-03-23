@@ -236,12 +236,6 @@ public class HumanClientGUI{
 
             public synchronized void actionPerformed(ActionEvent e) {
                 out.println("hello");
-                try {
-                    CommandStatus.setText("COMMAND STATUS: " + in.readLine());
-                } catch (IOException e1) {
-                    HumanClientGUIFrame.dispose();
-                    System.exit(0);
-                }
             }
         });
 
@@ -261,24 +255,6 @@ public class HumanClientGUI{
 
             public synchronized void actionPerformed(ActionEvent e) {
                 out.println("pickup");
-                try {
-                    String pickUpLine = in.readLine();
-
-                    if(pickUpLine.contains("SUCCESS"))
-                    {
-                        CommandStatus.setText("Command Status: " + pickUpLine);
-                        gold++;
-                    }
-                    else
-                    {
-                        CommandStatus.setText("Command Status: " + pickUpLine);
-                    }
-                    goldCollected.setText("Gold Collected: " + gold);
-                } catch (IOException e1) {
-                    HumanClientGUIFrame.dispose();
-                    System.exit(0);
-                }
-
             }
         });
 
@@ -389,7 +365,7 @@ public class HumanClientGUI{
         /*
          * Returns the response from their input
          */
-        CommandStatus = new JLabel("Command Status: ");
+        CommandStatus = new JLabel("SERVER RESPONSE: ");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 8;
         gbcForPanel.gridheight = 1;
@@ -520,7 +496,8 @@ public class HumanClientGUI{
         changePort.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(PortField.getText().matches("[0-9]+") && Integer.parseInt(PortField.getText()) < 65535)
+
+                if(isNumeric(PortField.getText()))
                 {
                     if(PortField.getText().equals(Integer.toString(portNo)) && IPField.getText().equals(hostName))
                     {
@@ -540,23 +517,34 @@ public class HumanClientGUI{
         });
     }
 
+    private boolean isNumeric(String stringToBeChecked) {
+        try {
+            int number = Integer.parseInt(stringToBeChecked);
+            if(number < 65535)
+                return true;
+        } catch(NumberFormatException e) {
+            return false;
+        } return false;
+    }
+
+
     private void changePortAndIP(String hostName, int portNo) {
         try {
             HumanClientGUIFrame.dispose();
             this.main(new String[] {hostName, String.valueOf(portNo)});
 
         } catch (SocketException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Invalid Port Number or IP Address");
         } catch (IOException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Invalid Port Number or IP Address");
         }
     }
 
     public void disconnect()
     {
         try {
-            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
             clientSocket.close();
+            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
             out.close();
             in.close();
             lt.interrupt();
@@ -566,10 +554,7 @@ public class HumanClientGUI{
         }
     }
 
-
-
-
-    private void checkSocket()
+    /*private void checkSocket()
     {
         System.out.println(clientSocket.isClosed());
         if(clientSocket.isClosed())
@@ -582,7 +567,7 @@ public class HumanClientGUI{
             HumanClientGUIFrame.dispose();
             System.exit(0);
         }
-    }
+    }*/
 
     /**
      * The human client uses the host name and the port number to connect to the host
@@ -630,7 +615,7 @@ public class HumanClientGUI{
             hcg.PortField.setText(Integer.toString(hcg.portNo));
 
             // initialising look thread so its always updated by their surroundings
-            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg.chatWindow, hcg.CommandStatus, hcg);
+            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg.chatWindow, hcg.CommandStatus, hcg.HumanClientGUIFrame, hcg);
             hcg.lt.start();
 
         } catch (UnknownHostException e) {

@@ -33,6 +33,7 @@ public class ThreadClient extends Thread{
 	{
 		try {
 			thread.socket.close();
+			game.removeUser(correctUser);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

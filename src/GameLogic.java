@@ -168,7 +168,7 @@ public class GameLogic {
 	 * @return : Returns back gold player requires to exit the Dungeon.
 	 */
 	private String hello() {
-		return "GOLD: " + (map.getGoldToWin() - getPlayersCollectedGold());
+		return "GOLD NEEDED: " + (map.getGoldToWin() - getPlayersCollectedGold());
 	}
 
 	/**
@@ -430,7 +430,7 @@ public class GameLogic {
 			if (userTest.getID() != user.getID() && userTest.getType() == 'P') {
 				try {
 					PrintWriter output = new PrintWriter(userTest.getSocket().getOutputStream(), true);
-					output.println(user.getName() + " won the game. \nThe game will now end. \nType 'quit' to exit.");
+					output.println(user.getName() + " won the game.");
 				} catch (SocketException e) {
 					System.err.println("Failed to close socket on the user");
 				}
