@@ -166,7 +166,7 @@ public class HumanClientGUI{
          * Insets allow spaces between components making the frame more aesthetically pleasing
          */
         gbcForPanel.insets = new Insets(20,10,20,10);
-        gbcForChatPanel.insets = new Insets(5,20,5,20);
+        gbcForChatPanel.insets = new Insets(5,5,5,5);
         gbcForIPPanel.insets = new Insets(5,10,10,10);
 
         /*
@@ -237,7 +237,7 @@ public class HumanClientGUI{
             public synchronized void actionPerformed(ActionEvent e) {
                 out.println("hello");
                 try {
-                    CommandStatus.setText("Command Status: " + in.readLine());
+                    CommandStatus.setText("COMMAND STATUS: " + in.readLine());
                 } catch (IOException e1) {
                     HumanClientGUIFrame.dispose();
                     System.exit(0);
@@ -297,11 +297,6 @@ public class HumanClientGUI{
 
             public void actionPerformed(ActionEvent e) {
                 out.println("move n");
-                try {
-                    output(in.readLine());
-                } catch (IOException e1) {
-                    checkSocket();
-                }
             }
         });
 
@@ -319,11 +314,6 @@ public class HumanClientGUI{
 
             public void actionPerformed(ActionEvent e) {
                 out.println("move s");
-                try {
-                    output(in.readLine());
-                } catch (IOException e1) {
-                    checkSocket();
-                }
             }
         });
 
@@ -341,11 +331,6 @@ public class HumanClientGUI{
 
             public void actionPerformed(ActionEvent e) {
                 out.println("move e");
-                try {
-                    output(in.readLine());
-                } catch (IOException e1) {
-                    checkSocket();
-                }
             }
         });
 
@@ -363,11 +348,6 @@ public class HumanClientGUI{
 
             public void actionPerformed(ActionEvent e) {
                 out.println("move w");
-                try {
-                    output(in.readLine());
-                } catch (IOException e1) {
-                    checkSocket();
-                }
             }
         });
 
@@ -421,20 +401,20 @@ public class HumanClientGUI{
         /*
          * chatWindow displays the history of the chat
          */
-        chatWindow = new JTextArea(7, 40);
+        chatWindow = new JTextArea(7, 30);
         chatWindow.setEditable(false);
-        //JScrollPane scrollPane = new JScrollPane(chatWindow);
+        JScrollPane scrollPane = new JScrollPane(chatWindow);
         gbcForChatPanel.gridx = 0;
         gbcForChatPanel.gridy = 0;
         gbcForChatPanel.gridheight = 3;
         gbcForChatPanel.gridwidth = 1;
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
-        chatPanel.add(chatWindow,gbcForChatPanel);
+        chatPanel.add(scrollPane,gbcForChatPanel);
 
         /*
          * chatField allows the user to type their next message
          */
-        JTextField chatField = new JTextField(40);
+        JTextField chatField = new JTextField(30);
         chatField.setEditable(true);
         gbcForChatPanel.gridx = 0;
         gbcForChatPanel.gridy = 4;
@@ -450,7 +430,7 @@ public class HumanClientGUI{
         gbcForChatPanel.gridx = 1;
         gbcForChatPanel.gridy = 4;
         gbcForChatPanel.gridheight = 1;
-        gbcForChatPanel.gridwidth = 1;
+        gbcForChatPanel.gridwidth = 2;
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(send, gbcForChatPanel);
 
@@ -459,6 +439,8 @@ public class HumanClientGUI{
             public void actionPerformed(ActionEvent e) {
                 // have a drop down box, and add this in for the private chat
                 out.println("SHOUT " + chatField.getText());
+                chatWindow.append("YOU said: " + chatField.getText() + "\n");
+                chatField.setText("");
             }
         });
 
@@ -468,10 +450,19 @@ public class HumanClientGUI{
         JButton clear = new JButton("Clear");
         gbcForChatPanel.gridx = 1;
         gbcForChatPanel.gridy = 0;
-        gbcForChatPanel.gridheight = 3;
-        gbcForChatPanel.gridwidth = 1;
+        gbcForChatPanel.gridheight = 1;
+        gbcForChatPanel.gridwidth = 2;
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(clear, gbcForChatPanel);
+
+        JComboBox<User> users = new JComboBox<>();
+        gbcForChatPanel.gridx = 1;
+        gbcForChatPanel.gridy = 1;
+        gbcForChatPanel.gridheight = 1;
+        gbcForChatPanel.gridwidth = 2;
+        gbcForChatPanel.fill = GridBagConstraints.BOTH;
+        chatPanel.add(users, gbcForChatPanel);
+
 
         JLabel ipAddress = new JLabel("IP Address:");
         gbcForIPPanel.gridx = 0;
@@ -593,18 +584,6 @@ public class HumanClientGUI{
         }
     }
 
-    private void output(String commandReturn){
-        if(commandReturn.length()==25)
-        {}
-        else{
-            CommandStatus.setText("Command Status: " + commandReturn);
-            if(commandReturn.equals("Congratulations!!!"))
-            {
-                JOptionPane.showMessageDialog(HumanClientGUIFrame,"You beat the Dungeon of Doom!");
-                winner = true;
-            }
-        }
-    }
     /**
      * The human client uses the host name and the port number to connect to the host
      * Then the client socket is made so that it can send and receive data to and from the server
@@ -651,7 +630,7 @@ public class HumanClientGUI{
             hcg.PortField.setText(Integer.toString(hcg.portNo));
 
             // initialising look thread so its always updated by their surroundings
-            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg.chatWindow, hcg);
+            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg.chatWindow, hcg.CommandStatus, hcg);
             hcg.lt.start();
 
         } catch (UnknownHostException e) {

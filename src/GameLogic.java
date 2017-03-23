@@ -109,7 +109,7 @@ public class GameLogic {
 				break;
 			case "SHOUT":
 				shout(action.substring(5).trim(), user);
-				answer = "";
+				answer = "MESSAGE SENT";
 				break;
 			default:
 				answer = "FAIL";
@@ -140,7 +140,7 @@ public class GameLogic {
 						PrintWriter output = new PrintWriter(userTest.getSocket().getOutputStream(), true);
 						// write to file
 						chatLogger.chatLog(user.getName() + " to " + userTest.getName() + ": " + shoutString.substring(nameLength).trim());
-						output.println(user.getName() + " (PM) says: " + shoutString.substring(nameLength).trim());
+						output.println(user.getName() + " said (PM): " + shoutString.substring(nameLength).trim());
 					}
 
 				} catch (IOException e) {
@@ -153,7 +153,7 @@ public class GameLogic {
 				if (userTest.getID() != user.getID() && userTest.getType() == 'P') {
 					try {
 						PrintWriter output = new PrintWriter(userTest.getSocket().getOutputStream(), true);
-						output.println(user.getName() + " says: " + shoutString);
+						output.println(user.getName() + " said: " + shoutString);
 					} catch (IOException e) {
 						System.err.println("Shout Print Writer error");
 					}
@@ -161,12 +161,6 @@ public class GameLogic {
 
 			}
 			chatLogger.chatLog(user.getName() + " to ALL: " + shoutString.trim());
-		}
-		try {
-			PrintWriter output = new PrintWriter(user.getSocket().getOutputStream(), true);
-			output.println("Message Sent");
-		} catch (IOException e) {
-			System.err.println("Shout Print Writer error");
 		}
 	}
 
@@ -287,10 +281,10 @@ public class GameLogic {
 			incrementPlayersCollectedGold();
 			user.setGold(collectedGold);
 			map.replaceTile(getPlayersXCoordinate(), getPlayersYCoordinate(), '.');
-			return "SUCCESS, GOLD COINS: " + getPlayersCollectedGold();
+			return "SUCCESS";
 		}
 
-		return "FAIL There is nothing to pick up...";
+		return "FAIL";
 	}
 
 	/**

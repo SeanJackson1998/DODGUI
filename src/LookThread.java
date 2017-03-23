@@ -15,17 +15,19 @@ public class LookThread extends Thread {
     JPanel lookInnerPanel;
     JLabel[][] lookWindow;
     JTextArea chatWindow;
+    JLabel status;
 
     /**
      * Takes in parameters as the buffered reader, print writer and the gui itself
      */
-    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, HumanClientGUI humanClient){
+    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, JLabel command, HumanClientGUI humanClient){
         in = br;
         out = pw;
         lookInnerPanel = lookPanel;
         lookWindow = lookView;
         hcg = humanClient;
         chatWindow = chat;
+        status = command;
     }
 
 
@@ -48,26 +50,24 @@ public class LookThread extends Thread {
             while(true){
                 out.println("look");
 
-                String line = in.readLine();
-                // if the input is 25 with only XPB.#EG then print look
-                // else print to the text area
+                String line = in.readLine().trim();
                 if(line.length()==25&&line.matches("[XEPGB#.]+"))
                 {
                     printLook(line);
                 }
                 else
                 {
-                    chatWindow.append(line + "\n");
+                    if(line.contains("said")||line.contains("joined")||line.contains("left"))
+                    {
+                        chatWindow.append(line + "\n");
+                    } else {
+                        status.setText("COMMAND STATUS: " + line);
+                    }
                 }
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
             }
         } catch (IOException | NullPointerException e) {
             hcg.disconnect();
-            //e.printStackTrace();
         }
     }
 
