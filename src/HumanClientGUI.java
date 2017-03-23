@@ -31,6 +31,7 @@ public class HumanClientGUI{
     private JTextField IPField;
     private JTextArea chatWindow;
     private boolean winner = false;
+    private JComboBox<User> users;
 
     /**
      * different layouts for the different panels
@@ -39,6 +40,8 @@ public class HumanClientGUI{
     GridBagConstraints gbcForPanel = new GridBagConstraints();
     GridBagConstraints gbcForChatPanel = new GridBagConstraints();
     GridBagConstraints gbcForIPPanel = new GridBagConstraints();
+
+
 
     /**
      * The images to be put into the look grid
@@ -74,7 +77,6 @@ public class HumanClientGUI{
     private void makeGUI(){
         setUpPlayGUI();
         HumanClientGUIFrame.setVisible(true);
-
     }
 
     /*
@@ -374,6 +376,10 @@ public class HumanClientGUI{
         goldCollected.setFont (CommandStatus.getFont ().deriveFont (20.0f));
         controlPanel.add(CommandStatus, gbcForPanel);
 
+
+
+
+
         /*
          * chatWindow displays the history of the chat
          */
@@ -413,8 +419,14 @@ public class HumanClientGUI{
         send.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                // have a drop down box, and add this in for the private chat
-                out.println("SHOUT " + chatField.getText());
+                String name = "lol";
+                // add this back in once the drop down bar is filled
+                /*name = "$" + users.getSelectedItem().toString() + " ";
+                if(users.getSelectedItem().equals("ALL"))
+                {
+                    name = "";
+                }*/
+                out.println("SHOUT " + name + chatField.getText());
                 chatWindow.append("YOU said: " + chatField.getText() + "\n");
                 chatField.setText("");
             }
@@ -428,10 +440,18 @@ public class HumanClientGUI{
         gbcForChatPanel.gridy = 0;
         gbcForChatPanel.gridheight = 1;
         gbcForChatPanel.gridwidth = 2;
+        clear.setPreferredSize(new Dimension(150, 30));
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(clear, gbcForChatPanel);
 
-        JComboBox<User> users = new JComboBox<>();
+        clear.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                chatWindow.setText("");
+            }
+        });
+
+        users = new JComboBox<>();
         gbcForChatPanel.gridx = 1;
         gbcForChatPanel.gridy = 1;
         gbcForChatPanel.gridheight = 1;
@@ -553,21 +573,6 @@ public class HumanClientGUI{
             e.printStackTrace();
         }
     }
-
-    /*private void checkSocket()
-    {
-        System.out.println(clientSocket.isClosed());
-        if(clientSocket.isClosed())
-        {
-            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
-        }
-        else if(!winner)
-        {
-            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Sorry, you lost");
-            HumanClientGUIFrame.dispose();
-            System.exit(0);
-        }
-    }*/
 
     /**
      * The human client uses the host name and the port number to connect to the host
