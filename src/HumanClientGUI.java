@@ -20,7 +20,6 @@ public class HumanClientGUI {
 
     private LookThread lt = null;
 
-    private JLabel goldCollected;
     private JLabel CommandStatus;
     private JPanel lookInnerPanel;
     private int gold = 0;
@@ -282,9 +281,9 @@ public class HumanClientGUI {
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 8;
         gbcForPanel.gridheight = 1;
-        gbcForPanel.gridwidth = 5;
+        gbcForPanel.gridwidth = 7;
         gbcForPanel.fill = GridBagConstraints.BOTH;
-        goldCollected.setFont(CommandStatus.getFont().deriveFont(20.0f));
+        CommandStatus.setFont(CommandStatus.getFont().deriveFont(13.0f));
         controlPanel.add(CommandStatus, gbcForPanel);
 
         /*
@@ -352,7 +351,6 @@ public class HumanClientGUI {
         gbcForIPPanel.gridheight = 1;
         gbcForIPPanel.gridwidth = 1;
         gbcForIPPanel.fill = GridBagConstraints.BOTH;
-        goldCollected.setFont(goldCollected.getFont().deriveFont(24.0f));
         IPPanel.add(ipAddress, gbcForIPPanel);
 
         JLabel portNumber = new JLabel("Port Number:");
@@ -361,7 +359,6 @@ public class HumanClientGUI {
         gbcForIPPanel.gridheight = 1;
         gbcForIPPanel.gridwidth = 1;
         gbcForIPPanel.fill = GridBagConstraints.BOTH;
-        goldCollected.setFont(goldCollected.getFont().deriveFont(24.0f));
         IPPanel.add(portNumber, gbcForIPPanel);
 
         /*
