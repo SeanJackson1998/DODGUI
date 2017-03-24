@@ -145,7 +145,7 @@ public class DODServerGUI {
         /**
          * A button to hide the visibility of the gods eye view
          */
-        JButton hideGodView = new JButton("Hide");
+        final JButton hideGodView = new JButton("Hide");
         gbcForPanel.gridx = 0;
         gbcForPanel.gridy = 0;
         gbcForPanel.gridheight = 2;

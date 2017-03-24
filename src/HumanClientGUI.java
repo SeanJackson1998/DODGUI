@@ -1,5 +1,3 @@
-import com.sun.deploy.panel.JavaPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -396,7 +394,7 @@ public class HumanClientGUI{
         /*
          * chatField allows the user to type their next message
          */
-        JTextField chatField = new JTextField(30);
+        final JTextField chatField = new JTextField(30);
         chatField.setEditable(true);
         gbcForChatPanel.gridx = 0;
         gbcForChatPanel.gridy = 4;

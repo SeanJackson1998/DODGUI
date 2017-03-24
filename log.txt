@@ -52,3 +52,37 @@ Game Started: 23/03/17 17:12:15
 a joined the game.
 b joined the game.
 b won the game.
+---------------------------------------------------------------------------------
+Game Started: 23/03/17 17:21:54
+s joined the game.
+s left the game.
+---------------------------------------------------------------------------------
+Game Started: 23/03/17 17:23:39
+a joined the game.
+a left the game.
+---------------------------------------------------------------------------------
+Game Started: 23/03/17 17:24:29
+---------------------------------------------------------------------------------
+Game Started: 23/03/17 17:27:00
+ joined the game.
+ left the game.
+ joined the game.
+ left the game.
+ joined the game.
+ left the game.
+ joined the game.
+ left the game.
+---------------------------------------------------------------------------------
+Game Started: 23/03/17 17:31:16
+A joined the game.
+A left the game.
+---------------------------------------------------------------------------------
+Game Started: 23/03/17 17:32:32
+and joined the game.
+and left the game.
+---------------------------------------------------------------------------------
+Game Started: 23/03/17 17:33:05
+a joined the game.
+a to ALL: ;olkjhygfa
+a to ALL: ;olkjhygfa
+a left the game.
