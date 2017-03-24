@@ -12,12 +12,10 @@ public class GodViewThread extends Thread {
     JPanel lookInnerPanel;
     JLabel[][] godViewWindow;
 
-
-
     /**
      * The gui itself and game logic are sent through as parameters
      */
-    public GodViewThread(DODServerGUI ds, GameLogic game, JPanel lookPanel, JLabel[][] godView){
+    public GodViewThread(DODServerGUI ds, GameLogic game, JPanel lookPanel, JLabel[][] godView) {
         dsg = ds;
         gl = game;
         lookInnerPanel = lookPanel;
@@ -36,8 +34,8 @@ public class GodViewThread extends Thread {
      * constantly loops to get the current state of the map from game logic
      * The result is sent back from game logic and printed into the labels in the gui method refresh map
      */
-    public void run(){
-        while(true){
+    public void run() {
+        while (true) {
             ArrayList<User> players = gl.getPlayers();
             refreshMap(players);
             try {
@@ -54,12 +52,12 @@ public class GodViewThread extends Thread {
     public void refreshMap(ArrayList<User> players) {
         char[][] mapCharArray = gl.getGodView();
 
-        for(int i = 0; i < mapCharArray.length; i ++){
-            for(int j = 0; j < mapCharArray[0].length; j++){
-                int[] location = {i,j};
-                for(User u : players){
+        for (int i = 0; i < mapCharArray.length; i++) {
+            for (int j = 0; j < mapCharArray[0].length; j++) {
+                int[] location = {i, j};
+                for (User u : players) {
                     int[] userLoc = {u.getY(), u.getX()};
-                    if(Arrays.equals(location, userLoc)){
+                    if (Arrays.equals(location, userLoc)) {
                         mapCharArray[i][j] = u.getType();
                     }
                 }
@@ -68,7 +66,7 @@ public class GodViewThread extends Thread {
 
         for (int i = 0; i < mapCharArray.length; i++) {
             for (int j = 0; j < mapCharArray[0].length; j++) {
-                switch (mapCharArray[i][j]){
+                switch (mapCharArray[i][j]) {
                     case 'P':
                         godViewWindow[i][j].setIcon(human2);
                         break;
@@ -93,11 +91,7 @@ public class GodViewThread extends Thread {
                 }
             }
         }
-        /**
-         * refreshes the panel updating all of the labels
-         */
+        // refreshes the panel updating all of the labels
         lookInnerPanel.repaint();
-
-
     }
 }

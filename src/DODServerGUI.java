@@ -12,12 +12,8 @@ import java.net.SocketException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
-/**
- * Created by skatt on 16/03/2017.
- */
 public class DODServerGUI {
 
     private ServerSocket serverSocket;
@@ -26,14 +22,14 @@ public class DODServerGUI {
     private ArrayList<ThreadClient> threads = new ArrayList<>();
 
     private JFrame DODServerGUIFrame;
-    private static JPanel lookInnerPanel;
-    private static JTextField AddressField;
-    private static JTextField PortField;
+    private JPanel lookInnerPanel;
+    private JTextField AddressField;
+    private JTextField PortField;
 
     /**
      * array to hold the godView screen
      */
-    private static JLabel[][] godViewWindow;
+    private JLabel[][] godViewWindow;
 
     /**
      * The images to be put into the god view grid
@@ -47,31 +43,32 @@ public class DODServerGUI {
     private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 
     /**
-     * constructor to build the server GUI
+     * constructor to have instances of game logic and map with the size of the god view declared
      */
-    public DODServerGUI()
-    {
+    public DODServerGUI() {
         game = new GameLogic();
         map = game.getMapObj();
         godViewWindow = new JLabel[map.getMapHeight()][map.getMapWidth()];
     }
 
-    private void makeGUI(){
+    /*
+     * function to actually make the GUI
+     * print the initial god view to the window and make it visible to the user
+     */
+    private void makeGUI() {
         setUpServerGUI();
-        setUpGodViewArray(map.getMapHeight(),map.getMapWidth());
+        setUpGodViewArray(map.getMapHeight(), map.getMapWidth());
         printGodView(map.getMap());
         DODServerGUIFrame.setVisible(true);
     }
+
     /**
      * Adds labels to the god view array ready to be filled in later
      */
     private void setUpGodViewArray(int y, int x) {
-        for(int i=0;i<y;i++)
-        {
-            for(int j=0;j<x; j++)
-            {
+        for (int i = 0; i < y; i++) {
+            for (int j = 0; j < x; j++) {
                 godViewWindow[i][j] = new JLabel();
-
             }
         }
     }
@@ -85,7 +82,7 @@ public class DODServerGUI {
     public void setUpServerGUI() {
         DODServerGUIFrame = new JFrame("DOD Server");
 
-        DODServerGUIFrame.setSize((map.getMapWidth()*50)+100, (map.getMapHeight()*50)+300);
+        DODServerGUIFrame.setSize((map.getMapWidth() * 50) + 100, (map.getMapHeight() * 50) + 300);
         DODServerGUIFrame.getContentPane().setBackground(Color.lightGray);
         DODServerGUIFrame.setResizable(false);
         DODServerGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,7 +99,7 @@ public class DODServerGUI {
         gbc.gridheight = 3;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        lookOuterPanel.setPreferredSize(new Dimension((map.getMapWidth()*50)+100, (map.getMapHeight()*50)+100));
+        lookOuterPanel.setPreferredSize(new Dimension((map.getMapWidth() * 50) + 100, (map.getMapHeight() * 50) + 100));
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
@@ -110,10 +107,10 @@ public class DODServerGUI {
          * Panel to display the gods Eye View
          */
         lookInnerPanel = new JPanel();
-        lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(),map.getMapWidth()));
+        lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(), map.getMapWidth()));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        lookInnerPanel.setPreferredSize(new Dimension(map.getMapWidth()*50, map.getMapHeight()*50));
+        lookInnerPanel.setPreferredSize(new Dimension(map.getMapWidth() * 50, map.getMapHeight() * 50));
         lookInnerPanel.setBackground(Color.red);
         lookOuterPanel.add(lookInnerPanel, gbc);
 
@@ -132,15 +129,14 @@ public class DODServerGUI {
         DODServerGUIFrame.getContentPane().add(controlPanel, gbc);
 
         /**
-         * Fills the fram with the panels
+         * Fills the frame with the panels
          */
         DODServerGUIFrame.pack();
 
         /**
          * Insets to create the correct amount of space between components
          */
-        gbcForPanel.insets = new Insets(10,10,10,10);
-
+        gbcForPanel.insets = new Insets(10, 10, 10, 10);
 
         /**
          * A button to hide the visibility of the gods eye view
@@ -152,24 +148,6 @@ public class DODServerGUI {
         gbcForPanel.gridwidth = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(hideGodView, gbcForPanel);
-
-        hideGodView.addActionListener(new ActionListener() {
-
-            public synchronized void actionPerformed(ActionEvent e) {
-                if(hideGodView.getText().equals("Hide"))
-                {
-                    lookInnerPanel.setVisible(false);
-                    hideGodView.setText("Show");
-                }
-                else
-                {
-                    lookInnerPanel.setVisible(true);
-                    hideGodView.setText("Hide");
-                }
-            }
-        });
-
-
 
         JLabel portNumberLbl = new JLabel("Port Number:");
         gbcForPanel.gridx = 3;
@@ -189,7 +167,7 @@ public class DODServerGUI {
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
-        controlPanel.add(PortField,gbcForPanel);
+        controlPanel.add(PortField, gbcForPanel);
 
         JLabel IPAddress = new JLabel("IP Address:");
         gbcForPanel.gridx = 3;
@@ -209,7 +187,7 @@ public class DODServerGUI {
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
-        controlPanel.add(AddressField,gbcForPanel);
+        controlPanel.add(AddressField, gbcForPanel);
 
         /**
          * Button to change the port of the server to the ones inputted in the text fields
@@ -222,37 +200,56 @@ public class DODServerGUI {
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(changePort, gbcForPanel);
 
+        /*
+         * Button to switch the visibility of the god view
+         */
+        hideGodView.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                if (hideGodView.getText().equals("Hide")) {
+                    lookInnerPanel.setVisible(false);
+                    hideGodView.setText("Show");
+                } else {
+                    lookInnerPanel.setVisible(true);
+                    hideGodView.setText("Hide");
+                }
+            }
+        });
+
+        /*
+         * Button to change the port number the server is connected to.
+         * First it checks its a valid port number and makes sure its not on it already
+         * Then attempts to change the port number via the method setServerPort
+         */
         changePort.addActionListener(new ActionListener() {
 
             public synchronized void actionPerformed(ActionEvent e) {
-                if(isNumeric(PortField.getText()))
-                {
-                    if(PortField.getText().equals(Integer.toString(portNumber)))
-                    {
+                if (isNumeric(PortField.getText())) {
+                    if (PortField.getText().equals(Integer.toString(portNumber))) {
                         JOptionPane.showMessageDialog(DODServerGUIFrame, "You are already using this port");
-                    }
-                    else
-                    {
+                    } else {
                         portNumber = Integer.parseInt(PortField.getText());
                         setServerPort(portNumber);
                     }
-                }
-                else
-                    {
+                } else {
                     JOptionPane.showMessageDialog(DODServerGUIFrame, "Not a valid port number");
                 }
             }
         });
     }
 
+    /*
+     * returns a boolean to show if the input string was a numerical value under 65535
+     */
     private boolean isNumeric(String stringToBeChecked) {
         try {
             int number = Integer.parseInt(stringToBeChecked);
-            if(number < 65535)
+            if (number < 65535)
                 return true;
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
-        } return false;
+        }
+        return false;
     }
 
     /**
@@ -262,8 +259,7 @@ public class DODServerGUI {
         int i, j = 0; // i = row count, j = column count
 
         for (i = 0; i < map.getMapHeight(); i++) {
-            for(j=0;j<map.getMapWidth();j++)
-            {
+            for (j = 0; j < map.getMapWidth(); j++) {
                 putInImage((mapArray[i][j]), i, j);
             }
         }
@@ -274,7 +270,7 @@ public class DODServerGUI {
      */
     private void putInImage(char tile, int i, int j) {
 
-        switch (tile){
+        switch (tile) {
             case 'P':
                 godViewWindow[i][j].setIcon(human2);
                 break;
@@ -300,9 +296,11 @@ public class DODServerGUI {
         lookInnerPanel.add(godViewWindow[i][j]);
     }
 
-
-    private void setServerPort(int portNumber)
-    {
+    /*
+     * kills all the players before closing the server and creating another with the new port number
+     * Then a confirmation message appears saying that the server successfully changed port
+     */
+    private void setServerPort(int portNumber) {
         try {
             killPlayers();
             serverSocket.close();
@@ -315,21 +313,23 @@ public class DODServerGUI {
         }
     }
 
-    private void killPlayers()
-    {
-        for(int i=0; i<threads.size();i++) {
+    /*
+     * Loops through the players threads one by one calling the kill method in thread client
+     */
+    private void killPlayers() {
+        for (int i = 0; i < threads.size(); i++) {
             threads.get(i).killPlayer(threads.get(i));
         }
-
     }
 
     /**
      * The DOD server will be made using a port number
+     * The GUI is built and the chat log is started for this game
      * Then the server socket is made allowing clients to join
      * then a user is created after the client joins the server
      * Then a thread of the new client is created
      */
-    private static int portNumber;
+    private int portNumber;
 
     public static void main(String[] args) throws IOException {
 
@@ -339,12 +339,11 @@ public class DODServerGUI {
             System.err.println("Usage: java DODServerGUI <port number>");
             System.exit(1);
         }
-        portNumber = Integer.parseInt(args[0]);
+        ServerGUI.portNumber = Integer.parseInt(args[0]);
         int playerID = 0;
         User user;
         char type;
         String name = "";
-
 
         ServerGUI.makeGUI();
 
@@ -352,14 +351,14 @@ public class DODServerGUI {
         ServerGUI.game.chatLogger.chatLog("---------------------------------------------------------------------------------");
         ServerGUI.game.chatLogger.chatLog("Game Started: " + getTime());
 
-        PortField.setText(Integer.toString(portNumber));
-        AddressField.setText((InetAddress.getLocalHost().getHostAddress()).toString());
+        ServerGUI.PortField.setText(Integer.toString(ServerGUI.portNumber));
+        ServerGUI.AddressField.setText((InetAddress.getLocalHost().getHostAddress()).toString());
 
         // initialising the god view thread so it is constantly updated
-        new GodViewThread(ServerGUI, ServerGUI.game, lookInnerPanel, godViewWindow).start();
+        new GodViewThread(ServerGUI, ServerGUI.game, ServerGUI.lookInnerPanel, ServerGUI.godViewWindow).start();
 
         try {
-            ServerGUI.serverSocket = new ServerSocket(portNumber);
+            ServerGUI.serverSocket = new ServerSocket(ServerGUI.portNumber);
             while (true) {
                 Socket socket1 = null;
                 try {
@@ -372,37 +371,36 @@ public class DODServerGUI {
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
                 String playerType = in.readLine();
 
-                if(playerType.equals("human"))
-                {
+                if (playerType.equals("human")) {
                     type = 'P';
                     System.out.println("human connected");
                     user = new User(ServerGUI.map.getMapWidth(), ServerGUI.map.getMapHeight(), playerID, 0, type, socket1, name);
-                    ThreadClient newthread = new ThreadClient(socket1,ServerGUI.game,playerID, user, type, name);
+                    ThreadClient newthread = new ThreadClient(socket1, ServerGUI.game, playerID, user, type, name);
                     ServerGUI.threads.add(newthread);
                     newthread.start();
                     playerID++;
-                }
-                else
-                {
+                } else {
                     type = 'B';
                     System.out.println("bot connected");
                     user = new User(ServerGUI.map.getMapWidth(), ServerGUI.map.getMapHeight(), playerID, 0, type, socket1, name);
-                    ThreadClient newthread = new ThreadClient(socket1,ServerGUI.game,playerID, user, type, name);
-                    ServerGUI.threads.add(newthread);
-                    newthread.start();
+                    ThreadClient newThread = new ThreadClient(socket1, ServerGUI.game, playerID, user, type, name);
+                    ServerGUI.threads.add(newThread);
+                    newThread.start();
                     playerID++;
                 }
             }
         } catch (SocketException e) {
             System.err.println(e.getLocalizedMessage());
         } catch (IOException e) {
-            System.err.println("Could not listen on port " + portNumber);
+            System.err.println("Could not listen on port " + ServerGUI.portNumber);
             System.exit(1);
         }
     }
 
+    /*
+     * Gets current date and time using Date class
+     */
     private static String getTime() {
-        //getting current date and time using Date class
         DateFormat DF = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         return DF.format(cal.getTime());

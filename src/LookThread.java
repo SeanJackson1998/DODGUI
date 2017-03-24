@@ -4,9 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Created by skatt on 16/03/2017.
- */
 public class LookThread extends Thread {
 
     BufferedReader in;
@@ -21,7 +18,7 @@ public class LookThread extends Thread {
     /**
      * Takes in parameters as the buffered reader, print writer and the gui itself
      */
-    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, JLabel command,JFrame hcgf, HumanClientGUI humanClient){
+    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, JLabel command, JFrame hcgf, HumanClientGUI humanClient) {
         in = br;
         out = pw;
         lookInnerPanel = lookPanel;
@@ -32,9 +29,11 @@ public class LookThread extends Thread {
         HumanClientGUIFrame = hcgf;
     }
 
-
+    /*
+     * creating the image icons from the file
+     */
     private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-    private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    private ImageIcon goldImage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon human = new ImageIcon(new ImageIcon("images/human.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -42,43 +41,34 @@ public class LookThread extends Thread {
     private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 
-
     /**
      * constantly loops to get the current surroundings of the player from game logic
-     * The result is sent back from game logic and printed into the labels in the gui method print look
+     * checks that what is read in is a look and prints it to the screen
+     * if it contains said, joined, left then it should be output to the chat window
+     * If it contains congratulations or won the game then a message box will appear with the game result
+     * Otherwise the line will be printed to the command status label
      */
-    public void run(){
+    public void run() {
         try {
-            while(true){
+            while (true) {
                 out.println("look");
 
                 String line = in.readLine().trim();
-                if(line.length()==25&&line.matches("[XEPGB#.]+"))
-                {
+                if (line.length() == 25 && line.matches("[XEPGB#.]+")) {
                     printLook(line);
-                }
-                else
-                {
-                    if(line.contains("said")||line.contains("joined")||line.contains("left"))
-                    {
+                } else {
+                    if (line.contains("said") || line.contains("joined") || line.contains("left")) {
                         chatWindow.append(line + "\n");
-                    }
-                    else if(line.equals("Congratulations!!!"))
-                    {
-                        JOptionPane.showMessageDialog(HumanClientGUIFrame,"You won the Game");
+                    } else if (line.equals("Congratulations!!!")) {
+                        JOptionPane.showMessageDialog(HumanClientGUIFrame, "You won the Game");
                         System.exit(0);
-                    }
-                    else if(line.contains("won the game."))
-                    {
-                        JOptionPane.showMessageDialog(HumanClientGUIFrame,"Sorry, you lost");
+                    } else if (line.contains("won the game.")) {
+                        JOptionPane.showMessageDialog(HumanClientGUIFrame, "Sorry, you lost");
                         System.exit(0);
-                    }
-                    else
-                    {
+                    } else {
                         status.setText("SERVER RESPONSE: " + line);
                     }
                 }
-
             }
         } catch (IOException | NullPointerException e) {
             hcg.disconnect();
@@ -99,18 +89,15 @@ public class LookThread extends Thread {
         int i, j = 0; // i = line count, j = char count
 
         for (i = 0; i < lookString.length(); i++) {
-            if(i==12)
-            {
+            if (i == 12) {
                 lookWindow[2][2].setIcon(human);
-            }
-            else
-            {
+            } else {
                 if (i % 5 == 0 && i != 0) {
                     j++;
                     putInImage(lookLines[i], i % 5, j);
                 } else {
                     if (j == 0) {
-                        putInImage(lookLines[i], i%5, j);
+                        putInImage(lookLines[i], i % 5, j);
                     } else {
                         putInImage(lookLines[i], i % 5, j);
                     }
@@ -125,7 +112,7 @@ public class LookThread extends Thread {
      */
     private void putInImage(String tile, int i, int j) {
 
-        switch (tile){
+        switch (tile) {
             case "P":
                 lookWindow[j][i].setIcon(human2);
                 break;
@@ -142,12 +129,11 @@ public class LookThread extends Thread {
                 lookWindow[j][i].setIcon(lava);
                 break;
             case "G":
-                lookWindow[j][i].setIcon(goldimage);
+                lookWindow[j][i].setIcon(goldImage);
                 break;
             case "E":
                 lookWindow[j][i].setIcon(exit);
                 break;
         }
     }
-
 }

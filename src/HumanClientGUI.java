@@ -6,13 +6,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Random;
 
-public class HumanClientGUI{
+public class HumanClientGUI {
 
 
     private Socket clientSocket;
@@ -24,7 +23,7 @@ public class HumanClientGUI{
     private JLabel goldCollected;
     private JLabel CommandStatus;
     private JPanel lookInnerPanel;
-    private  int gold = 0;
+    private int gold = 0;
     private JTextField PortField;
     private JTextField IPField;
     private JTextArea chatWindow;
@@ -39,8 +38,6 @@ public class HumanClientGUI{
     GridBagConstraints gbcForChatPanel = new GridBagConstraints();
     GridBagConstraints gbcForIPPanel = new GridBagConstraints();
 
-
-
     /**
      * The images to be put into the look grid
      */
@@ -53,7 +50,6 @@ public class HumanClientGUI{
     private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
     private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 
-
     /**
      * 5x5 array to hold the look screen
      */
@@ -63,16 +59,7 @@ public class HumanClientGUI{
     private String hostName;
     private int portNo;
 
-    /**
-     * constructor to set up the GUI
-     */
-    public HumanClientGUI()
-    {
-
-    }
-
-
-    private void makeGUI(){
+    private void makeGUI() {
         setUpPlayGUI();
         HumanClientGUIFrame.setVisible(true);
     }
@@ -80,10 +67,10 @@ public class HumanClientGUI{
     /*
      * set up play GUI simply creates he frame and add all the necessary components to it
      */
-    public void setUpPlayGUI(){
+    public void setUpPlayGUI() {
         HumanClientGUIFrame = new JFrame("Human Client");
 
-        HumanClientGUIFrame.setSize(900,800);
+        HumanClientGUIFrame.setSize(900, 800);
         HumanClientGUIFrame.getContentPane().setBackground(Color.lightGray);
         HumanClientGUIFrame.setResizable(false);
         HumanClientGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,7 +87,7 @@ public class HumanClientGUI{
         gbc.gridheight = 2;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
-        lookOuterPanel.setPreferredSize(new Dimension(600,600));
+        lookOuterPanel.setPreferredSize(new Dimension(600, 600));
         lookOuterPanel.setBackground(Color.black);
         HumanClientGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
@@ -114,7 +101,7 @@ public class HumanClientGUI{
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        controlPanel.setPreferredSize(new Dimension(300,600));
+        controlPanel.setPreferredSize(new Dimension(300, 600));
         controlPanel.setBackground(Color.red);
         HumanClientGUIFrame.getContentPane().add(controlPanel, gbc);
 
@@ -128,7 +115,7 @@ public class HumanClientGUI{
         gbc.gridheight = 1;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
-        chatPanel.setPreferredSize(new Dimension(600,200));
+        chatPanel.setPreferredSize(new Dimension(600, 200));
         chatPanel.setBackground(Color.green);
         HumanClientGUIFrame.getContentPane().add(chatPanel, gbc);
 
@@ -142,7 +129,7 @@ public class HumanClientGUI{
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        IPPanel.setPreferredSize(new Dimension(300,200));
+        IPPanel.setPreferredSize(new Dimension(300, 200));
         IPPanel.setBackground(Color.pink);
         HumanClientGUIFrame.getContentPane().add(IPPanel, gbc);
 
@@ -151,31 +138,27 @@ public class HumanClientGUI{
          */
         HumanClientGUIFrame.pack();
 
-
         /*
          * The panel that holds the JLabels to display the look function
          */
         lookInnerPanel = new JPanel();
-        lookInnerPanel.setLayout(new GridLayout(5,5));
-        lookInnerPanel.setPreferredSize(new Dimension(500,500));
+        lookInnerPanel.setLayout(new GridLayout(5, 5));
+        lookInnerPanel.setPreferredSize(new Dimension(500, 500));
         lookInnerPanel.setBackground(Color.white);
         lookOuterPanel.add(lookInnerPanel);
-
 
         /*
          * Insets allow spaces between components making the frame more aesthetically pleasing
          */
-        gbcForPanel.insets = new Insets(20,10,20,10);
-        gbcForChatPanel.insets = new Insets(5,5,5,5);
-        gbcForIPPanel.insets = new Insets(5,10,10,10);
+        gbcForPanel.insets = new Insets(20, 10, 20, 10);
+        gbcForChatPanel.insets = new Insets(5, 5, 5, 5);
+        gbcForIPPanel.insets = new Insets(5, 10, 10, 10);
 
         /*
          * Adding the Labels to the array
          */
-        for(int i=0;i<5;i++)
-        {
-            for(int j=0;j<5;j++)
-            {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 lookWindow[i][j] = new JLabel();
             }
         }
@@ -183,13 +166,11 @@ public class HumanClientGUI{
         /*
          * Initially randomly filling the labels (will be correctly filed in another method)
          */
-        for(int i=0;i<5;i++)
-        {
-            for(int j=0;j<5;j++)
-            {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 Random rand = new Random();
                 int u = rand.nextInt(8);
-                switch (u){
+                switch (u) {
                     case 0:
                         lookWindow[i][j].setIcon(goldimage);
                         break;
@@ -215,10 +196,8 @@ public class HumanClientGUI{
                         lookWindow[i][j].setIcon(bot);
                         break;
                 }
-
                 lookInnerPanel.add(lookWindow[i][j]);
             }
-
         }
 
         /*
@@ -232,13 +211,6 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(HelloButton, gbcForPanel);
 
-        HelloButton.addActionListener(new ActionListener() {
-
-            public synchronized void actionPerformed(ActionEvent e) {
-                out.println("hello");
-            }
-        });
-
         /*
          * Pick up button functions as the "pickup" command
          */
@@ -251,12 +223,6 @@ public class HumanClientGUI{
         controlPanel.add(PickupButton, gbcForPanel);
         PickupButton.setForeground(Color.BLACK);
         PickupButton.setBackground(Color.YELLOW);
-        PickupButton.addActionListener(new ActionListener() {
-
-            public synchronized void actionPerformed(ActionEvent e) {
-                out.println("pickup");
-            }
-        });
 
         /*
          * North button functions as the "move n" command
@@ -269,14 +235,6 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(NorthButton, gbcForPanel);
 
-        NorthButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                out.println("move n");
-            }
-        });
-
-
         /*
          * South button functions as the "move s" command
          */
@@ -285,14 +243,6 @@ public class HumanClientGUI{
         gbcForPanel.gridy = 4;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(SouthButton, gbcForPanel);
-
-        SouthButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                out.println("move s");
-            }
-        });
-
 
         /*
          * East button functions as the "move e" command
@@ -303,14 +253,6 @@ public class HumanClientGUI{
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(EastButton, gbcForPanel);
 
-        EastButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                out.println("move e");
-            }
-        });
-
-
         /*
          * West button functions as the "move w" command
          */
@@ -319,14 +261,6 @@ public class HumanClientGUI{
         gbcForPanel.gridy = 3;
         gbcForPanel.fill = GridBagConstraints.BOTH;
         controlPanel.add(WestButton, gbcForPanel);
-
-        WestButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                out.println("move w");
-            }
-        });
-
 
         /*
          * Quit button functions as the "quit" command
@@ -341,29 +275,8 @@ public class HumanClientGUI{
         QuitButton.setBackground(Color.BLACK);
         controlPanel.add(QuitButton, gbcForPanel);
 
-        QuitButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                out.println("quit");
-                HumanClientGUIFrame.dispose();
-                System.exit(0);
-            }
-        });
-
         /*
-         * Displays how much gold the user has
-         */
-        goldCollected = new JLabel("Gold Collected: " + gold);
-        gbcForPanel.gridx = 0;
-        gbcForPanel.gridy = 7;
-        gbcForPanel.gridheight = 1;
-        gbcForPanel.gridwidth = 5;
-        gbcForPanel.fill = GridBagConstraints.BOTH;
-        goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
-        controlPanel.add(goldCollected, gbcForPanel);
-
-        /*
-         * Returns the response from their input
+         * Prints the response from user input
          */
         CommandStatus = new JLabel("SERVER RESPONSE: ");
         gbcForPanel.gridx = 0;
@@ -371,12 +284,8 @@ public class HumanClientGUI{
         gbcForPanel.gridheight = 1;
         gbcForPanel.gridwidth = 5;
         gbcForPanel.fill = GridBagConstraints.BOTH;
-        goldCollected.setFont (CommandStatus.getFont ().deriveFont (20.0f));
+        goldCollected.setFont(CommandStatus.getFont().deriveFont(20.0f));
         controlPanel.add(CommandStatus, gbcForPanel);
-
-
-
-
 
         /*
          * chatWindow displays the history of the chat
@@ -389,7 +298,7 @@ public class HumanClientGUI{
         gbcForChatPanel.gridheight = 3;
         gbcForChatPanel.gridwidth = 1;
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
-        chatPanel.add(scrollPane,gbcForChatPanel);
+        chatPanel.add(scrollPane, gbcForChatPanel);
 
         /*
          * chatField allows the user to type their next message
@@ -401,7 +310,7 @@ public class HumanClientGUI{
         gbcForChatPanel.gridheight = 1;
         gbcForChatPanel.gridwidth = 1;
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
-        chatPanel.add(chatField,gbcForChatPanel);
+        chatPanel.add(chatField, gbcForChatPanel);
 
         /*
          * the send button sends the message to the other players
@@ -414,6 +323,144 @@ public class HumanClientGUI{
         gbcForChatPanel.fill = GridBagConstraints.BOTH;
         chatPanel.add(send, gbcForChatPanel);
 
+        /*
+         * clear removes the chat history from the screen // might replace with drop down of players for advanced chat
+         */
+        JButton clear = new JButton("Clear");
+        gbcForChatPanel.gridx = 1;
+        gbcForChatPanel.gridy = 0;
+        gbcForChatPanel.gridheight = 1;
+        gbcForChatPanel.gridwidth = 2;
+        clear.setPreferredSize(new Dimension(150, 30));
+        gbcForChatPanel.fill = GridBagConstraints.BOTH;
+        chatPanel.add(clear, gbcForChatPanel);
+
+        /*
+        * The users combo box holds a list of all the current players to choose from to chat to
+        */
+        users = new JComboBox<>();
+        gbcForChatPanel.gridx = 1;
+        gbcForChatPanel.gridy = 1;
+        gbcForChatPanel.gridheight = 1;
+        gbcForChatPanel.gridwidth = 2;
+        gbcForChatPanel.fill = GridBagConstraints.BOTH;
+        chatPanel.add(users, gbcForChatPanel);
+
+        JLabel ipAddress = new JLabel("IP Address:");
+        gbcForIPPanel.gridx = 0;
+        gbcForIPPanel.gridy = 0;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
+        goldCollected.setFont(goldCollected.getFont().deriveFont(24.0f));
+        IPPanel.add(ipAddress, gbcForIPPanel);
+
+        JLabel portNumber = new JLabel("Port Number:");
+        gbcForIPPanel.gridx = 0;
+        gbcForIPPanel.gridy = 1;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
+        goldCollected.setFont(goldCollected.getFont().deriveFont(24.0f));
+        IPPanel.add(portNumber, gbcForIPPanel);
+
+        /*
+         * IPField displays the IP address of the server
+         */
+        IPField = new JTextField(10);
+        IPField.setEditable(true);
+        gbcForIPPanel.gridx = 1;
+        gbcForIPPanel.gridy = 0;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
+        IPPanel.add(IPField, gbcForIPPanel);
+
+        /*
+         * Port field displays the port number of the server
+         */
+        PortField = new JTextField(10);
+        PortField.setEditable(true);
+        gbcForIPPanel.gridx = 1;
+        gbcForIPPanel.gridy = 1;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 1;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
+        IPPanel.add(PortField, gbcForIPPanel);
+
+        /*
+         * change port will switch the port number and connect to the server with the details currently in the fields
+         */
+        JButton changePort = new JButton("Change");
+        gbcForIPPanel.gridx = 0;
+        gbcForIPPanel.gridy = 2;
+        gbcForIPPanel.gridheight = 1;
+        gbcForIPPanel.gridwidth = 3;
+        gbcForIPPanel.fill = GridBagConstraints.BOTH;
+        IPPanel.add(changePort, gbcForIPPanel);
+
+
+        /*
+         * The following action listeners simply send input to the server as if a user was typing the old commands
+         */
+        HelloButton.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("hello");
+            }
+        });
+
+        PickupButton.addActionListener(new ActionListener() {
+
+            public synchronized void actionPerformed(ActionEvent e) {
+                out.println("pickup");
+            }
+        });
+
+        NorthButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                out.println("move n");
+            }
+        });
+
+        SouthButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                out.println("move s");
+            }
+        });
+
+        EastButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                out.println("move e");
+            }
+        });
+
+        WestButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                out.println("move w");
+            }
+        });
+
+        QuitButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                out.println("quit");
+                HumanClientGUIFrame.dispose();
+                System.exit(0);
+            }
+        });
+
+        /*
+         * The send button checks the combo box to see which user to send the message to
+         * Then the string is constructed to send the message to that user
+         * If the player sent a message to all then the message will send as a normal shout
+         * It will then add the message the player sent to the text area.
+         * Then the text field will be cleared ready to add more messages
+         */
         send.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -431,17 +478,8 @@ public class HumanClientGUI{
         });
 
         /*
-         * clear removes the chat history from the screen // might replace with drop down of players for advanced chat
+         * The clear button deleted the visible message history from the text area
          */
-        JButton clear = new JButton("Clear");
-        gbcForChatPanel.gridx = 1;
-        gbcForChatPanel.gridy = 0;
-        gbcForChatPanel.gridheight = 1;
-        gbcForChatPanel.gridwidth = 2;
-        clear.setPreferredSize(new Dimension(150, 30));
-        gbcForChatPanel.fill = GridBagConstraints.BOTH;
-        chatPanel.add(clear, gbcForChatPanel);
-
         clear.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -449,124 +487,70 @@ public class HumanClientGUI{
             }
         });
 
-        users = new JComboBox<>();
-        gbcForChatPanel.gridx = 1;
-        gbcForChatPanel.gridy = 1;
-        gbcForChatPanel.gridheight = 1;
-        gbcForChatPanel.gridwidth = 2;
-        gbcForChatPanel.fill = GridBagConstraints.BOTH;
-        chatPanel.add(users, gbcForChatPanel);
-
-
-        JLabel ipAddress = new JLabel("IP Address:");
-        gbcForIPPanel.gridx = 0;
-        gbcForIPPanel.gridy = 0;
-        gbcForIPPanel.gridheight = 1;
-        gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.BOTH;
-        goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
-        IPPanel.add(ipAddress, gbcForIPPanel);
-
         /*
-         * IPField displays the IP address of the server
+         * The changePort button will take the port number and IP Address from the fields
+         * Then check if they are valid parameters, if so then it will attempt to create a new connection the the server with these details
+         * else if will output error messages to the screen
          */
-        IPField = new JTextField(10);
-        IPField.setEditable(true);
-        gbcForIPPanel.gridx = 1;
-        gbcForIPPanel.gridy = 0;
-        gbcForIPPanel.gridheight = 1;
-        gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.BOTH;
-        IPPanel.add(IPField,gbcForIPPanel);
-
-        JLabel portNumber = new JLabel("Port Number:");
-        gbcForIPPanel.gridx = 0;
-        gbcForIPPanel.gridy = 1;
-        gbcForIPPanel.gridheight = 1;
-        gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.BOTH;
-        goldCollected.setFont (goldCollected.getFont ().deriveFont (24.0f));
-        IPPanel.add(portNumber, gbcForIPPanel);
-
-        /*
-         * Port field displays the port number of the server
-         */
-        PortField = new JTextField(10);
-        PortField.setEditable(true);
-        gbcForIPPanel.gridx = 1;
-        gbcForIPPanel.gridy = 1;
-        gbcForIPPanel.gridheight = 1;
-        gbcForIPPanel.gridwidth = 1;
-        gbcForIPPanel.fill = GridBagConstraints.BOTH;
-        IPPanel.add(PortField,gbcForIPPanel);
-
-        /*
-         * change port will switch the port number and connect to the server with the details currently in the fields
-         */
-        JButton changePort = new JButton("Change");
-        gbcForIPPanel.gridx = 0;
-        gbcForIPPanel.gridy = 2;
-        gbcForIPPanel.gridheight = 1;
-        gbcForIPPanel.gridwidth = 3;
-        gbcForIPPanel.fill = GridBagConstraints.BOTH;
-        IPPanel.add(changePort, gbcForIPPanel);
-
         changePort.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-
-                if(isNumeric(PortField.getText()))
-                {
-                    if(PortField.getText().equals(Integer.toString(portNo)) && IPField.getText().equals(hostName))
-                    {
+                if (isNumeric(PortField.getText())) {
+                    if (PortField.getText().equals(Integer.toString(portNo)) && IPField.getText().equals(hostName)) {
                         JOptionPane.showMessageDialog(HumanClientGUIFrame, "You are already using this port");
-                    }
-                    else
-                    {
+                    } else {
                         hostName = IPField.getText();
                         portNo = Integer.parseInt(PortField.getText());
                         changePortAndIP(hostName, portNo);
                     }
-                }
-                else{
+                } else {
                     JOptionPane.showMessageDialog(HumanClientGUIFrame, "Not a valid port number");
                 }
             }
         });
     }
 
+    /*
+     * returns a boolean to show if the input string was a numerical value under 65535
+     */
     private boolean isNumeric(String stringToBeChecked) {
         try {
             int number = Integer.parseInt(stringToBeChecked);
-            if(number < 65535)
+            if (number < 65535)
                 return true;
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
-        } return false;
+        }
+        return false;
     }
 
-
+    /*
+     * changes the port number and IP address of the server it wants to connect to.
+     * prints errors in message boxes if the socket change is not made
+     */
     private void changePortAndIP(String hostName, int portNo) {
         try {
             HumanClientGUIFrame.dispose();
-            this.main(new String[] {hostName, String.valueOf(portNo)});
-
+            this.main(new String[]{hostName, String.valueOf(portNo)});
         } catch (SocketException e) {
-            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Invalid Port Number or IP Address");
+            JOptionPane.showMessageDialog(HumanClientGUIFrame, "Invalid Port Number or IP Address");
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Invalid Port Number or IP Address");
+            JOptionPane.showMessageDialog(HumanClientGUIFrame, "Invalid Port Number or IP Address");
         }
     }
 
-    public void disconnect()
-    {
+    /*
+     * when the players are kicked from the server if the server crashes or changes port then this procedure is called
+     * The sockets to all the players are closed along with their communication readers and writers to and from the server
+     * the look threads are also interrupted
+     */
+    public void disconnect() {
         try {
             clientSocket.close();
-            JOptionPane.showMessageDialog(HumanClientGUIFrame,"Disconnected from Server, change port below");
+            JOptionPane.showMessageDialog(HumanClientGUIFrame, "Disconnected from Server, change port below");
             out.close();
             in.close();
             lt.interrupt();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -581,9 +565,8 @@ public class HumanClientGUI{
      */
     public static void main(String[] args) throws IOException {
 
-
         if (args.length != 2) {
-            System.err.println("Usage: java HumanClient <host name> <port number>");
+            System.err.println("Usage: java HumanClientGUI <host name> <port number>");
             System.exit(1);
         }
 
@@ -604,15 +587,13 @@ public class HumanClientGUI{
 
             hcg.out.println(name);
 
-            JOptionPane.showMessageDialog(nameWindow,"Welcome to dungeons of doom " + name + "!\n"
-            + "You already know most of the commands, but with the new chat system there's a few more.\n"
-            +"To chat publicly, type 'SHOUT message'\n"
-            +"To chat privately, type 'SHOUT $name message'\n"
-            +"To see the chat look in log.txt\n\n"
-            +"GOOD LUCK!");
+            JOptionPane.showMessageDialog(nameWindow, "Welcome to dungeons of doom " + name + "!\n"
+                    + "You already know most of the commands, but with the new chat system there's a few more.\n"
+                    + "To chat publicly, type 'SHOUT message'\n"
+                    + "To chat privately, type 'SHOUT $name message'\n"
+                    + "To see the chat look in log.txt\n\n"
+                    + "GOOD LUCK!");
 
-            // ChatThread to output anything to the terminal that is waiting to be displayed
-            //new ChatThread(in).start();
             hcg.makeGUI();
             hcg.IPField.setText(hcg.hostName);
             hcg.PortField.setText(Integer.toString(hcg.portNo));
@@ -628,7 +609,5 @@ public class HumanClientGUI{
             System.err.println("Couldn't get I/O for the connection to " + hcg.hostName);
             System.exit(1);
         }
-
     }
-
 }
