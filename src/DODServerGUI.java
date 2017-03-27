@@ -34,13 +34,13 @@ public class DODServerGUI {
     /**
      * The images to be put into the god view grid
      */
-    private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    private ImageIcon floor;
+    private ImageIcon goldimage;
+    private ImageIcon human2;
+    private ImageIcon bot;
+    private ImageIcon exit;
+    private ImageIcon wall;
+    private ImageIcon lava;
 
     /**
      * constructor to have instances of game logic and map with the size of the god view declared
@@ -84,7 +84,7 @@ public class DODServerGUI {
     public void setUpServerGUI() {
         DODServerGUIFrame = new JFrame("DOD Server");
 
-        DODServerGUIFrame.setSize((map.getMapWidth()*50)+100, (map.getMapHeight()*50)+300);
+        DODServerGUIFrame.setSize(new Dimension(700,800));
         DODServerGUIFrame.getContentPane().setBackground(Color.lightGray);
         DODServerGUIFrame.setResizable(false);
         DODServerGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,18 +101,37 @@ public class DODServerGUI {
         gbc.gridheight = 3;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        lookOuterPanel.setPreferredSize(new Dimension((map.getMapWidth()*50)+100, (map.getMapHeight()*50)+100));
+        lookOuterPanel.setPreferredSize(new Dimension(700,700));
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
-        /**
-         * Panel to display the gods Eye View
-         */
+        int smallest;
+
+        //System.out.println("x: " +  + " y: " + y);
+
+        if(map.getMapWidth()>map.getMapHeight())
+        {
+            smallest = 700/map.getMapWidth();
+        }
+        else {
+            smallest = 700/map.getMapHeight();
+        }
+
+        floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(smallest,smallest, Image.SCALE_DEFAULT));
+        goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
+        human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
+        bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
+        exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
+        wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
+        lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
+
+
+        System.out.print(smallest);
         lookInnerPanel = new JPanel();
         lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(),map.getMapWidth()));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        lookInnerPanel.setPreferredSize(new Dimension(map.getMapWidth()*50, map.getMapHeight()*50));
+        lookInnerPanel.setPreferredSize(new Dimension(map.getMapWidth()*smallest, map.getMapHeight()*smallest));
         lookInnerPanel.setBackground(Color.red);
         lookOuterPanel.add(lookInnerPanel, gbc);
 
@@ -126,7 +145,7 @@ public class DODServerGUI {
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        controlPanel.setPreferredSize(new Dimension(1200, 200));
+        controlPanel.setPreferredSize(new Dimension(700, 100));
         controlPanel.setBackground(Color.pink);
         DODServerGUIFrame.getContentPane().add(controlPanel, gbc);
 

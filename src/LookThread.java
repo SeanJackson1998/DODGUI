@@ -3,6 +3,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LookThread extends Thread {
@@ -14,12 +15,13 @@ public class LookThread extends Thread {
     JLabel[][] lookWindow;
     JTextArea chatWindow;
     JLabel status;
+    JComboBox<String> users;
     JFrame HumanClientGUIFrame;
 
     /**
      * Takes in parameters as the buffered reader, print writer and the gui itself
      */
-    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, JLabel command, JFrame hcgf, HumanClientGUI humanClient) {
+    public LookThread(BufferedReader br, PrintWriter pw, JPanel lookPanel, JLabel[][] lookView, JTextArea chat, JLabel command, JFrame hcgf, JComboBox<String> userlist, HumanClientGUI humanClient) {
         in = br;
         out = pw;
         lookInnerPanel = lookPanel;
@@ -27,6 +29,7 @@ public class LookThread extends Thread {
         hcg = humanClient;
         chatWindow = chat;
         status = command;
+        users = userlist;
         HumanClientGUIFrame = hcgf;
     }
 
@@ -60,6 +63,7 @@ public class LookThread extends Thread {
                         if (line.length() == 25 && line.matches("[XEPGB#.]+")) {
                             out.println("look");
                             printLook(line);
+                            // pass a command to get back a string of player names and then split them and put them in the combo box
                         } else {
                             if (line.contains("said") || line.contains("joined") || line.contains("left")) {
                                 chatWindow.append(line + "\n");
@@ -69,7 +73,11 @@ public class LookThread extends Thread {
                             } else if (line.contains("won the game.")) {
                                 JOptionPane.showMessageDialog(HumanClientGUIFrame, "Sorry, you lost");
                                 System.exit(0);
-                            } else {
+                            } else if (line.startsWith("ALL")){
+                                out.println("players");
+                                putPlayersInList(line);
+                            }
+                            else {
                                 status.setText("SERVER RESPONSE: " + line);
                             }
                         }
@@ -79,6 +87,15 @@ public class LookThread extends Thread {
             }
         } catch (IOException | NullPointerException e) {
             hcg.disconnect();
+        }
+    }
+
+    private void putPlayersInList(String line) {
+        users.removeAllItems();
+        String[] players = line.split(",");
+        for(int i=0;i<players.length;i++)
+        {
+            users.addItem(players[i]);
         }
     }
 

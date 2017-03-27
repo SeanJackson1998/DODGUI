@@ -22,12 +22,10 @@ public class HumanClientGUI {
 
     private JLabel CommandStatus;
     private JPanel lookInnerPanel;
-    private int gold = 0;
     private JTextField PortField;
     private JTextField IPField;
     private JTextArea chatWindow;
-    private boolean winner = false;
-    private JComboBox<User> users;
+    private JComboBox<String> users;
 
     /**
      * different layouts for the different panels
@@ -597,8 +595,9 @@ public class HumanClientGUI {
             hcg.PortField.setText(Integer.toString(hcg.portNo));
 
             // initialising look thread so its always updated by their surroundings
-            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg.chatWindow, hcg.CommandStatus, hcg.HumanClientGUIFrame, hcg);
+            hcg.lt = new LookThread(hcg.in, hcg.out, hcg.lookInnerPanel, hcg.lookWindow, hcg.chatWindow, hcg.CommandStatus, hcg.HumanClientGUIFrame, hcg.users, hcg);
             hcg.lt.start();
+            hcg.out.println("players");
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hcg.hostName);

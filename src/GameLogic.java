@@ -101,6 +101,9 @@ public class GameLogic {
             case "PICKUP":
                 answer = pickup(user);
                 break;
+            case "PLAYERS":
+                answer = getPlayersString(user);
+                break;
             case "LOOK":
                 answer = look(user);
                 break;
@@ -116,6 +119,18 @@ public class GameLogic {
         }
 
         return answer;
+    }
+
+    private String getPlayersString(User user) {
+        String users = "ALL";
+        for (User userTest : players) {
+            if(!userTest.equals(user))
+            {
+                users = users + "," + userTest.getName();
+            }
+        }
+
+        return users;
     }
 
     /**
