@@ -7,28 +7,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GodViewThread extends Thread {
+
     DODServerGUI dsg;
     GameLogic gl;
     JPanel lookInnerPanel;
     JLabel[][] godViewWindow;
+    int smallest;
 
+    private ImageIcon floor;
+    private ImageIcon goldimage;
+    private ImageIcon human2;
+    private ImageIcon bot;
+    private ImageIcon exit;
+    private ImageIcon wall;
+    private ImageIcon lava;
     /**
      * The gui itself and game logic are sent through as parameters
      */
-    public GodViewThread(DODServerGUI ds, GameLogic game, JPanel lookPanel, JLabel[][] godView) {
+    public GodViewThread(DODServerGUI ds, GameLogic game, JPanel lookPanel, JLabel[][] godView, int small) {
         dsg = ds;
         gl = game;
         lookInnerPanel = lookPanel;
         godViewWindow = godView;
-    }
+        smallest=small;
 
-    private ImageIcon floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-    private ImageIcon lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(smallest,smallest, Image.SCALE_SMOOTH));
+        goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+    }
 
     /**
      * constantly loops to get the current state of the map from game logic

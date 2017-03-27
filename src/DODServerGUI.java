@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +35,7 @@ public class DODServerGUI {
     /**
      * The images to be put into the god view grid
      */
+    public int smallest;
     private ImageIcon floor;
     private ImageIcon goldimage;
     private ImageIcon human2;
@@ -62,6 +64,7 @@ public class DODServerGUI {
         printGodView(map.getMap());
         DODServerGUIFrame.setVisible(true);
     }
+    Border blackline = BorderFactory.createLineBorder(Color.black);
     /**
      * Adds labels to the god view array ready to be filled in later
      */
@@ -105,10 +108,6 @@ public class DODServerGUI {
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
-        int smallest;
-
-        //System.out.println("x: " +  + " y: " + y);
-
         if(map.getMapWidth()>map.getMapHeight())
         {
             smallest = 700/map.getMapWidth();
@@ -117,16 +116,14 @@ public class DODServerGUI {
             smallest = 700/map.getMapHeight();
         }
 
-        floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(smallest,smallest, Image.SCALE_DEFAULT));
-        goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
-        human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
-        bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
-        exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
-        wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
-        lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_DEFAULT));
+        floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(smallest,smallest, Image.SCALE_SMOOTH));
+        goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
 
-
-        System.out.print(smallest);
         lookInnerPanel = new JPanel();
         lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(),map.getMapWidth()));
         gbc.gridx = 0;
@@ -387,7 +384,7 @@ public class DODServerGUI {
         ServerGUI.AddressField.setText((InetAddress.getLocalHost().getHostAddress()).toString());
 
         // initialising the god view thread so it is constantly updated
-        new GodViewThread(ServerGUI, ServerGUI.game, ServerGUI.lookInnerPanel, ServerGUI.godViewWindow).start();
+        new GodViewThread(ServerGUI, ServerGUI.game, ServerGUI.lookInnerPanel, ServerGUI.godViewWindow, ServerGUI.smallest).start();
 
         try {
             ServerGUI.serverSocket = new ServerSocket(ServerGUI.portNumber);
