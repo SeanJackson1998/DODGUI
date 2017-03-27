@@ -11,6 +11,9 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Random;
 
+/*
+ * Creates and runs the Human GUI
+ */
 public class HumanClientGUI {
 
 
@@ -461,7 +464,6 @@ public class HumanClientGUI {
 
             public void actionPerformed(ActionEvent e) {
                 String name;
-                // add this back in once the drop down bar is filled
                 name = "$" + users.getSelectedItem().toString() + " ";
                 if(users.getSelectedItem().equals("ALL"))
                 {
@@ -584,9 +586,6 @@ public class HumanClientGUI {
             hcg.out.println(name);
 
             JOptionPane.showMessageDialog(nameWindow, "Welcome to dungeons of doom " + name + "!\n"
-                    + "You already know most of the commands, but with the new chat system there's a few more.\n"
-                    + "To chat publicly, type 'SHOUT message'\n"
-                    + "To chat privately, type 'SHOUT $name message'\n"
                     + "To see the chat look in log.txt\n\n"
                     + "GOOD LUCK!");
 

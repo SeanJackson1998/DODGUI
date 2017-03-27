@@ -6,6 +6,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/*
+ * constantly updates the god view
+ */
 public class GodViewThread extends Thread {
 
     DODServerGUI dsg;
@@ -31,6 +34,9 @@ public class GodViewThread extends Thread {
         godViewWindow = godView;
         smallest=small;
 
+        /*
+         * instantiates the image icons and puts them into the correct size
+         */
         floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(smallest,smallest, Image.SCALE_SMOOTH));
         goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
         human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));

@@ -101,7 +101,7 @@ public class GameLogic {
             case "PICKUP":
                 answer = pickup(user);
                 break;
-            case "PLAYERS":
+            case "PLAYERS": // the command that gets back the players list for the chat
                 answer = getPlayersString(user);
                 break;
             case "LOOK":
@@ -121,15 +121,17 @@ public class GameLogic {
         return answer;
     }
 
+    /*
+     * Returns the string of players that aren't the player that asked for them,
+     * This will allow the user to choose from the other users when they want to sed a message
+     */
     private String getPlayersString(User user) {
         String users = "ALL";
         for (User userTest : players) {
-            if(!userTest.equals(user))
-            {
+            if (!userTest.equals(user)) {
                 users = users + "," + userTest.getName();
             }
         }
-
         return users;
     }
 

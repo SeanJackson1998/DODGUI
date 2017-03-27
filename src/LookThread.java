@@ -3,9 +3,11 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+
+/*
+ * constantly outputs look to the Panel and receives input from the server and putting the output in the correct places
+ */
 public class LookThread extends Thread {
 
     BufferedReader in;
@@ -62,12 +64,11 @@ public class LookThread extends Thread {
 
                         if (line.length() == 25 && line.matches("[XEPGB#.]+")) {
                             out.println("look");
-                            printLook(line);
-                            // pass a command to get back a string of player names and then split them and put them in the combo box
+                            printLook(line); // updates the look view for the player
                         } else {
                             if (line.contains("said") || line.contains("joined") || line.contains("left")) {
                                 chatWindow.append(line + "\n");
-                                out.println("players");
+                                out.println("players"); // updates the players in the combo box
                             } else if (line.equals("Congratulations!!!")) {
                                 JOptionPane.showMessageDialog(HumanClientGUIFrame, "You won the Game");
                                 System.exit(0);
@@ -90,6 +91,10 @@ public class LookThread extends Thread {
         }
     }
 
+    /*
+     * takes the string from the command and inputs the players into the combo box
+     * Splits it by commas as that's how its passed
+     */
     private void putPlayersInList(String line) {
         users.removeAllItems();
         String[] players = line.split(",");
@@ -106,10 +111,6 @@ public class LookThread extends Thread {
      * each 5th character a new line in the array is made.
      */
     public void printLook(String lookString) {
-        //String[] lookLines;
-
-        //lookLines = lookString.split("");
-        //System.out.println(Arrays.toString(lookString));
 
         int i = 0; // i = line count, j = char count
 

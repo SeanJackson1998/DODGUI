@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/*
+ * Creates and runs the server GUI
+ */
 public class DODServerGUI {
 
     private ServerSocket serverSocket;
@@ -64,7 +66,7 @@ public class DODServerGUI {
         printGodView(map.getMap());
         DODServerGUIFrame.setVisible(true);
     }
-    Border blackline = BorderFactory.createLineBorder(Color.black);
+
     /**
      * Adds labels to the god view array ready to be filled in later
      */
@@ -104,10 +106,13 @@ public class DODServerGUI {
         gbc.gridheight = 3;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        lookOuterPanel.setPreferredSize(new Dimension(700,700));
+        lookOuterPanel.setPreferredSize(new Dimension(700,700)); // hardcoded panel
         lookOuterPanel.setBackground(Color.black);
         DODServerGUIFrame.getContentPane().add(lookOuterPanel, gbc);
 
+        /*
+         * calculates the size of the icons to perfectly fit the map into the panel
+         */
         if(map.getMapWidth()>map.getMapHeight())
         {
             smallest = 700/map.getMapWidth();
