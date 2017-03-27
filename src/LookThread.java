@@ -3,6 +3,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 public class LookThread extends Thread {
 
@@ -50,25 +51,31 @@ public class LookThread extends Thread {
      */
     public void run() {
         try {
+            out.println("look");
             while (true) {
-                out.println("look");
+                final String line = in.readLine().trim();
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
 
-                String line = in.readLine().trim();
-                if (line.length() == 25 && line.matches("[XEPGB#.]+")) {
-                    printLook(line);
-                } else {
-                    if (line.contains("said") || line.contains("joined") || line.contains("left")) {
-                        chatWindow.append(line + "\n");
-                    } else if (line.equals("Congratulations!!!")) {
-                        JOptionPane.showMessageDialog(HumanClientGUIFrame, "You won the Game");
-                        System.exit(0);
-                    } else if (line.contains("won the game.")) {
-                        JOptionPane.showMessageDialog(HumanClientGUIFrame, "Sorry, you lost");
-                        System.exit(0);
-                    } else {
-                        status.setText("SERVER RESPONSE: " + line);
+                        if (line.length() == 25 && line.matches("[XEPGB#.]+")) {
+                            out.println("look");
+                            printLook(line);
+                        } else {
+                            if (line.contains("said") || line.contains("joined") || line.contains("left")) {
+                                chatWindow.append(line + "\n");
+                            } else if (line.equals("Congratulations!!!")) {
+                                JOptionPane.showMessageDialog(HumanClientGUIFrame, "You won the Game");
+                                System.exit(0);
+                            } else if (line.contains("won the game.")) {
+                                JOptionPane.showMessageDialog(HumanClientGUIFrame, "Sorry, you lost");
+                                System.exit(0);
+                            } else {
+                                status.setText("SERVER RESPONSE: " + line);
+                            }
+                        }
+
                     }
-                }
+                });
             }
         } catch (IOException | NullPointerException e) {
             hcg.disconnect();
@@ -82,27 +89,21 @@ public class LookThread extends Thread {
      * each 5th character a new line in the array is made.
      */
     public void printLook(String lookString) {
-        String[] lookLines;
+        //String[] lookLines;
 
-        lookLines = lookString.split("");
+        //lookLines = lookString.split("");
+        //System.out.println(Arrays.toString(lookString));
 
-        int i, j = 0; // i = line count, j = char count
+        int i = 0; // i = line count, j = char count
 
         for (i = 0; i < lookString.length(); i++) {
             if (i == 12) {
                 lookWindow[2][2].setIcon(human);
-            } else {
-                if (i % 5 == 0 && i != 0) {
-                    j++;
-                    putInImage(lookLines[i], i % 5, j);
-                } else {
-                    if (j == 0) {
-                        putInImage(lookLines[i], i % 5, j);
-                    } else {
-                        putInImage(lookLines[i], i % 5, j);
-                    }
-                }
+            } else
+            {
+                putInImage(lookString.charAt(i), i % 5, i/5);
             }
+
         }
         lookInnerPanel.repaint();
     }
@@ -110,28 +111,28 @@ public class LookThread extends Thread {
     /**
      * putInImage take the char of the tile and converts that into the corresponding image
      */
-    private void putInImage(String tile, int i, int j) {
+    private void putInImage(char tile, int i, int j) {
 
         switch (tile) {
-            case "P":
+            case 'P':
                 lookWindow[j][i].setIcon(human2);
                 break;
-            case "B":
+            case 'B':
                 lookWindow[j][i].setIcon(bot);
                 break;
-            case ".":
+            case '.':
                 lookWindow[j][i].setIcon(floor);
                 break;
-            case "#":
+            case '#':
                 lookWindow[j][i].setIcon(wall);
                 break;
-            case "X":
+            case 'X':
                 lookWindow[j][i].setIcon(lava);
                 break;
-            case "G":
+            case 'G':
                 lookWindow[j][i].setIcon(goldImage);
                 break;
-            case "E":
+            case 'E':
                 lookWindow[j][i].setIcon(exit);
                 break;
         }

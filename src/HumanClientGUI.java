@@ -411,6 +411,7 @@ public class HumanClientGUI {
 
             public synchronized void actionPerformed(ActionEvent e) {
                 out.println("pickup");
+                out.println("look");
             }
         });
 
