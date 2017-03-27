@@ -121,13 +121,13 @@ public class DODServerGUI {
             smallest = 700/map.getMapHeight();
         }
 
-        floor = new ImageIcon(new ImageIcon("images/floor.png").getImage().getScaledInstance(smallest,smallest, Image.SCALE_SMOOTH));
-        goldimage = new ImageIcon(new ImageIcon("images/gold.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
-        human2 = new ImageIcon(new ImageIcon("images/human2.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
-        bot = new ImageIcon(new ImageIcon("images/bot.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
-        exit = new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
-        wall = new ImageIcon(new ImageIcon("images/wall.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
-        lava = new ImageIcon(new ImageIcon("images/lava.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        floor = new ImageIcon(new ImageIcon("floor.png").getImage().getScaledInstance(smallest,smallest, Image.SCALE_SMOOTH));
+        goldimage = new ImageIcon(new ImageIcon("gold.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        human2 = new ImageIcon(new ImageIcon("human2.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        bot = new ImageIcon(new ImageIcon("bot.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        exit = new ImageIcon(new ImageIcon("exit.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        wall = new ImageIcon(new ImageIcon("wall.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
+        lava = new ImageIcon(new ImageIcon("lava.png").getImage().getScaledInstance(smallest,smallest , Image.SCALE_SMOOTH));
 
         lookInnerPanel = new JPanel();
         lookInnerPanel.setLayout(new GridLayout(map.getMapHeight(),map.getMapWidth()));

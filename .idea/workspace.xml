@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38ad1e30-3b94-4c00-b6da-ab7774e2bb08" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/bot.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/exit.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/floor.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/gold.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/human.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/human2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/lava.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/wall.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/example_map.txt" afterPath="$PROJECT_DIR$/example_map.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log.txt" afterPath="$PROJECT_DIR$/log.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DODServerGUI.java" afterPath="$PROJECT_DIR$/src/DODServerGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameLogic.java" afterPath="$PROJECT_DIR$/src/GameLogic.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GodViewThread.java" afterPath="$PROJECT_DIR$/src/GodViewThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HumanClientGUI.java" afterPath="$PROJECT_DIR$/src/HumanClientGUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LookThread.java" afterPath="$PROJECT_DIR$/src/LookThread.java" />
@@ -40,8 +48,8 @@
       <file leaf-file-name="DODServerGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DODServerGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3564">
-              <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+            <state relative-caret-position="418">
+              <caret line="129" column="44" lean-forward="false" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,15 +67,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HumanClientGUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HumanClientGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="587" column="99" lean-forward="false" selection-start-line="587" selection-start-column="99" selection-end-line="587" selection-end-column="99" />
+            <state relative-caret-position="308">
+              <caret line="50" column="58" lean-forward="false" selection-start-line="50" selection-start-column="58" selection-end-line="50" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#15270#15271#0" expanded="true" />
-                <element signature="e#15323#15324#0" expanded="true" />
+                <element signature="e#15214#15215#0" expanded="true" />
+                <element signature="e#15267#15268#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,8 +84,8 @@
       <file leaf-file-name="LookThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LookThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            <state relative-caret-position="1034">
+              <caret line="47" column="58" lean-forward="false" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GodViewThread.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GodViewThread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GodViewThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-462">
-              <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+            <state relative-caret-position="154">
+              <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,12 +171,12 @@
         <option value="$PROJECT_DIR$/src/ThreadClient.java" />
         <option value="$PROJECT_DIR$/src/BotClient.java" />
         <option value="$PROJECT_DIR$/src/User.java" />
-        <option value="$PROJECT_DIR$/example_map.txt" />
         <option value="$PROJECT_DIR$/src/GameLogic.java" />
-        <option value="$PROJECT_DIR$/src/GodViewThread.java" />
-        <option value="$PROJECT_DIR$/src/DODServerGUI.java" />
-        <option value="$PROJECT_DIR$/src/LookThread.java" />
+        <option value="$PROJECT_DIR$/example_map.txt" />
         <option value="$PROJECT_DIR$/src/HumanClientGUI.java" />
+        <option value="$PROJECT_DIR$/src/LookThread.java" />
+        <option value="$PROJECT_DIR$/src/DODServerGUI.java" />
+        <option value="$PROJECT_DIR$/src/GodViewThread.java" />
       </list>
     </option>
   </component>
@@ -772,7 +780,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490620584593</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Final comments and checks!">
+      <created>1490621560558</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1490621560558</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -788,8 +803,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14318442" sideWeight="0.50216216" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23216309" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.398641" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6183466" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -843,7 +858,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="God view with the human client joining doesnt show the user, but they do join the server" />
     <MESSAGE value="god view works finally" />
     <MESSAGE value="hide and show gods eye view works" />
     <MESSAGE value="can show ip address and port number on human, fixed the look bug for player 1" />
@@ -868,7 +882,8 @@
     <MESSAGE value="got the players to the combo box but it doesnt let me click on them&#10;got the map to the screen dynamically but doesnt tesselate" />
     <MESSAGE value="dropdown works perfectly" />
     <MESSAGE value="god view correctly resizes" />
-    <option name="LAST_COMMIT_MESSAGE" value="god view correctly resizes" />
+    <MESSAGE value="Final comments and checks!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final comments and checks!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -921,8 +936,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15270#15271#0" expanded="true" />
-            <element signature="e#15323#15324#0" expanded="true" />
+            <element signature="e#15214#15215#0" expanded="true" />
+            <element signature="e#15267#15268#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -980,8 +995,8 @@
           <caret line="541" column="51" lean-forward="false" selection-start-line="541" selection-start-column="12" selection-end-line="541" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15270#15271#0" expanded="true" />
-            <element signature="e#15323#15324#0" expanded="true" />
+            <element signature="e#15214#15215#0" expanded="true" />
+            <element signature="e#15267#15268#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1063,8 +1078,8 @@
           <caret line="156" column="39" lean-forward="false" selection-start-line="156" selection-start-column="39" selection-end-line="156" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15270#15271#0" expanded="true" />
-            <element signature="e#15323#15324#0" expanded="true" />
+            <element signature="e#15214#15215#0" expanded="true" />
+            <element signature="e#15267#15268#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1141,8 +1156,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15270#15271#0" expanded="true" />
-            <element signature="e#15323#15324#0" expanded="true" />
+            <element signature="e#15214#15215#0" expanded="true" />
+            <element signature="e#15267#15268#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1256,14 +1271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example_map.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="55" column="57" lean-forward="false" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreadClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="514">
@@ -1283,20 +1290,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LookThread.java">
+    <entry file="file://$PROJECT_DIR$/example_map.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        <state relative-caret-position="242">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="50" column="58" lean-forward="false" selection-start-line="50" selection-start-column="58" selection-end-line="50" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#15214#15215#0" expanded="true" />
+            <element signature="e#15267#15268#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GodViewThread.java">
+    <entry file="file://$PROJECT_DIR$/src/LookThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-462">
-          <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+        <state relative-caret-position="1034">
+          <caret line="47" column="58" lean-forward="false" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1305,22 +1322,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DODServerGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3564">
-          <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+        <state relative-caret-position="418">
+          <caret line="129" column="44" lean-forward="false" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HumanClientGUI.java">
+    <entry file="file://$PROJECT_DIR$/src/GodViewThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="587" column="99" lean-forward="false" selection-start-line="587" selection-start-column="99" selection-end-line="587" selection-end-column="99" />
+        <state relative-caret-position="154">
+          <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15270#15271#0" expanded="true" />
-            <element signature="e#15323#15324#0" expanded="true" />
           </folding>
         </state>
       </provider>
