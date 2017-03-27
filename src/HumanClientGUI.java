@@ -460,13 +460,13 @@ public class HumanClientGUI {
         send.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                String name = "lol";
+                String name;
                 // add this back in once the drop down bar is filled
-                /*name = "$" + users.getSelectedItem().toString() + " ";
+                name = "$" + users.getSelectedItem().toString() + " ";
                 if(users.getSelectedItem().equals("ALL"))
                 {
                     name = "";
-                }*/
+                }
                 out.println("SHOUT " + name + chatField.getText());
                 chatWindow.append("YOU said: " + chatField.getText() + "\n");
                 chatField.setText("");

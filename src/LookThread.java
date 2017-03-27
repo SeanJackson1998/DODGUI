@@ -67,6 +67,7 @@ public class LookThread extends Thread {
                         } else {
                             if (line.contains("said") || line.contains("joined") || line.contains("left")) {
                                 chatWindow.append(line + "\n");
+                                out.println("players");
                             } else if (line.equals("Congratulations!!!")) {
                                 JOptionPane.showMessageDialog(HumanClientGUIFrame, "You won the Game");
                                 System.exit(0);
@@ -74,7 +75,6 @@ public class LookThread extends Thread {
                                 JOptionPane.showMessageDialog(HumanClientGUIFrame, "Sorry, you lost");
                                 System.exit(0);
                             } else if (line.startsWith("ALL")){
-                                out.println("players");
                                 putPlayersInList(line);
                             }
                             else {
